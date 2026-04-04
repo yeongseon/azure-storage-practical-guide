@@ -1,0 +1,125 @@
+site_name: Azure Storage Practical Guide
+site_url: https://yeongseon.github.io/azure-storage-practical-guide/
+site_description: Azure Storage practical guide — data access, durability, operations, and troubleshooting grounded in MS Learn
+site_author: yeongseon
+
+repo_name: yeongseon/azure-storage-practical-guide
+repo_url: https://github.com/yeongseon/azure-storage-practical-guide
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: deep-orange
+      accent: deep-orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep-orange
+      accent: deep-orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Start Here:
+    - start-here/index.md
+    - Overview: start-here/overview.md
+    - Learning Path: start-here/learning-path.md
+    - Storage Services at a Glance: start-here/storage-services-at-a-glance.md
+    - Common Scenarios: start-here/common-scenarios.md
+  - Platform:
+    - platform/index.md
+    - How Azure Storage Works: platform/how-azure-storage-works.md
+    - Storage Account Basics: platform/storage-account-basics.md
+    - Blob Storage Basics: platform/blob-storage-basics.md
+    - File Storage Basics: platform/file-storage-basics.md
+    - Queue and Table Basics: platform/queue-and-table-basics.md
+    - Redundancy and Durability: platform/redundancy-and-durability.md
+    - Access Models: platform/access-models.md
+    - Networking and Private Access: platform/networking-and-private-access.md
+    - Performance and Scaling Basics: platform/performance-and-scaling-basics.md
+  - Best Practices:
+    - best-practices/index.md
+    - Storage Account Design Baseline: best-practices/storage-account-design-baseline.md
+    - Blob: best-practices/blob-best-practices.md
+    - File Share: best-practices/file-share-best-practices.md
+    - Security: best-practices/security-best-practices.md
+    - Networking: best-practices/networking-best-practices.md
+    - Redundancy and DR: best-practices/redundancy-and-dr-best-practices.md
+    - Performance: best-practices/performance-best-practices.md
+    - Cost Optimization: best-practices/cost-optimization-best-practices.md
+    - Lifecycle Management: best-practices/lifecycle-management-best-practices.md
+    - Common Anti-Patterns: best-practices/common-anti-patterns.md
+  - Operations:
+    - operations/index.md
+    - Create Storage Account: operations/create-storage-account.md
+    - Manage Containers and Shares: operations/manage-containers-and-shares.md
+    - Configure Access and Identity: operations/configure-access-and-identity.md
+    - Configure Network Rules: operations/configure-network-rules.md
+    - Use Private Endpoints: operations/use-private-endpoints.md
+    - Manage Lifecycle Policies: operations/manage-lifecycle-policies.md
+    - Backup and Data Protection: operations/backup-and-data-protection.md
+    - Monitoring and Alerting: operations/monitoring-and-alerting.md
+    - AzCopy and Data Movement: operations/azcopy-and-data-movement.md
+  - Troubleshooting:
+    - troubleshooting/index.md
+    - Cannot Access Storage Account: troubleshooting/cannot-access-storage-account.md
+    - Authorization Failures: troubleshooting/authorization-failures.md
+    - Private Endpoint and DNS Issues: troubleshooting/private-endpoint-and-dns-issues.md
+    - Slow Upload / Download: troubleshooting/slow-upload-download.md
+    - File Share Mount Issues: troubleshooting/file-share-mount-issues.md
+    - SAS and Token Issues: troubleshooting/sas-and-token-issues.md
+    - Throttling and Performance Issues: troubleshooting/throttling-and-performance-issues.md
+    - Data Protection and Recovery Issues: troubleshooting/data-protection-and-recovery-issues.md
+    - Public vs Private Access Confusion: troubleshooting/public-vs-private-access-confusion.md
+  - Reference:
+    - reference/index.md
+    - Storage Service Selection Guide: reference/storage-service-selection-guide.md
+    - Redundancy Options: reference/redundancy-options.md
+    - Access Methods Cheatsheet: reference/access-methods-cheatsheet.md
+    - Storage Networking Cheatsheet: reference/storage-networking-cheatsheet.md
+    - Performance Terms: reference/performance-terms.md
+    - Glossary: reference/glossary.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yeongseon/azure-storage-practical-guide
