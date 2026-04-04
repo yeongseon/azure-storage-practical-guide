@@ -40,4 +40,4 @@ graph TD
 
 ## Sources
 - [Troubleshoot Azure Files](https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems)
-- [Check port 445 connectivity](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-configure-smb-windows-connectivity)
+- [Configure a Point-to-Site VPN on Windows for Azure Files](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-configure-p2s-vpn-windows)

@@ -38,5 +38,5 @@ graph TD
 - [Backup and Data Protection](backup-and-data-protection.md)
 
 ## Sources
-- [Monitoring Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-monitoring-overview)
+- [Monitoring Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
 - [Diagnostic logging](https://learn.microsoft.com/en-us/azure/storage/common/storage-analytics-logging)

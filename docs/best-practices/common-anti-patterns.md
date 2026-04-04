@@ -37,6 +37,6 @@ graph TD
 
 ## Sources
 
-- [Azure Well-Architected Storage](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-storage)
-- [Security anti-patterns](https://learn.microsoft.com/en-us/azure/well-architected/security/anti-patterns)
-- [Storage account security recommendations](https://learn.microsoft.com/en-us/azure/storage/common/security-recommendations)
+- [Azure Well-Architected Framework for Azure Blob Storage](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-blob-storage)
+- [Security recommendations for Blob storage](https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations)
+- [Performance checklist for Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist)

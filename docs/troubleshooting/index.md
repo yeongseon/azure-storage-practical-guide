@@ -42,5 +42,5 @@ graph TD
 - [Authorization Failures](authorization-failures.md)
 
 ## Sources
-- [Troubleshoot Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-troubleshoot-guide)
-- [Diagnostic metrics for troubleshooting](https://learn.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing)
+- [Monitor and troubleshoot Azure Storage](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting)
+- [Troubleshoot storage client application errors](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/troubleshoot-storage-client-application-errors)

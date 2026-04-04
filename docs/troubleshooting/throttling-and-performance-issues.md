@@ -38,4 +38,4 @@ graph TD
 
 ## Sources
 - [Scalability and performance targets](https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets)
-- [Storage throttling overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-throttling-errors)
+- [Scalability and performance targets for standard storage accounts](https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account)

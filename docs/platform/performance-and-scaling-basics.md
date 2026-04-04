@@ -5,8 +5,8 @@ Understanding performance limits and scaling targets is essential for designing 
 | Metric | Standard Account | Premium Block Blob | Premium File Share |
 | :--- | :--- | :--- | :--- |
 | **IOPS** | Up to 20,000 | Up to 100,000 | Up to 100,000 |
-| **Ingress** | Up to 60 Gbps | Up to 60 Gbps | Up to 60 Gbps |
-| **Egress** | Up to 60 Gbps | Up to 60 Gbps | Up to 60 Gbps |
+| **Ingress** | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) |
+| **Egress** | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) |
 | **Capacity** | 5 PB per account | 5 PB per account | 100 TB per share |
 
 ```mermaid

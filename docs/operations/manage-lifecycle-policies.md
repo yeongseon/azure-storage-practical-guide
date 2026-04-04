@@ -16,8 +16,9 @@ Automate data transitions based on age and access patterns.
 graph TD
     A[Upload Data] --> B[Hot Tier]
     B -->|30 Days| C[Cool Tier]
-    C -->|90 Days| D[Archive Tier]
-    D -->|Delete Rule| E[Purge Data]
+    C -->|90 Days| D[Cold Tier]
+    D -->|180 Days| E[Archive Tier]
+    E -->|Delete Rule| F[Purge Data]
 ```
 
 ## Policy Validation Checklist

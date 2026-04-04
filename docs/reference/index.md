@@ -9,7 +9,7 @@ This section provides quick lookup guides, technical comparisons, and dense summ
 
 | Page | Description | Key Focus |
 | --- | --- | --- |
-| [Storage Selection](storage-service-selection-guide.md) | Workload-based service mapping | Blobs, Files, Disks |
+| [Storage Selection](storage-service-selection-guide.md) | Workload-based service mapping | Blobs, Files, Queues, Tables |
 | [Redundancy Options](redundancy-options.md) | Data protection levels | LRS, ZRS, GRS |
 | [Access Methods](access-methods-cheatsheet.md) | Security and authentication | SAS, RBAC, Managed Identity |
 | [Storage Networking](storage-networking-cheatsheet.md) | Connectivity and isolation | Private Endpoints, Firewalls |

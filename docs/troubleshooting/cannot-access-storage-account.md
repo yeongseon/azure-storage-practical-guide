@@ -38,5 +38,5 @@ graph TD
 - [Public vs Private Access Confusion](public-vs-private-access-confusion.md)
 
 ## Sources
-- [Troubleshoot connectivity](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-troubleshoot)
-- [Diagnostic checklist](https://learn.microsoft.com/en-us/azure/storage/common/storage-troubleshoot-account-access)
+- [Azure Storage firewall rules](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
+- [Troubleshoot Azure Files connectivity](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/files/connectivity/files-troubleshoot)

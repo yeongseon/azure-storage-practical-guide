@@ -37,5 +37,5 @@ graph TD
 - [SAS and Token Issues](sas-and-token-issues.md)
 
 ## Sources
-- [Authorization troubleshooting](https://learn.microsoft.com/en-us/azure/storage/common/storage-auth-troubleshoot)
+- [Troubleshoot storage client application errors](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/troubleshoot-storage-client-application-errors)
 - [Debug RBAC errors](https://learn.microsoft.com/en-us/azure/role-based-access-control/troubleshooting)

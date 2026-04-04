@@ -38,4 +38,4 @@ graph TD
 
 ## Sources
 - [Recovering deleted blobs](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs)
-- [Backup and recovery for storage](https://learn.microsoft.com/en-us/azure/backup/azure-backup-storage-introduction)
+- [Overview of Azure Blobs backup](https://learn.microsoft.com/en-us/azure/backup/blob-backup-overview)

@@ -36,4 +36,4 @@ graph TD
 
 ## Sources
 - [Azure Storage architectural overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
-- [Control plane vs. data plane operations](https://learn.microsoft.com/en-us/rest/api/storageservices/control-plane-and-data-plane-operations)
+- [Control plane and data plane operations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane)

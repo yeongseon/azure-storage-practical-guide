@@ -13,7 +13,7 @@ Choosing the right storage service depends on data structure, access protocols, 
 | Large-scale analytics | Data Lake Storage Gen2 | Hierarchical | HDFS/REST | PB+ |
 
 !!! note
-    Managed disks are out of scope for this guide and are covered in VM-focused documentation.
+    Managed Disks are outside the scope of this guide.
 
 ## Selection Decision Tree
 
@@ -26,7 +26,6 @@ graph TD
     
     Access -->|REST API| Blobs[Azure Blob Storage]
     Access -->|Shared File| Protocol{Protocol?}
-    Access -->|VM Disk| Out[Out of scope in this guide]
     
     Protocol -->|SMB/NFS| Files[Azure Files]
     Protocol -->|HDFS| ADLS[Data Lake Storage Gen2]

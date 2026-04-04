@@ -40,5 +40,5 @@ graph TD
 ## Sources
 
 - [Azure Storage documentation](https://learn.microsoft.com/en-us/azure/storage/)
-- [Azure Security baseline for Storage](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-storage-security-baseline)
-- [Microsoft Azure Well-Architected Framework - Storage](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-storage)
+- [Azure Security baseline for Storage](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/storage-security-baseline)
+- [Microsoft Azure Well-Architected Framework - Azure Blob Storage](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-blob-storage)

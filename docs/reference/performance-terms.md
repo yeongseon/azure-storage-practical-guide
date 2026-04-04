@@ -19,7 +19,7 @@ Understanding Azure Storage performance metrics is critical for optimizing appli
 | Transaction | A single REST API call | Billing and limit unit |
 | Partition | Logical grouping of data for scale | Scaling unit |
 | Throttling | Rate limiting when targets are exceeded | HTTP 429 errors |
-| Bursting | Temporary boost above provisioned limit | Managed disks/Files |
+| Bursting | Temporary boost above provisioned limit | Premium file shares |
 | Premium | SSD-based high-performance tier | Low latency |
 | Standard | HDD-based general-purpose tier | Cost-effective |
 | Hot/Cool Tier | Access tiers for varying frequency | Performance/Cost trade-off |

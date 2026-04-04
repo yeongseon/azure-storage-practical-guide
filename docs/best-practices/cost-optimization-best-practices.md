@@ -38,6 +38,6 @@ graph TD
 
 ## Sources
 
-- [Azure Storage cost optimization](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-storage#cost-optimization)
-- [Reservation for Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-reservation)
+- [Plan and manage costs for Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-plan-manage-costs)
+- [Optimize costs for Blob storage with reserved capacity](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-reserved-capacity)
 - [Billing for Blob tiers](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview#pricing-and-billing)

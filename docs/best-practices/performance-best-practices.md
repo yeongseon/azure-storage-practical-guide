@@ -6,7 +6,7 @@ Optimize Azure Storage performance by matching workloads to service capabilities
 
 | Factor | Optimization |
 |--------|--------------|
-| Service Tier | Use Premium for sub-millisecond latency (Blobs, Files, Disks). |
+| Service Tier | Use Premium for low-latency workloads (Blobs and Files). |
 | Parallelism | Use multiple threads for `Put Block` and `Get Blob` operations. |
 | Object Size | Optimize request sizes (e.g., 4 MiB to 32 MiB blocks). |
 | Hot Partitions | Distribute requests across blob names to avoid partition limits. |
