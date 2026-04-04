@@ -30,7 +30,7 @@ graph TD
 ## Scope of this Guide
 
 - Included: Cloud-native storage services, data redundancy, security patterns.
-- Excluded: Managed disks (covered in VM guide), SQL databases, Cosmos DB.
+- Excluded: Compute-attached storage, SQL databases, Cosmos DB.
 
 ## See Also
 

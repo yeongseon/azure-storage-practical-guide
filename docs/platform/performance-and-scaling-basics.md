@@ -4,10 +4,10 @@ Understanding performance limits and scaling targets is essential for designing 
 
 | Metric | Standard Account | Premium Block Blob | Premium File Share |
 | :--- | :--- | :--- | :--- |
-| **IOPS** | Up to 20,000 | Up to 100,000 | Up to 100,000 |
-| **Ingress** | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) |
-| **Egress** | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) | Up to 200 Gbps (varies by region and account type) |
-| **Capacity** | 5 PB per account | 5 PB per account | 100 TB per share |
+| **IOPS** | Up to 20,000 (default); up to 40,000 in select regions | Service-specific premium targets (see source) | Up to 102,400 (provisioned SSD) |
+| **Ingress** | Up to 25 Gbps (default); up to 60 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
+| **Egress** | Up to 50 Gbps (default); up to 200 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
+| **Capacity** | 5 PiB per account (default) | Service-specific premium targets (see source) | Up to 256 TiB (provisioned v2) |
 
 ```mermaid
 graph TD
@@ -21,7 +21,7 @@ graph TD
 ```
 
 !!! note
-    Proper partition key design is critical for achieving high performance. A poorly chosen partition key can lead to "hot partitions," which limits scalability.
+    Limits are region-dependent and workload-dependent. Higher capacity and ingress/egress limits can be requested through Azure Support.
 
 ## Key Concepts
 - **Throughput**: The amount of data transferred per second.

@@ -12,9 +12,6 @@ Choosing the right storage service depends on data structure, access protocols, 
 | NoSQL key-value storage | Azure Tables | Structured | REST | Account limit |
 | Large-scale analytics | Data Lake Storage Gen2 | Hierarchical | HDFS/REST | PB+ |
 
-!!! note
-    Managed Disks are outside the scope of this guide.
-
 ## Selection Decision Tree
 
 ```mermaid
