@@ -2,6 +2,9 @@
 
 Organize unstructured and shared data effectively.
 
+!!! note
+    Use containers for object workloads and file shares for lift-and-shift SMB or NFS-compatible workloads.
+
 | Property | Blob Container | File Share |
 |----------|----------------|------------|
 | Protocol | HTTP/HTTPS/REST | SMB/NFS |
@@ -18,6 +21,21 @@ graph LR
     C --> E[Directories]
     E --> F[Files]
 ```
+
+## Management Checklist
+
+- Define naming conventions for containers and shares.
+- Set least-privilege permissions at the correct scope.
+- Enable soft delete and retention where required.
+- Validate quota and performance expectations for shares.
+- Apply metadata and tags for governance and cost tracking.
+- Review access patterns for hot and cold datasets.
+
+## See Also
+
+- [Blob Storage Basics](../platform/blob-storage-basics.md)
+- [File Storage Basics](../platform/file-storage-basics.md)
+- [Configure Access and Identity](configure-access-and-identity.md)
 
 ## Sources
 - [Blob storage management](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)

@@ -1,9 +1,8 @@
 # Glossary
-
 This glossary provides definitions for core Azure Storage concepts and features.
-
+!!! note
+    Use this glossary as a quick decoder for terms used across platform, operations, and troubleshooting pages.
 ## Storage Terms and Definitions
-
 | Term | Definition |
 | --- | --- |
 | Storage Account | Unique namespace for your Azure Storage data. |
@@ -28,9 +27,7 @@ This glossary provides definitions for core Azure Storage concepts and features.
 | Versioning | Feature to keep previous states of a blob. |
 | AzCopy | Command-line tool for high-performance data transfer. |
 | Data Lake Gen2 | Analytical storage optimized for big data workloads. |
-
 ## Core Concepts Relationship
-
 ```mermaid
 graph TD
     SA[Storage Account] --> Svc[Service Type]
@@ -48,8 +45,10 @@ graph TD
     Res --> LRS[LRS/ZRS]
     Res --> GRS[GRS/GZRS]
 ```
-
+## See Also
+- [Storage Service Selection Guide](storage-service-selection-guide.md)
+- [Overview](../start-here/overview.md)
+- [Platform Index](../platform/index.md)
 ## Sources
-
 - [Azure Storage terminology](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
 - [Azure Storage glossary of terms](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)

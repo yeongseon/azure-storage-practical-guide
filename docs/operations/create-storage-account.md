@@ -21,6 +21,21 @@ graph TD
     D --> E[Review and Create]
 ```
 
+## Validation Checklist
+
+- Confirm subscription and resource group placement.
+- Confirm account kind and performance tier match workload.
+- Confirm redundancy selection matches RPO and RTO targets.
+- Confirm public network access posture before deployment.
+- Confirm minimum TLS version and secure transfer are enabled.
+- Confirm access tier defaults for expected object lifecycle.
+
+## See Also
+
+- [Storage Account Basics](../platform/storage-account-basics.md)
+- [Storage Account Design Baseline](../best-practices/storage-account-design-baseline.md)
+- [Configure Network Rules](configure-network-rules.md)
+
 ## Sources
 - [Storage account overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
 - [Create storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create)

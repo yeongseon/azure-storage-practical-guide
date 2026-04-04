@@ -32,6 +32,12 @@ graph TD
 - Included: Cloud-native storage services, data redundancy, security patterns.
 - Excluded: Managed disks (covered in VM guide), SQL databases, Cosmos DB.
 
+## See Also
+
+- [How Azure Storage Works](../platform/how-azure-storage-works.md)
+- [Common Scenarios](common-scenarios.md)
+- [Storage Service Selection Guide](../reference/storage-service-selection-guide.md)
+
 ## Sources
 
 - [Introduction to Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)

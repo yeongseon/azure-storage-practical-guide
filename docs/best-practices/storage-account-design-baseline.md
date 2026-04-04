@@ -29,6 +29,12 @@ graph TD
 !!! note
     Separate storage accounts by purpose (e.g., application data vs. diagnostic logs) to simplify cost tracking and security boundary management.
 
+## See Also
+
+- [Storage Account Basics](../platform/storage-account-basics.md)
+- [Create a Storage Account](../operations/create-storage-account.md)
+- [Security Best Practices](security-best-practices.md)
+
 ## Sources
 
 - [Storage account overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)

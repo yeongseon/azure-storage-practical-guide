@@ -30,6 +30,15 @@ graph LR
 - Enable soft delete to protect against accidental data loss.
 - Utilize shared access signatures (SAS) to grant limited access to storage resources.
 
+!!! tip
+    Start with one scenario as a baseline architecture, then iterate with security and performance controls from the Platform and Best Practices sections.
+
+## See Also
+
+- [Create a Storage Account](../operations/create-storage-account.md)
+- [Use Private Endpoints](../operations/use-private-endpoints.md)
+- [Troubleshooting Index](../troubleshooting/index.md)
+
 ## Sources
 
 - [Common Azure Storage scenarios](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#core-storage-services)

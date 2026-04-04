@@ -2,6 +2,9 @@
 
 Understanding Azure Storage performance metrics is critical for optimizing application throughput and latency.
 
+!!! note
+    Compare server latency and end-to-end latency together to separate backend pressure from client/network delay.
+
 ## Key Performance Metrics
 
 | Term | Definition | Context |
@@ -39,6 +42,12 @@ graph LR
     Lim[Limits] --> Thr[Throttling]
     Lim --> Bst[Bursting]
 ```
+
+## See Also
+
+- [Performance and Scaling Basics](../platform/performance-and-scaling-basics.md)
+- [Performance Best Practices](../best-practices/performance-best-practices.md)
+- [Throttling and Performance Issues](../troubleshooting/throttling-and-performance-issues.md)
 
 ## Sources
 

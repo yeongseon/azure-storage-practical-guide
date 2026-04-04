@@ -28,6 +28,12 @@ graph TD
 !!! warning
     Replication is not backup. Redundancy protects against hardware or facility failure, but it does not protect against accidental deletion or data corruption.
 
+## See Also
+
+- [Redundancy and Durability](../platform/redundancy-and-durability.md)
+- [Redundancy Options](../reference/redundancy-options.md)
+- [Data Protection and Recovery Issues](../troubleshooting/data-protection-and-recovery-issues.md)
+
 ## Sources
 
 - [Azure Storage redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)

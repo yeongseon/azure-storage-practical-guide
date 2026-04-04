@@ -28,6 +28,15 @@ graph TD
     E --> F[Performance Tuning]
 ```
 
+!!! note
+    Follow the learning path first, then baseline design, then anti-pattern review before production rollout.
+
+## See Also
+
+- [Learning Path](../start-here/learning-path.md)
+- [Storage Account Design Baseline](storage-account-design-baseline.md)
+- [Common Anti-Patterns](common-anti-patterns.md)
+
 ## Sources
 
 - [Azure Storage documentation](https://learn.microsoft.com/en-us/azure/storage/)

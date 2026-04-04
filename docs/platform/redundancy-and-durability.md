@@ -27,6 +27,12 @@ graph TD
 - **Availability**: The percentage of time that a system is operational and accessible.
 - **Region Pair**: Each Azure region is paired with another within the same geography.
 
+## See Also
+
+- [Redundancy and DR Best Practices](../best-practices/redundancy-and-dr-best-practices.md)
+- [Redundancy Options Reference](../reference/redundancy-options.md)
+- [How Azure Storage Works](how-azure-storage-works.md)
+
 ## Sources
 - [Azure Storage redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)
 - [Availability zones and regions](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview)

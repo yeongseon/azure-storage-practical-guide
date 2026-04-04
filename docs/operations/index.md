@@ -2,6 +2,9 @@
 
 The operations section covers fundamental management tasks for Azure Storage. Use these guides to ensure consistency and reliability in your storage environment.
 
+!!! tip
+    Start with account provisioning, then lock down identity and networking, and finally enable monitoring and lifecycle controls.
+
 | Operation | Description |
 |-----------|-------------|
 | [Create Storage Account](create-storage-account.md) | Standardized storage account provisioning. |
@@ -22,6 +25,21 @@ graph TD
     D --> E[Monitoring]
     E --> F[Lifecycle Mgmt]
 ```
+
+## Operational Sequence
+
+- Provision account settings and redundancy.
+- Configure identity and authorization model.
+- Apply network controls and private connectivity.
+- Enable protection controls and backups.
+- Monitor metrics, logs, and alerts.
+- Automate retention and data movement workflows.
+
+## See Also
+
+- [Learning Path](../start-here/learning-path.md)
+- [Create Storage Account](create-storage-account.md)
+- [Troubleshooting](../troubleshooting/index.md)
 
 ## Sources
 - [Azure Storage overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)

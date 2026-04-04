@@ -2,6 +2,9 @@
 
 Azure Storage provides several options for securing data access through network isolation.
 
+!!! note
+    Private Endpoints require DNS planning to avoid resolution paths that still target public endpoints.
+
 ## Networking Option Comparison
 
 | Option | DNS Behavior | Security | Cost | Setup Complexity |
@@ -25,6 +28,12 @@ graph TD
     PE --> DNS[Internal DNS Record]
     SE --> Rules[Firewall Rules]
 ```
+
+## See Also
+
+- [Networking and Private Access](../platform/networking-and-private-access.md)
+- [Networking Best Practices](../best-practices/networking-best-practices.md)
+- [Configure Network Rules](../operations/configure-network-rules.md)
 
 ## Sources
 

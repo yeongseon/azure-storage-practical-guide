@@ -30,6 +30,12 @@ graph TD
 !!! note
     The cost of a transaction is small, but for millions of small objects, it can exceed storage costs. Consider batching or using the Cold tier for infrequent, medium-term data.
 
+## See Also
+
+- [Lifecycle Management Best Practices](lifecycle-management-best-practices.md)
+- [Storage Account Design Baseline](storage-account-design-baseline.md)
+- [Storage Service Selection Guide](../reference/storage-service-selection-guide.md)
+
 ## Sources
 
 - [Azure Storage cost optimization](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-storage#cost-optimization)

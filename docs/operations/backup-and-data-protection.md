@@ -20,6 +20,21 @@ graph TD
     D --> E[Azure Backup]
 ```
 
+## Protection Validation Checklist
+
+- Enable soft delete for blobs and containers.
+- Enable versioning for rollback-ready object history.
+- Configure retention windows aligned to policy requirements.
+- Validate restore flow in a non-production account.
+- Confirm backup coverage for critical datasets.
+- Monitor deletion and restore events through diagnostics.
+
+## See Also
+
+- [Redundancy and DR Best Practices](../best-practices/redundancy-and-dr-best-practices.md)
+- [Data Protection and Recovery Issues](../troubleshooting/data-protection-and-recovery-issues.md)
+- [Redundancy and Durability](../platform/redundancy-and-durability.md)
+
 ## Sources
 - [Data protection overview](https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview)
 - [Soft delete for blobs](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)

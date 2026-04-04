@@ -7,7 +7,7 @@ Azure Queue and Table Storage provide lightweight, scalable solutions for asynch
 | **Purpose** | Asynchronous messaging. | NoSQL key-value storage. |
 | **Data Model** | Messages (up to 64 KB). | Entities with properties. |
 | **Access Pattern** | First-In-First-Out (best effort). | Point lookups and range scans. |
-| **Scalability** | Up to 2000 messages per second. | Up to 20,000 entities per second. |
+| **Scalability** | Depends on partitioning and workload; refer to current service limits. | Depends on partitioning and workload; refer to current service limits. |
 
 ```mermaid
 graph LR
@@ -26,6 +26,15 @@ graph LR
 ## Key Considerations
 - **Queues**: Best for task offloading and cross-service communication.
 - **Tables**: Cost-effective for metadata, web applications, and address books.
+
+!!! note
+    Throughput can vary by account configuration, partition key distribution, and request patterns. Validate targets against the latest documented service limits before production sizing.
+
+## See Also
+
+- [How Azure Storage Works](how-azure-storage-works.md)
+- [Performance and Scaling Basics](performance-and-scaling-basics.md)
+- [Storage Service Selection Guide](../reference/storage-service-selection-guide.md)
 
 ## Sources
 - [What is Azure Queue Storage?](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction)

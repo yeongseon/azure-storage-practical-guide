@@ -21,6 +21,21 @@ graph TD
     D -->|No| F[Deny Access]
 ```
 
+## Rule Validation Checklist
+
+- Confirm default action aligns with target exposure.
+- Add trusted public IP ranges where required.
+- Add subnet rules only after service endpoints validation.
+- Validate resource instance exceptions if used.
+- Confirm bypass settings for Azure services are intentional.
+- Test access from approved and blocked networks.
+
+## See Also
+
+- [Networking and Private Access](../platform/networking-and-private-access.md)
+- [Networking Best Practices](../best-practices/networking-best-practices.md)
+- [Use Private Endpoints](use-private-endpoints.md)
+
 ## Sources
 - [Configure Azure Storage firewalls](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
 - [Manage virtual network rules](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security?tabs=azure-portal)

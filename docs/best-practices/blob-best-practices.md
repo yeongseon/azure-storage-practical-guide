@@ -29,6 +29,12 @@ graph TD
 !!! tip
     Use the "Cold" tier for data that is accessed infrequently but requires immediate availability, bridging the gap between Cool and Archive.
 
+## See Also
+
+- [Blob Storage Basics](../platform/blob-storage-basics.md)
+- [Manage Containers and Shares](../operations/manage-containers-and-shares.md)
+- [Lifecycle Management Best Practices](lifecycle-management-best-practices.md)
+
 ## Sources
 
 - [Blob Storage best practices](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)

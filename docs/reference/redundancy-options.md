@@ -2,6 +2,9 @@
 
 Azure Storage provides multiple redundancy options to protect data from planned and unplanned events.
 
+!!! note
+    Secondary-region replication is asynchronous for GRS/GZRS and can have recovery point lag.
+
 ## Comparison Table
 
 | Option | Copies | Regions | Availability Zone | Failover | Durability | Availability SLA |
@@ -29,6 +32,12 @@ graph TD
     
     Sec --> RA[RA: Read Access to Secondary]
 ```
+
+## See Also
+
+- [Redundancy and Durability](../platform/redundancy-and-durability.md)
+- [Redundancy and DR Best Practices](../best-practices/redundancy-and-dr-best-practices.md)
+- [Backup and Data Protection](../operations/backup-and-data-protection.md)
 
 ## Sources
 

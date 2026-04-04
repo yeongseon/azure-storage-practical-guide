@@ -20,6 +20,21 @@ graph TD
     D --> E[Monitor Access Logs]
 ```
 
+## Access Validation Checklist
+
+- Verify principal type: user, group, or managed identity.
+- Assign data plane roles for data operations.
+- Assign control plane roles only for resource management.
+- Scope assignments to subscription, account, container, or share.
+- Validate token audience and tenant alignment.
+- Confirm diagnostics capture authorization failures.
+
+## See Also
+
+- [Access Models](../platform/access-models.md)
+- [Security Best Practices](../best-practices/security-best-practices.md)
+- [Authorization Failures](../troubleshooting/authorization-failures.md)
+
 ## Sources
 - [Authorize access to storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-auth)
 - [Assign Azure roles for access](https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access)

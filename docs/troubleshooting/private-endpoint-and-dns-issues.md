@@ -21,6 +21,21 @@ graph TD
     D -->|Yes| F[Access Success]
 ```
 
+## DNS Validation Checklist
+
+- Confirm service-specific private DNS zone exists.
+- Confirm VNet links include every client network.
+- Confirm DNS forwarders resolve privatelink zones correctly.
+- Confirm endpoint NIC has an expected private IP.
+- Confirm NSG and UDR allow required outbound flows.
+- Confirm resolution does not intermittently return public IPs.
+
+## See Also
+
+- [Use Private Endpoints](../operations/use-private-endpoints.md)
+- [Networking Best Practices](../best-practices/networking-best-practices.md)
+- [Cannot Access Storage Account](cannot-access-storage-account.md)
+
 ## Sources
 - [Troubleshoot Private Endpoint DNS](https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity)
 - [DNS resolution for storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints?tabs=azure-portal#dns-configuration)

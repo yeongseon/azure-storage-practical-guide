@@ -22,6 +22,21 @@ graph TD
     E --> F[Log Analytics]
 ```
 
+## Monitoring Checklist
+
+- Define baseline thresholds for latency and availability.
+- Configure metric alerts for 429, 503, and latency spikes.
+- Route alerts to on-call channels and ticketing systems.
+- Enable diagnostics for blob, file, queue, and table services.
+- Retain logs long enough for incident and trend analysis.
+- Review capacity and transaction growth monthly.
+
+## See Also
+
+- [Performance Best Practices](../best-practices/performance-best-practices.md)
+- [Throttling and Performance Issues](../troubleshooting/throttling-and-performance-issues.md)
+- [Backup and Data Protection](backup-and-data-protection.md)
+
 ## Sources
 - [Monitoring Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-monitoring-overview)
 - [Diagnostic logging](https://learn.microsoft.com/en-us/azure/storage/common/storage-analytics-logging)

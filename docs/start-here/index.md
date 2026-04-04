@@ -21,6 +21,21 @@ graph LR
     Path --> Scenarios[Common Scenarios]
 ```
 
+!!! tip
+    Follow the reading path in sequence to build context before moving into implementation-focused platform, operations, and troubleshooting content.
+
+## Quick Orientation
+
+- Start with the Overview to understand the storage account model.
+- Use Services At a Glance to compare options before design decisions.
+- Read Common Scenarios to map workload patterns to service choices.
+
+## See Also
+
+- [Overview](overview.md)
+- [Learning Path](learning-path.md)
+- [Storage Services at a Glance](storage-services-at-a-glance.md)
+
 ## Sources
 
 - [Azure Storage Overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)

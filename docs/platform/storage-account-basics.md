@@ -29,6 +29,12 @@ graph TD
 - **Region**: Strategic placement for proximity and compliance.
 - **Replication**: Configured at the account level for durability.
 
+## See Also
+
+- [How Azure Storage Works](how-azure-storage-works.md)
+- [Create a Storage Account](../operations/create-storage-account.md)
+- [Storage Account Design Baseline](../best-practices/storage-account-design-baseline.md)
+
 ## Sources
 - [Storage account overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
 - [Storage account types comparison](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview#types-of-storage-accounts)

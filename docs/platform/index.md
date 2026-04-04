@@ -29,6 +29,15 @@ graph TD
     D --> D3[Performance]
 ```
 
+!!! note
+    Read architecture and storage account fundamentals first, then branch into service-specific topics and operational constraints.
+
+## See Also
+
+- [Overview](../start-here/overview.md)
+- [How Azure Storage Works](how-azure-storage-works.md)
+- [Storage Account Basics](storage-account-basics.md)
+
 ## Sources
 - [Azure Storage documentation](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
 - [Azure Storage scalability and performance targets](https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account)

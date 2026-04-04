@@ -21,6 +21,21 @@ graph TD
     D -->|No| F[Check DNS/Link]
 ```
 
+## Routing Validation Checklist
+
+- Resolve endpoint and record returned IP type.
+- Confirm whether client path should be public or private.
+- Confirm firewall rules for public endpoint traffic.
+- Confirm private endpoint DNS zone links and records.
+- Confirm hybrid DNS forwarder behavior for privatelink zones.
+- Confirm policy alignment for public network access setting.
+
+## See Also
+
+- [Networking and Private Access](../platform/networking-and-private-access.md)
+- [Configure Network Rules](../operations/configure-network-rules.md)
+- [Networking Best Practices](../best-practices/networking-best-practices.md)
+
 ## Sources
 - [Configure private endpoints](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
 - [Managing storage firewalls](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)

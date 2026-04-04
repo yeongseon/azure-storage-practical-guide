@@ -29,6 +29,12 @@ graph TD
 - **Fully Managed**: No hardware or OS maintenance required.
 - **Data Resilience**: Built on the durable Azure Storage platform.
 
+## See Also
+
+- [File Share Best Practices](../best-practices/file-share-best-practices.md)
+- [Manage Containers and Shares](../operations/manage-containers-and-shares.md)
+- [File Share Mount Issues](../troubleshooting/file-share-mount-issues.md)
+
 ## Sources
 - [What is Azure Files?](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction)
 - [Azure Files performance tiers](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning#performance-tiers)

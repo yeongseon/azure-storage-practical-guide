@@ -28,6 +28,12 @@ graph TD
 - **IOPS**: The number of input/output operations per second.
 - **Partitioning**: Azure Storage uses a partition key to scale data across multiple servers.
 
+## See Also
+
+- [Performance Best Practices](../best-practices/performance-best-practices.md)
+- [Performance Terms](../reference/performance-terms.md)
+- [Blob Storage Basics](blob-storage-basics.md)
+
 ## Sources
 - [Azure Storage scalability and performance targets](https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account)
 - [Performance and scalability checklist for Blob storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist)

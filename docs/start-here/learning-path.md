@@ -27,6 +27,15 @@ graph TD
 - Understand storage access tiers (Hot, Cool, Archive)
 - Learn security best practices (SAS tokens, RBAC, Encryption)
 
+!!! note
+    If your role spans development and operations, combine the Developer and Operator tracks before moving to troubleshooting topics.
+
+## See Also
+
+- [Overview](overview.md)
+- [Platform Fundamentals](../platform/index.md)
+- [Best Practices](../best-practices/index.md)
+
 ## Sources
 
 - [Azure Storage training](https://learn.microsoft.com/en-us/training/browse/?products=azure-storage)

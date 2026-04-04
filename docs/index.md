@@ -27,9 +27,15 @@ graph TD
 
 ## Quick Links
 
-- [Azure Portal](https://portal.azure.com)
-- [Storage Explorer](https://azure.microsoft.com/en-us/products/storage/storage-explorer/)
+- [Azure Storage documentation hub](https://learn.microsoft.com/en-us/azure/storage/)
+- [Storage Explorer documentation](https://learn.microsoft.com/en-us/azure/storage/common/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer)
 - [Azure CLI Storage Commands](https://learn.microsoft.com/en-us/cli/azure/storage)
+
+## See Also
+
+- [Overview](start-here/overview.md)
+- [How Azure Storage Works](platform/how-azure-storage-works.md)
+- [Storage Service Selection Guide](reference/storage-service-selection-guide.md)
 
 ## Sources
 

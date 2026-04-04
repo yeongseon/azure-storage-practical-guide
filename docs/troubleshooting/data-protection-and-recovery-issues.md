@@ -21,6 +21,21 @@ graph TD
     D -->|No| F[Check Backup]
 ```
 
+## Recovery Triage Checklist
+
+- Confirm incident timestamp and impacted object scope.
+- Confirm feature state at incident time: soft delete, versioning, backup.
+- Confirm retention window still includes recoverable state.
+- Confirm restore target to avoid overwriting valid data.
+- Confirm replication lag considerations for geo-redundant setups.
+- Confirm post-recovery validation and audit logging.
+
+## See Also
+
+- [Backup and Data Protection](../operations/backup-and-data-protection.md)
+- [Redundancy and DR Best Practices](../best-practices/redundancy-and-dr-best-practices.md)
+- [Redundancy Options](../reference/redundancy-options.md)
+
 ## Sources
 - [Recovering deleted blobs](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs)
 - [Backup and recovery for storage](https://learn.microsoft.com/en-us/azure/backup/azure-backup-storage-introduction)

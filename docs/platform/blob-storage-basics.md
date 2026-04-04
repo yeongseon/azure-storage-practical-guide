@@ -28,6 +28,15 @@ graph LR
 - **Append Blobs**: Optimized for logging operations.
 - **Page Blobs**: Designed for frequent random read/write operations (e.g., VHDs).
 
+!!! tip
+    Define access tiers and lifecycle policies together so data moves predictably between Hot, Cool, Cold, and Archive based on age and access frequency.
+
+## See Also
+
+- [Blob Best Practices](../best-practices/blob-best-practices.md)
+- [Manage Containers and Shares](../operations/manage-containers-and-shares.md)
+- [Access Models](access-models.md)
+
 ## Sources
 - [Introduction to Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)
 - [Access tiers for blob data](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)

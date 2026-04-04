@@ -21,6 +21,21 @@ graph TD
     B -.-> E[Private DNS Zone]
 ```
 
+## Deployment Checklist
+
+- Place endpoint in a subnet with required NSG rules.
+- Create service-specific private DNS zones.
+- Link zones to all client VNets that resolve names.
+- Validate forwarders for hybrid DNS environments.
+- Test connectivity before disabling public endpoint access.
+- Validate endpoint approval status and NIC IP assignment.
+
+## See Also
+
+- [Networking and Private Access](../platform/networking-and-private-access.md)
+- [Networking Best Practices](../best-practices/networking-best-practices.md)
+- [Private Endpoint and DNS Issues](../troubleshooting/private-endpoint-and-dns-issues.md)
+
 ## Sources
 - [Private Endpoints for storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
 - [Configure Private Link DNS](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns)

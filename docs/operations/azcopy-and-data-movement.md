@@ -23,6 +23,21 @@ graph TD
     E --> F
 ```
 
+## Transfer Checklist
+
+- Choose authentication method: Azure AD or SAS.
+- Benchmark upload and download throughput before cutover.
+- Tune concurrency and block size for workload profile.
+- Validate destination tier and metadata preservation.
+- Use checksums and logs to confirm transfer integrity.
+- Plan retry strategy for transient network failures.
+
+## See Also
+
+- [Manage Containers and Shares](manage-containers-and-shares.md)
+- [Performance Best Practices](../best-practices/performance-best-practices.md)
+- [Slow Upload / Download](../troubleshooting/slow-upload-download.md)
+
 ## Sources
 - [Get started with AzCopy](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)
 - [Move data with Azure Data Box](https://learn.microsoft.com/en-us/azure/databox/data-box-overview)

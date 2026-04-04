@@ -2,6 +2,9 @@
 
 Systematic identification and resolution of common Azure Storage issues.
 
+!!! tip
+    Triage in order: identity, networking, DNS, then service-level performance and data protection settings.
+
 | Symptom | Guide | Diagnosis |
 |---------|-------|-----------|
 | No Access | [Cannot Access Account](cannot-access-storage-account.md) | Network, Firewall, DNS |
@@ -22,6 +25,21 @@ graph TD
     C -->|Yes| E[Check RBAC/SAS]
     C -->|No| F[Check Network/DNS]
 ```
+
+## Triage Checklist
+
+- Capture exact error code, timestamp, and operation.
+- Identify whether failure is data plane or control plane.
+- Validate identity, token, and role assignment state.
+- Validate DNS resolution and network route path.
+- Review metrics, logs, and diagnostic dimensions.
+- Re-test after each isolated change.
+
+## See Also
+
+- [Common Scenarios](../start-here/common-scenarios.md)
+- [Cannot Access Storage Account](cannot-access-storage-account.md)
+- [Authorization Failures](authorization-failures.md)
 
 ## Sources
 - [Troubleshoot Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-troubleshoot-guide)

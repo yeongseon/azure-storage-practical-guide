@@ -27,6 +27,12 @@ graph TD
 - **Private Endpoints**: Traffic stays entirely within the Azure backbone, using a private IP.
 - **VNet Firewall**: Restricts access to specific subnets or IP addresses.
 
+## See Also
+
+- [Networking Best Practices](../best-practices/networking-best-practices.md)
+- [Configure Network Rules](../operations/configure-network-rules.md)
+- [Use Private Endpoints](../operations/use-private-endpoints.md)
+
 ## Sources
 - [Configure Azure Storage firewalls and virtual networks](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
 - [Use Private Endpoints for Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)

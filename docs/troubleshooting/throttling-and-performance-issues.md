@@ -21,6 +21,21 @@ graph TD
     D -->|No| F[Retry with Backoff]
 ```
 
+## Throttling Triage Checklist
+
+- Correlate 429 and 503 with transaction spikes.
+- Implement exponential backoff with jitter.
+- Spread requests across partitions and accounts.
+- Reduce burst concurrency during peak windows.
+- Separate latency-sensitive and batch workloads.
+- Track server latency vs end-to-end latency.
+
+## See Also
+
+- [Performance Best Practices](../best-practices/performance-best-practices.md)
+- [Performance Terms](../reference/performance-terms.md)
+- [Monitoring and Alerting](../operations/monitoring-and-alerting.md)
+
 ## Sources
 - [Scalability and performance targets](https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets)
 - [Storage throttling overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-throttling-errors)

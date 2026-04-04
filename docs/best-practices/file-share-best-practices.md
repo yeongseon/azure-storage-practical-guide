@@ -28,6 +28,12 @@ graph LR
 !!! note
     When using Azure App Service with Azure Files, ensure the App Service is VNet-integrated to access shares via Private Endpoints.
 
+## See Also
+
+- [File Storage Basics](../platform/file-storage-basics.md)
+- [Manage Containers and Shares](../operations/manage-containers-and-shares.md)
+- [File Share Mount Issues](../troubleshooting/file-share-mount-issues.md)
+
 ## Sources
 
 - [Azure Files planning guide](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning)

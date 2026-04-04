@@ -2,6 +2,9 @@
 
 This section provides quick lookup guides, technical comparisons, and dense summaries of Azure Storage core concepts. Use these tables and diagrams for architectural decision-making and performance tuning.
 
+!!! note
+    Use this section for fast lookup during design reviews and troubleshooting triage.
+
 ## Reference Topics
 
 | Page | Description | Key Focus |
@@ -30,6 +33,12 @@ graph TD
     Net --> Conn[Network Options]
     Perf --> Rel[Metric Relationships]
 ```
+
+## See Also
+
+- [Storage Service Selection Guide](storage-service-selection-guide.md)
+- [Glossary](glossary.md)
+- [Learning Path](../start-here/learning-path.md)
 
 ## Sources
 

@@ -8,10 +8,12 @@ Choosing the right storage service depends on data structure, access protocols, 
 | --- | --- | --- | --- | --- |
 | Web assets, Big Data, Backup | Blob Storage | Unstructured | REST/HDFS | PB+ |
 | Shared file systems (Lift & Shift) | Azure Files | SMB/NFS | SMB/NFS/REST | 100TiB+ |
-| VM OS and Data Disks | Azure Managed Disks | Block | SCSI/NVMe | 64TiB |
 | High-volume messaging | Azure Queues | Messages | REST | Account limit |
 | NoSQL key-value storage | Azure Tables | Structured | REST | Account limit |
 | Large-scale analytics | Data Lake Storage Gen2 | Hierarchical | HDFS/REST | PB+ |
+
+!!! note
+    Managed disks are out of scope for this guide and are covered in VM-focused documentation.
 
 ## Selection Decision Tree
 
@@ -24,7 +26,7 @@ graph TD
     
     Access -->|REST API| Blobs[Azure Blob Storage]
     Access -->|Shared File| Protocol{Protocol?}
-    Access -->|VM Disk| Disks[Managed Disks]
+    Access -->|VM Disk| Out[Out of scope in this guide]
     
     Protocol -->|SMB/NFS| Files[Azure Files]
     Protocol -->|HDFS| ADLS[Data Lake Storage Gen2]
@@ -32,6 +34,12 @@ graph TD
 
 !!! tip
     Use Azure Files for shared application data when multiple VMs need concurrent access to the same file system without rewriting code.
+
+## See Also
+
+- [Storage Services at a Glance](../start-here/storage-services-at-a-glance.md)
+- [Blob Storage Basics](../platform/blob-storage-basics.md)
+- [File Storage Basics](../platform/file-storage-basics.md)
 
 ## Sources
 

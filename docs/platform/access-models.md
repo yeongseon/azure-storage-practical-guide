@@ -27,6 +27,12 @@ graph TD
 - **Shared Access Signature (SAS)**: Best for giving third parties limited access.
 - **Storage Account Keys**: Root access, used as a last resort.
 
+## See Also
+
+- [Security Best Practices](../best-practices/security-best-practices.md)
+- [Configure Access and Identity](../operations/configure-access-and-identity.md)
+- [Access Methods Cheatsheet](../reference/access-methods-cheatsheet.md)
+
 ## Sources
 - [Authorize access to Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-auth)
 - [Grant limited access using SAS](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)

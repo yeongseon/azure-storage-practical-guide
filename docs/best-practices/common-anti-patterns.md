@@ -29,6 +29,12 @@ graph TD
 !!! warning
     Disabling public access after Private Endpoint setup is critical to prevent accidental exposure of your internal storage data.
 
+## See Also
+
+- [Storage Account Design Baseline](storage-account-design-baseline.md)
+- [Security Best Practices](security-best-practices.md)
+- [Troubleshooting Index](../troubleshooting/index.md)
+
 ## Sources
 
 - [Azure Well-Architected Storage](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-storage)

@@ -20,6 +20,21 @@ graph TD
     D -->|Delete Rule| E[Purge Data]
 ```
 
+## Policy Validation Checklist
+
+- Target filters by prefix, blob type, and tags.
+- Validate rule order and age thresholds.
+- Confirm archive rehydration impact for recovery workflows.
+- Exclude critical data from destructive rules.
+- Review costs after tier transitions and retrieval operations.
+- Track policy execution with storage metrics and logs.
+
+## See Also
+
+- [Lifecycle Management Best Practices](../best-practices/lifecycle-management-best-practices.md)
+- [Cost Optimization Best Practices](../best-practices/cost-optimization-best-practices.md)
+- [Blob Storage Basics](../platform/blob-storage-basics.md)
+
 ## Sources
 - [Blob lifecycle management](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)
 - [Configure lifecycle policies](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure)
