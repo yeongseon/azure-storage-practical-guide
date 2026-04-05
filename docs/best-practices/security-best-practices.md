@@ -9,7 +9,7 @@ Implement defense-in-depth security to protect your storage data from unauthoriz
 | Identity | Use Managed Identities for app access. | Azure RBAC |
 | Access | Minimize Shared Key usage; rotate regularly. | Key Vault |
 | SAS | Set short expiry; restrict IPs and protocols. | User Delegation SAS |
-| Encryption | Enable Infrastructure Encryption (double encryption). | CMK (Key Vault) |
+| Encryption | Use CMK with Key Vault for customer-controlled keys. Enable infrastructure encryption only when double encryption is required. | Azure Key Vault |
 | Defense | Enable threat detection for suspicious access. | Defender for Storage |
 | Networking | Disable public access; use firewall. | Private Endpoints |
 

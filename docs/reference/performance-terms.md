@@ -23,7 +23,8 @@ Understanding Azure Storage performance metrics is critical for optimizing appli
 | Premium | SSD-based high-performance tier | Low latency |
 | Standard | HDD-based general-purpose tier | Cost-effective |
 | Hot/Cool Tier | Access tiers for varying frequency | Performance/Cost trade-off |
-| Cold/Archive | Deep storage tiers | Retrieval delay |
+| Cold | Online access tier | Immediate access; milliseconds latency |
+| Archive | Offline access tier | Rehydration required; hours latency |
 
 ## Performance Concepts Relationship
 

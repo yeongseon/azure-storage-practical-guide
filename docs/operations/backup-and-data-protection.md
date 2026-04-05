@@ -7,7 +7,7 @@ Ensure data durability and availability using layered protection features.
 | Soft Delete | Container/Blob | Protect against accidental deletion. |
 | Versioning | Blob | Maintain history of blob changes. |
 | PIT Restore | Account | Recover to a specific point in time. |
-| Azure Backup | Account | Centrally managed off-site protection. |
+| Azure Backup | Account | Operational backup (local) or vaulted backup (offsite in Backup vault). |
 
 !!! note
     Enable soft delete as a minimum protection layer for all production storage accounts.

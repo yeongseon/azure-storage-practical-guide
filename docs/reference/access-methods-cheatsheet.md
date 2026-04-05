@@ -8,7 +8,7 @@ Azure Storage supports multiple authorization mechanisms to control data access.
 | --- | --- | --- | --- | --- |
 | Account Key | Storage Account | None | Low | Administrative scripts |
 | SAS | Container/Blob | Fixed | Medium | Temporary client access |
-| RBAC | Subscription/Account | Dynamic | High | Management operations |
+| RBAC | Resource scope (varies by role) | Dynamic | High | Identity-based access to data and resources |
 | Managed Identity | Resource | Dynamic | High | Azure-to-Azure communication |
 | Anonymous | Container/Blob | None | None | Public assets (e.g. website) |
 
