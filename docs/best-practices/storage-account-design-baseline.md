@@ -8,7 +8,7 @@ Establishing a solid foundation for Azure Storage accounts ensures scalability, 
 |----------|---------------|
 | Naming | Use unique, descriptive names; avoid sensitive info. |
 | Region | Deploy in the same region as the consuming application. |
-| Redundancy | Select based on RPO/RTO requirements (LRS, GRS, ZRS). |
+| Redundancy | Select based on RPO/RTO requirements (LRS, ZRS, GRS/RA-GRS, GZRS/RA-GZRS as supported). |
 | Access | Enable "Allow blob public access" only if required. |
 | Networking | Use Private Endpoints for production workloads. |
 | Monitoring | Enable Diagnostic Settings for storage logs. |

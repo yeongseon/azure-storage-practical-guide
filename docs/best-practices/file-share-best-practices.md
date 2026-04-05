@@ -9,7 +9,7 @@ Optimize Azure Files for performance, accessibility, and integration with cloud-
 | Networking | Verify DNS resolution for Private Endpoints before mounting. |
 | Protocol | Choose SMB for Windows/Standard; NFS for Linux/Performance. |
 | Scalability | Use Premium tier for IOPS-intensive workloads. |
-| Identity | Use AD DS or Azure AD DS for fine-grained NTFS permissions. |
+| Identity | For SMB shares, use identity-based auth with AD DS, Microsoft Entra Domain Services, or Microsoft Entra Kerberos; use share-level RBAC plus NTFS ACLs. |
 | Integration | Use Azure File Sync to cache shares on-premises. |
 | Performance | Monitor `SuccessE2ELatency` to identify bottlenecks. |
 

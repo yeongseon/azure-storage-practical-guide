@@ -7,7 +7,7 @@ Define parameters for consistent storage account creation.
 | Name | 3-24 characters | Lowercase letters and numbers only. |
 | Region | Location | Proximity to users and services. |
 | Performance | Standard, Premium | Standard for general; Premium for low latency. |
-| Redundancy | LRS, GRS, ZRS | Trade-off between cost and durability. |
+| Redundancy | LRS, ZRS, GRS/RA-GRS, GZRS/RA-GZRS (depending on account type) | Trade off cost, availability, and geo-replication. |
 | Access Tier | Hot, Cool, Cold | Optimization for data access frequency. |
 
 !!! note

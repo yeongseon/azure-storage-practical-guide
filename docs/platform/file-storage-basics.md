@@ -5,7 +5,7 @@ Azure Files offers fully managed file shares in the cloud that are accessible vi
 | Feature | SMB | NFS |
 | :--- | :--- | :--- |
 | **Protocol** | SMB 2.1/3.0/3.1.1 | NFS 4.1 |
-| **Auth** | AD DS, Azure AD DS, Kerberos | IP-based allow lists |
+| **Auth** | AD DS, Microsoft Entra Domain Services, or Microsoft Entra Kerberos for SMB | Identity-based auth not supported for NFS |
 | **OS Support** | Windows, Linux, macOS | Linux only |
 | **Use Case** | Traditional Windows apps | High-performance Linux apps |
 

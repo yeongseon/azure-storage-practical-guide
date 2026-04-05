@@ -6,7 +6,7 @@ Secure storage access using RBAC and identity-based controls.
 |-----------|-------------|----------|
 | Storage Blob Data Reader | Read-only access to blobs. | Application read operations. |
 | Storage Blob Data Contributor | Read/write/delete blobs. | Application data management. |
-| Storage Blob Data Owner | Full control including RBAC. | Administrative management. |
+| Storage Blob Data Owner | Full access to blob containers and data; can set POSIX ACLs for HNS-enabled accounts. Does not grant RBAC role assignment. | Data ownership / ACL management. |
 | Storage Account Contributor | Manage account settings. | Infrastructure management. |
 
 !!! warning

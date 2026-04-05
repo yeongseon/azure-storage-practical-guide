@@ -10,7 +10,7 @@ Ensure data availability and durability by selecting the appropriate replication
 | High availability in region | ZRS | Protects against single DC outage. |
 | Regional disaster recovery | GRS/GZRS | Asynchronous replication to secondary region. |
 | Read access during outage | RA-GRS | Allows reading from secondary during primary failure. |
-| Compliance / 99.999999999% | GZRS | Maximum durability across zones and regions. |
+| Compliance / 99.99999999999999% durability | GZRS | Maximum durability across zones and regions. |
 
 ## Redundancy Decision Flow
 
