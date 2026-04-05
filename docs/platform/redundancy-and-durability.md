@@ -5,9 +5,11 @@ Azure Storage always stores multiple copies of your data so that it is protected
 | Option | Copies | Scope | Durability | Availability | Failover |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **LRS** | 3 | Single DC | 11 nines | 99.9% | No |
-| **ZRS** | 3 | Across Zones | 12 nines | 99.99% | No |
-| **GRS** | 6 | Across Regions | 16 nines | 99.9% | Manual/Auto |
-| **GZRS** | 6 | Zone + Region | 16 nines | 99.99% | Manual/Auto |
+| **ZRS** | 3 | Across Zones | 12 nines | 99.9% | No |
+| **GRS** | 6 | Across Regions | 16 nines | 99.9% | Customer-managed |
+| **GZRS** | 6 | Zone + Region | 16 nines | 99.9% | Customer-managed |
+| **RA-GRS** | 6 | Across Regions | 16 nines | 99.99% (read) | Read from secondary |
+| **RA-GZRS** | 6 | Zone + Region | 16 nines | 99.99% (read) | Read from secondary |
 
 ```mermaid
 graph TD

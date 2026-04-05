@@ -6,7 +6,7 @@ Efficiently manage object storage by selecting correct tiers, naming patterns, a
 
 | Consideration | Recommendation |
 |---------------|----------------|
-| Tier Selection | Match blob tier (Hot, Cool, Archive) to access frequency. |
+| Tier Selection | Match blob tier (Hot, Cool, Cold, Archive) to access frequency. |
 | Object Size | Use block blobs for streaming; page blobs for VHDs. |
 | Uploading | Use `Put Block` and parallel uploads for large files (>64MB). |
 | Immutability | Apply WORM policies for compliance-heavy data. |
@@ -21,13 +21,15 @@ graph TD
     B -->|Yes| C[Hot Tier]
     B -->|No| D{Accessed < 30 Days?}
     D -->|Yes| E[Cool Tier]
-    D -->|No| F{Compliance Only?}
-    F -->|Yes| G[Archive Tier]
-    F -->|No| E
+    D -->|No| F{Accessed < 90 Days?}
+    F -->|Yes| G[Cold Tier]
+    F -->|No| H{Compliance/Archive Only?}
+    H -->|Yes| I[Archive Tier]
+    H -->|No| G
 ```
 
-!!! tip
-    Use the "Cold" tier for data that is accessed infrequently but requires immediate availability, bridging the gap between Cool and Archive.
+!!! note
+    **Cold tier** is an online tier with 90-day minimum retention, lower storage cost than Cool but higher access cost. Use it for data accessed less than once per quarter but requiring immediate availability without rehydration.
 
 ## See Also
 
