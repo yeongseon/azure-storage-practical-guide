@@ -6,6 +6,7 @@ Troubleshoot Private Link connectivity and DNS resolution.
 |---------------|-----------------|------------|
 | nslookup | Private IP (e.g., 10.x.x.x) | Link Private DNS Zone to VNet. |
 | DNS Zone Name | `privatelink.blob.core.windows.net` | Create correct zone for service. |
+| DNS Zone Name | `privatelink.dfs.core.windows.net` | Create correct zone for ADLS Gen2. |
 | DNS Zone Name | `privatelink.file.core.windows.net` | Create correct zone for Files. |
 | DNS Zone Name | `privatelink.queue.core.windows.net` | Create correct zone for Queue. |
 | DNS Zone Name | `privatelink.table.core.windows.net` | Create correct zone for Table. |

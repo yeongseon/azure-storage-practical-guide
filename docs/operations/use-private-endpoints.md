@@ -25,6 +25,7 @@ graph TD
 
 - Place endpoint in a subnet with required NSG rules.
 - Create service-specific private DNS zones.
+- For HNS-enabled (Data Lake Gen2) accounts, create private endpoints for both blob and dfs sub-resources.
 - Link zones to all client VNets that resolve names.
 - Validate forwarders for hybrid DNS environments.
 - Test connectivity before disabling public endpoint access.

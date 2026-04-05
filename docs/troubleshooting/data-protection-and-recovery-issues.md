@@ -12,7 +12,7 @@ Recover from accidental data deletion or corruption.
 !!! note
     Always verify which data protection features were enabled BEFORE the incident occurred.
 
-Note: Backup and point-in-time restore apply to blob data only; they do not cover Azure Files, Queue Storage, or Table Storage.
+Note: Point-in-time restore applies to block blobs only. Azure Backup supports both Azure Blobs and Azure Files.
 
 ```mermaid
 graph TD
