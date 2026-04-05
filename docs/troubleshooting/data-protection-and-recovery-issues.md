@@ -6,11 +6,13 @@ Recover from accidental data deletion or corruption.
 |--------------------|---------------------|---------------|
 | Soft Delete | Restore deleted objects. | Portal/PowerShell |
 | Versioning | Rollback to previous state. | Portal/SDK |
-| Backup | Point-in-time recovery. | Backup Center |
+| Backup | Point-in-time recovery for blob data. | Backup Center |
 | Snapshot | Manual point-in-time state. | Storage Explorer |
 
 !!! note
     Always verify which data protection features were enabled BEFORE the incident occurred.
+
+Note: Backup and point-in-time restore apply to blob data only; they do not cover Azure Files, Queue Storage, or Table Storage.
 
 ```mermaid
 graph TD

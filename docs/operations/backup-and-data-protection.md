@@ -6,11 +6,13 @@ Ensure data durability and availability using layered protection features.
 |---------|-------|---------|
 | Soft Delete | Container/Blob | Protect against accidental deletion. |
 | Versioning | Blob | Maintain history of blob changes. |
-| PIT Restore | Account | Recover to a specific point in time. |
-| Azure Backup | Account | Operational backup (local) or vaulted backup (offsite in Backup vault). |
+| PIT Restore | Block blobs | Revert blob data to a specific point in time. |
+| Azure Backup | Blob containers | Operational or vaulted backup for blob data. |
 
 !!! note
     Enable soft delete as a minimum protection layer for all production storage accounts.
+
+Note: Point-in-time restore and Azure Backup for blobs do not cover Azure Files, Queue Storage, or Table Storage.
 
 ```mermaid
 graph TD
