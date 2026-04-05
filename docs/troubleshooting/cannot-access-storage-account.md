@@ -37,6 +37,8 @@ graph TD
 - [Configure Network Rules](../operations/configure-network-rules.md)
 - [Public vs Private Access Confusion](public-vs-private-access-confusion.md)
 
+Note: Blob/Queue/Table use HTTPS (443); Azure Files SMB uses port 445; NFS uses port 2049.
+
 ## Sources
 - [Azure Storage firewall rules](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
 - [Troubleshoot Azure Files connectivity](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/files/connectivity/files-troubleshoot)

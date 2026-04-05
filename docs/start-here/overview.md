@@ -10,7 +10,7 @@ Azure Storage is the foundational data service for Microsoft Azure. Most Azure s
 | Azure Files | Fully managed cloud file shares (SMB/NFS) |
 | Queue Storage | Asynchronous message queueing |
 | Table Storage | NoSQL key-value store |
-| Data Lake | Big data analytics (HDFS namespace) |
+| Blob Storage with Data Lake Storage Gen2 | Big data analytics with hierarchical namespace |
 
 ## Service Hierarchy
 
@@ -25,7 +25,7 @@ graph TD
 ```
 
 !!! note
-    The Storage Account is the unique namespace and common foundation for all storage services. Configuration at the account level (redundancy, access tier) impacts all services within it.
+    The Storage Account is the unique namespace and common foundation for all storage services. Account-level settings like redundancy apply broadly, but the default access tier applies only to Blob Storage in supported account types.
 
 ## Scope of this Guide
 

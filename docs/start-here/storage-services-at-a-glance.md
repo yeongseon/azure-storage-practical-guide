@@ -10,7 +10,7 @@ Azure Storage provides several services tailored to specific data types and acce
 | Files | File Shares | SMB/NFS | Lift-and-shift, app config |
 | Queue | Messages | REST | Decoupling services, task lists |
 | Table | NoSQL | REST | Structured data, key-value |
-| Data Lake | Hierarchical | HDFS | Big data, analytics |
+| Blob Storage with Data Lake Storage Gen2 | Hierarchical namespace | HDFS/REST | Big data, analytics |
 
 ## Service Selection Decision
 

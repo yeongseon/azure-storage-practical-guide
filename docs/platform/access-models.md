@@ -5,7 +5,7 @@ Azure Storage provides several options for authenticating and authorizing access
 | Method | Scope | Expiration | Security Level | Use Case |
 | :--- | :--- | :--- | :--- | :--- |
 | **Shared Key** | Account level | No | Low | Simple apps, legacy systems. |
-| **SAS** | Service/Container | Custom | Medium | Granting limited-time access. |
+| **SAS** | Varies by SAS type (blob/container/share/queue/table/account) | Custom | Medium | Granting limited-time access. |
 | **RBAC** | Resource level | N/A | High | Identity-based permissioning. |
 | **Managed ID** | Identity level | Dynamic | Highest | Secure service-to-service auth. |
 

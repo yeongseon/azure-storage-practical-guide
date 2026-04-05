@@ -10,7 +10,7 @@ Choosing the right storage service depends on data structure, access protocols, 
 | Shared file systems (Lift & Shift) | Azure Files | SMB/NFS | SMB/NFS/REST | 100TiB+ |
 | High-volume messaging | Azure Queues | Messages | REST | Account limit |
 | NoSQL key-value storage | Azure Tables | Structured | REST | Account limit |
-| Large-scale analytics | Data Lake Storage Gen2 | Hierarchical | HDFS/REST | PB+ |
+| Large-scale analytics | Blob Storage with Data Lake Storage Gen2 | Hierarchical namespace | HDFS/REST | PB+ |
 
 ## Selection Decision Tree
 

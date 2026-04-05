@@ -11,7 +11,7 @@ Azure Storage is used in diverse scenarios across cloud applications. This secti
 | Static Content | Blobs | CDN integration for low latency |
 | Function Runtime | Files | Requires SMB for internal state |
 | Lift-and-Shift | Files | AD integration for permissions |
-| Big Data | Data Lake | Hierarchical namespace for performance |
+| Big Data | Blob Storage with Data Lake Storage Gen2 | Hierarchical namespace for analytics |
 
 ## Scenario Service Selection
 
