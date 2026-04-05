@@ -12,7 +12,7 @@ Recover from accidental data deletion or corruption.
 !!! note
     Always verify which data protection features were enabled BEFORE the incident occurred.
 
-Note: Point-in-time restore applies to block blobs only. Azure Backup supports both Azure Blobs and Azure Files.
+Note: PITR requires standard GPv2 account, hot/cool tier, and is not supported with hierarchical namespace. Azure Backup supports both Azure Blobs and Azure Files.
 
 ```mermaid
 graph TD
