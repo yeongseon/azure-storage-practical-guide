@@ -10,7 +10,7 @@ Azure Storage provides several services tailored to specific data types and acce
 | Files | File Shares | SMB/NFS | Lift-and-shift, app config |
 | Queue | Messages | REST | Decoupling services, task lists |
 | Table | NoSQL | REST | Structured data, key-value |
-| Blob Storage with Data Lake Storage Gen2 | Hierarchical namespace | HDFS/REST | Big data, analytics |
+| Blob Storage with Data Lake Storage Gen2 | Hierarchical namespace | REST (Hadoop-compatible via ABFS) | Big data, analytics |
 
 ## Service Selection Decision
 
@@ -33,7 +33,7 @@ graph TD
 ## Selection Reminders
 
 - Match service choice to access pattern first, then optimize cost.
-- Validate protocol requirements (REST, SMB, NFS, HDFS) early.
+- Validate protocol requirements (REST, SMB, NFS (Data Lake Gen2 uses dfs endpoint with Hadoop-compatible ABFS)) early.
 - Confirm lifecycle and retention requirements before deployment.
 
 ## See Also
