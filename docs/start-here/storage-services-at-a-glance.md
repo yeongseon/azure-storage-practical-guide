@@ -6,7 +6,7 @@ Azure Storage provides several services tailored to specific data types and acce
 
 | Service | Data Type | Protocol | Use Case |
 | ------- | --------- | -------- | -------- |
-| Blob | Unstructured | REST/HDFS | Images, documents, streaming |
+| Blob | Unstructured | REST | Images, documents, streaming |
 | Files | File Shares | SMB/NFS | Lift-and-shift, app config |
 | Queue | Messages | REST | Decoupling services, task lists |
 | Table | NoSQL | REST | Structured data, key-value |

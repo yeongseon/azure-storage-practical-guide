@@ -6,7 +6,7 @@ Choosing the right storage service depends on data structure, access protocols, 
 
 | Workload | Recommended Service | Data Type | Protocol | Scale |
 | --- | --- | --- | --- | --- |
-| Web assets, Big Data, Backup | Blob Storage | Unstructured | REST/HDFS | PB+ |
+| Web assets, Big Data, Backup | Blob Storage | Unstructured | REST | PB+ |
 | Shared file systems (Lift & Shift) | Azure Files | SMB/NFS | SMB/NFS/REST | 100TiB+ |
 | High-volume messaging | Azure Queues | Messages | REST | Account limit |
 | NoSQL key-value storage | Azure Tables | Structured | REST | Account limit |

@@ -9,7 +9,7 @@ Azure Storage is used in diverse scenarios across cloud applications. This secti
 | App File Storage | Blobs | Use Hot tier for active files |
 | Log/Backup | Blobs | Archive tier for long-term retention |
 | Static Content | Blobs | CDN integration for low latency |
-| Function Runtime | Files | Requires SMB for internal state |
+| Function Runtime | Azure Storage account | Uses Blob, Queue, Table; Azure Files for app code in some hosting plans |
 | Lift-and-Shift | Files | AD integration for permissions |
 | Big Data | Blob Storage with Data Lake Storage Gen2 | Hierarchical namespace for analytics |
 
