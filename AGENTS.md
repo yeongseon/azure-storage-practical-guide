@@ -71,15 +71,25 @@ az storage account create -g $RG -n $STORAGE_NAME  # ❌ Don't do this
 
 **CRITICAL**: All CLI output examples MUST have PII removed.
 
-Patterns to mask:
+**Must mask (real Azure identifiers):**
 
-- UUIDs: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
 - Subscription IDs: `<subscription-id>`
 - Tenant IDs: `<tenant-id>`
 - Object IDs: `<object-id>`
+- Resource IDs containing real subscription/tenant
+- Emails: Remove or mask as `user@example.com`
 - Storage keys: NEVER include
 - SAS tokens: NEVER include
 - Connection strings: `<connection-string>`
+
+**OK to keep (synthetic example values):**
+
+- Demo correlation IDs: `a1b2c3d4-e5f6-7890-abcd-ef1234567890`
+- Example request IDs in logs
+- Placeholder domains: `example.com`, `contoso.com`
+- Sample resource names used consistently in docs
+
+The goal is to prevent leaking **real Azure account information**, not to mask obviously-fake example values that aid readability.
 
 ### Admonition Indentation Rule
 
