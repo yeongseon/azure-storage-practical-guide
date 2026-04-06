@@ -30,7 +30,7 @@ graph TD
 
 - [Access Models](../platform/access-models.md)
 - [Configure Access and Identity](../operations/configure-access-and-identity.md)
-- [Authorization Failures](../troubleshooting/authorization-failures.md)
+- [Authorization Failures](../troubleshooting/playbooks/security/authorization-failures.md)
 
 ## Sources
 

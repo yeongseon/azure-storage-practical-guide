@@ -33,7 +33,7 @@ graph TD
 
 - [File Share Best Practices](../best-practices/file-share-best-practices.md)
 - [Manage Containers and Shares](../operations/manage-containers-and-shares.md)
-- [File Share Mount Issues](../troubleshooting/file-share-mount-issues.md)
+- [File Share Mount Issues](../troubleshooting/playbooks/access/file-share-mount-issues.md)
 
 ## Sources
 - [What is Azure Files?](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction)

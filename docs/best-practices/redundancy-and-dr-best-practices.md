@@ -32,7 +32,7 @@ graph TD
 
 - [Redundancy and Durability](../platform/redundancy-and-durability.md)
 - [Redundancy Options](../reference/redundancy-options.md)
-- [Data Protection and Recovery Issues](../troubleshooting/data-protection-and-recovery-issues.md)
+- [Data Protection and Recovery Issues](../troubleshooting/playbooks/performance/data-protection-and-recovery-issues.md)
 
 ## Sources
 

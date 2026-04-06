@@ -126,15 +126,30 @@ nav:
     - AzCopy and Data Movement: operations/azcopy-and-data-movement.md
   - Troubleshooting:
     - troubleshooting/index.md
-    - Cannot Access Storage Account: troubleshooting/cannot-access-storage-account.md
-    - Authorization Failures: troubleshooting/authorization-failures.md
-    - Private Endpoint and DNS Issues: troubleshooting/private-endpoint-and-dns-issues.md
-    - Slow Upload / Download: troubleshooting/slow-upload-download.md
-    - File Share Mount Issues: troubleshooting/file-share-mount-issues.md
-    - SAS and Token Issues: troubleshooting/sas-and-token-issues.md
-    - Throttling and Performance Issues: troubleshooting/throttling-and-performance-issues.md
-    - Data Protection and Recovery Issues: troubleshooting/data-protection-and-recovery-issues.md
-    - Public vs Private Access Confusion: troubleshooting/public-vs-private-access-confusion.md
+    - troubleshooting/quick-diagnosis-cards.md
+    - troubleshooting/architecture-overview.md
+    - troubleshooting/decision-tree.md
+    - troubleshooting/mental-model.md
+    - troubleshooting/evidence-map.md
+    - First 10 Minutes:
+      - troubleshooting/first-10-minutes/index.md
+      - Access: troubleshooting/first-10-minutes/access.md
+      - Performance: troubleshooting/first-10-minutes/performance.md
+      - Security: troubleshooting/first-10-minutes/security.md
+    - Playbooks:
+      - troubleshooting/playbooks/index.md
+      - Access:
+        - Cannot Access Storage Account: troubleshooting/playbooks/access/cannot-access-storage-account.md
+        - Private Endpoint and DNS Issues: troubleshooting/playbooks/access/private-endpoint-and-dns-issues.md
+        - File Share Mount Issues: troubleshooting/playbooks/access/file-share-mount-issues.md
+        - Public vs Private Access Confusion: troubleshooting/playbooks/access/public-vs-private-access-confusion.md
+      - Performance:
+        - Slow Upload / Download: troubleshooting/playbooks/performance/slow-upload-download.md
+        - Throttling and Performance Issues: troubleshooting/playbooks/performance/throttling-and-performance-issues.md
+        - Data Protection and Recovery Issues: troubleshooting/playbooks/performance/data-protection-and-recovery-issues.md
+      - Security:
+        - Authorization Failures: troubleshooting/playbooks/security/authorization-failures.md
+        - SAS and Token Issues: troubleshooting/playbooks/security/sas-and-token-issues.md
   - Reference:
     - reference/index.md
     - Storage Service Selection Guide: reference/storage-service-selection-guide.md

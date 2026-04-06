@@ -36,7 +36,7 @@ graph TD
 
 - [Manage Containers and Shares](manage-containers-and-shares.md)
 - [Performance Best Practices](../best-practices/performance-best-practices.md)
-- [Slow Upload / Download](../troubleshooting/slow-upload-download.md)
+- [Slow Upload / Download](../troubleshooting/playbooks/performance/slow-upload-download.md)
 
 ## Sources
 - [Get started with AzCopy](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)

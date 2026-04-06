@@ -32,7 +32,7 @@ graph LR
 
 - [File Storage Basics](../platform/file-storage-basics.md)
 - [Manage Containers and Shares](../operations/manage-containers-and-shares.md)
-- [File Share Mount Issues](../troubleshooting/file-share-mount-issues.md)
+- [File Share Mount Issues](../troubleshooting/playbooks/access/file-share-mount-issues.md)
 
 ## Sources
 

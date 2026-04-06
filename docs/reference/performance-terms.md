@@ -48,7 +48,7 @@ graph LR
 
 - [Performance and Scaling Basics](../platform/performance-and-scaling-basics.md)
 - [Performance Best Practices](../best-practices/performance-best-practices.md)
-- [Throttling and Performance Issues](../troubleshooting/throttling-and-performance-issues.md)
+- [Throttling and Performance Issues](../troubleshooting/playbooks/performance/throttling-and-performance-issues.md)
 
 ## Sources
 

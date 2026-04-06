@@ -34,7 +34,7 @@ graph TD
 ## See Also
 
 - [Redundancy and DR Best Practices](../best-practices/redundancy-and-dr-best-practices.md)
-- [Data Protection and Recovery Issues](../troubleshooting/data-protection-and-recovery-issues.md)
+- [Data Protection and Recovery Issues](../troubleshooting/playbooks/performance/data-protection-and-recovery-issues.md)
 - [Redundancy and Durability](../platform/redundancy-and-durability.md)
 
 ## Sources

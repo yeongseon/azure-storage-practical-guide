@@ -34,7 +34,7 @@ graph TD
 ## See Also
 
 - [Performance Best Practices](../best-practices/performance-best-practices.md)
-- [Throttling and Performance Issues](../troubleshooting/throttling-and-performance-issues.md)
+- [Throttling and Performance Issues](../troubleshooting/playbooks/performance/throttling-and-performance-issues.md)
 - [Backup and Data Protection](backup-and-data-protection.md)
 
 ## Sources

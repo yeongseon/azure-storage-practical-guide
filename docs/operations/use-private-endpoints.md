@@ -35,7 +35,7 @@ graph TD
 
 - [Networking and Private Access](../platform/networking-and-private-access.md)
 - [Networking Best Practices](../best-practices/networking-best-practices.md)
-- [Private Endpoint and DNS Issues](../troubleshooting/private-endpoint-and-dns-issues.md)
+- [Private Endpoint and DNS Issues](../troubleshooting/playbooks/access/private-endpoint-and-dns-issues.md)
 
 ## Sources
 - [Private Endpoints for storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)

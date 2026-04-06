@@ -33,7 +33,7 @@ graph TD
 
 - [Performance and Scaling Basics](../platform/performance-and-scaling-basics.md)
 - [Performance Terms](../reference/performance-terms.md)
-- [Slow Upload/Download](../troubleshooting/slow-upload-download.md)
+- [Slow Upload/Download](../troubleshooting/playbooks/performance/slow-upload-download.md)
 
 ## Sources
 
