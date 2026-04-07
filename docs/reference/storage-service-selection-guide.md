@@ -25,7 +25,7 @@ graph TD
     Access -->|Shared File| Protocol{Protocol?}
     
     Protocol -->|SMB/NFS| Files[Azure Files]
-    Protocol -->|REST (ABFS)| ADLS[Data Lake Storage Gen2]
+    Protocol -->|"REST (ABFS)"| ADLS[Data Lake Storage Gen2]
 ```
 
 !!! tip
