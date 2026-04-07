@@ -13,6 +13,8 @@ Enable private connectivity to your storage account via Azure Private Link.
 !!! warning
     Verify private DNS resolution is fully operational before disabling public network access.
 
+    Creating a private endpoint does not deny public traffic by itself. Validate DNS first, then disable public network access or apply firewall rules to complete the isolation.
+
 ```mermaid
 graph TD
     A[VNet Subnet] --> B[Private Endpoint]

@@ -1,13 +1,23 @@
 # Playbooks
 
-These are the canonical troubleshooting playbooks for Azure Storage. Each one is symptom-first, hypothesis-driven, and structured for evidence-backed mitigation.
+These playbooks give operators focused, symptom-first guidance for recurring Azure Storage incidents. Start with the targeted playbooks below when the failure mode is already known, then move into the broader access, performance, or security collections if you need deeper branching guidance.
 
 ```mermaid
 flowchart TD
-    A[Choose a symptom area] --> B[Access]
-    A --> C[Performance]
-    A --> D[Security]
+    A[Storage incident] --> B[Targeted playbooks]
+    A --> C[Access playbooks]
+    A --> D[Performance playbooks]
+    A --> E[Security playbooks]
 ```
+
+## Targeted Playbooks
+
+| Playbook | Primary symptom | First things to verify |
+|---|---|---|
+| [Blob Access Denied](blob-access-denied.md) | 403, blocked SAS, RBAC, firewall, or private access failures | Identity path, SAS scope, firewall, DNS |
+| [Storage Throttling](storage-throttling.md) | ServerBusy, 503, latency spikes, IOPS or throughput pressure | Metrics, request distribution, concurrency |
+| [Replication Lag Issues](replication-lag-issues.md) | Secondary reads appear stale or DR expectations are unclear | Replication model, primary write health, failover readiness |
+| [Lifecycle Policy Not Working](lifecycle-policy-not-working.md) | Tier moves or deletes do not happen on schedule | Policy scope, blob age, recovery features |
 
 ## Access
 
@@ -42,5 +52,5 @@ flowchart TD
 
 ## Sources
 
-- [Monitor and troubleshoot Azure Storage](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting)
-- [Troubleshoot storage client application errors](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/troubleshoot-storage-client-application-errors)
+- [azure/storage/](https://learn.microsoft.com/en-us/azure/storage/)
+- [troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting)

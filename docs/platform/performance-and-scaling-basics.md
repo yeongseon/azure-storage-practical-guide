@@ -4,7 +4,7 @@ Understanding performance limits and scaling targets is essential for designing 
 
 | Metric | Standard Account | Premium Block Blob | Premium File Share |
 | :--- | :--- | :--- | :--- |
-| **IOPS** | Up to 20,000 (default); up to 40,000 in select regions | Service-specific premium targets (see source) | Up to 102,400 (provisioned SSD) |
+| **Request Rate** | Up to 20,000 requests/sec (default); up to 40,000 requests/sec in select regions | Service-specific premium targets (see source) | Up to 102,400 (provisioned SSD) |
 | **Ingress** | Up to 25 Gbps (default); up to 60 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
 | **Egress** | Up to 50 Gbps (default); up to 200 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
 | **Capacity** | 5 PiB per account (default) | Service-specific premium targets (see source) | Up to 256 TiB (provisioned v2) |

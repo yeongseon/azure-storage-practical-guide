@@ -22,9 +22,11 @@ graph TD
 !!! warning
     Private Endpoints require careful DNS configuration. You must resolve the storage account's FQDN to the private IP address within your virtual network.
 
+    Creating a Private Endpoint does not automatically block access through the public endpoint. To fully isolate the account, disable public network access or configure storage firewall rules so public traffic is denied.
+
 ## Access Methods
 - **Service Endpoints**: Optimizes routing but traffic still reaches the public endpoint.
-- **Private Endpoints**: Traffic stays entirely within the Azure backbone, using a private IP.
+- **Private Endpoints**: Traffic stays entirely within the Azure backbone, using a private IP. Public endpoint access remains enabled until you disable public network access or restrict it with firewall rules.
 - **VNet Firewall**: Restricts access to specific subnets or IP addresses.
 
 ## See Also

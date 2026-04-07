@@ -124,6 +124,15 @@ nav:
     - Backup and Data Protection: operations/backup-and-data-protection.md
     - Monitoring and Alerting: operations/monitoring-and-alerting.md
     - AzCopy and Data Movement: operations/azcopy-and-data-movement.md
+  - Tutorials:
+    - tutorials/index.md
+    - Lab Guides:
+      - tutorials/lab-guides/index.md
+      - "Lab 01: Blob Lifecycle Management": tutorials/lab-guides/lab-01-blob-lifecycle-management.md
+      - "Lab 02: Private Endpoint for Storage": tutorials/lab-guides/lab-02-private-endpoint-storage.md
+      - "Lab 03: Azure File Share AD Integration": tutorials/lab-guides/lab-03-azure-file-share-ad-integration.md
+      - "Lab 04: Storage Replication and Failover": tutorials/lab-guides/lab-04-storage-replication-failover.md
+      - "Lab 05: Static Website with CDN": tutorials/lab-guides/lab-05-static-website-cdn.md
   - Troubleshooting:
     - troubleshooting/index.md
     - troubleshooting/quick-diagnosis-cards.md
@@ -138,6 +147,11 @@ nav:
       - Security: troubleshooting/first-10-minutes/security.md
     - Playbooks:
       - troubleshooting/playbooks/index.md
+      - Focused Playbooks:
+        - Blob Access Denied: troubleshooting/playbooks/blob-access-denied.md
+        - Storage Throttling: troubleshooting/playbooks/storage-throttling.md
+        - Replication Lag Issues: troubleshooting/playbooks/replication-lag-issues.md
+        - Lifecycle Policy Not Working: troubleshooting/playbooks/lifecycle-policy-not-working.md
       - Access:
         - Cannot Access Storage Account: troubleshooting/playbooks/access/cannot-access-storage-account.md
         - Private Endpoint and DNS Issues: troubleshooting/playbooks/access/private-endpoint-and-dns-issues.md
