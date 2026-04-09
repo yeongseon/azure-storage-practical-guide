@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Operations
 
 The operations section covers fundamental management tasks for Azure Storage. Use these guides to ensure consistency and reliability in your storage environment.

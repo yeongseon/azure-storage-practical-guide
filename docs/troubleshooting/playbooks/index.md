@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Playbooks
 
 These playbooks give operators focused, symptom-first guidance for recurring Azure Storage incidents. Start with the targeted playbooks below when the failure mode is already known, then move into the broader access, performance, or security collections if you need deeper branching guidance.

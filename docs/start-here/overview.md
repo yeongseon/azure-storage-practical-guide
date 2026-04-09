@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Overview
 
 Azure Storage is the foundational data service for Microsoft Azure. Most Azure services depend on it for data persistence, application state, and durability.

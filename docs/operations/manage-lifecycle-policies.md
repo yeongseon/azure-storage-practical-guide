@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Manage Lifecycle Policies
 
 Automate data transitions based on age and access patterns.

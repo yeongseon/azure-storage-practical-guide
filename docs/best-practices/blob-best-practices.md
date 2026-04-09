@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Blob Best Practices
 
 Blob storage works best when teams design for access patterns, object lifecycle, and security boundaries up front rather than after growth exposes hot partitions and cost surprises.

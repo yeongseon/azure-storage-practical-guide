@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 03: Azure File Share AD Integration
 
 Create an Azure Files share and configure identity-based access planning steps for SMB using Active Directory integration placeholders.

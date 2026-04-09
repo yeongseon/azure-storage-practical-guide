@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Throttling and Performance Issues
 
 ## 1. Summary

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Blob Storage Basics
 
 Blob Storage is Azure's object storage solution for the cloud, optimized for storing massive amounts of unstructured data.

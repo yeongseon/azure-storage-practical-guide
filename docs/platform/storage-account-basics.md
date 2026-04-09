@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Account Basics
 
 A storage account is the container for all your Azure Storage data objects, including blobs, files, queues, and tables.

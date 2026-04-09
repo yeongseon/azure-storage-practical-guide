@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Configure Access and Identity
 
 Secure storage access using RBAC and identity-based controls.

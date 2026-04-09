@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Networking and Private Access
 
 Azure Storage provides multiple networking options to secure and control access to your data from different environments.

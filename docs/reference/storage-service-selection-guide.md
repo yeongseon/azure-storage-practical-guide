@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Service Selection Guide
 
 Choosing the right storage service depends on data structure, access protocols, and performance requirements.

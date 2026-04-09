@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 02: Private Endpoint for Storage
 
 Deploy a storage account with a Private Endpoint and Private DNS Zone, then validate that traffic resolves and reaches the service privately.

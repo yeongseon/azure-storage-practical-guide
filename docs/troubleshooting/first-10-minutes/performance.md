@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # First 10 Minutes: Performance
 
 Use this checklist when the symptom is slow upload/download, latency growth, reduced throughput, or 429/503 throttling.

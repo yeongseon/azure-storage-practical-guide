@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Security Best Practices
 
 Storage security works when identity, network, encryption, and observability controls are layered together. Any single control used alone will eventually be bypassed or misconfigured.

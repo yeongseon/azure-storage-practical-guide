@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lifecycle Policy Not Working
 
 Use this playbook when Blob management policies were created successfully but objects do not transition tiers or delete on the expected schedule. In most cases the policy is valid, yet the scope, blob type, age condition, last-access assumptions, or recovery controls were misunderstood.

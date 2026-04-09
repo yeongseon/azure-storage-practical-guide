@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 05: Static Website with CDN
 
 Enable the static website feature on Blob storage, upload sample site content, and place a CDN endpoint in front of the origin to test caching and global delivery basics.

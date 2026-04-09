@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # File Share Best Practices
 
 Azure Files succeeds when teams treat it as a networked file service with identity, DNS, and throughput design requirements—not just a cloud folder.

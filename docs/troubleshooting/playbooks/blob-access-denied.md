@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Blob Access Denied
 
 Use this playbook when Blob operations return 403, AuthorizationPermissionMismatch, AuthenticationFailed, or a misleading “resource not found” symptom caused by blocked network paths. The most common root causes are SAS scope drift, missing RBAC assignments, firewall rules, or unresolved Private Endpoint DNS.

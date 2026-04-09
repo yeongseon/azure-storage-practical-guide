@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Troubleshooting Architecture Overview
 
 This page answers the first question in a storage incident: **where in the storage path can this fail?** Use it to classify the problem before opening a detailed playbook.

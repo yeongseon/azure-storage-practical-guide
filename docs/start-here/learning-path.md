@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Learning Path
 
 This section provides structured reading paths based on your role and objectives when working with Azure Storage.

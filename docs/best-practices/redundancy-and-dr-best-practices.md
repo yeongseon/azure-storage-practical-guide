@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Redundancy and DR Best Practices
 
 Durability options are valuable only when teams understand what each option protects against, how failover affects applications, and which gaps still require backup and runbooks.

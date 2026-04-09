@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # File Storage Basics
 
 Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) and Network File System (NFS) protocols.

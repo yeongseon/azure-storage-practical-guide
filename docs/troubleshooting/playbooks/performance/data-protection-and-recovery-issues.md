@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Data Protection and Recovery Issues
 
 ## 1. Summary

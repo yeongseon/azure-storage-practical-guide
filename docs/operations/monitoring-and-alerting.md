@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Monitoring and Alerting
 
 Track storage health, performance, and availability metrics.

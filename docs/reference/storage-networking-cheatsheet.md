@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Networking Cheatsheet
 
 Azure Storage provides several options for securing data access through network isolation.

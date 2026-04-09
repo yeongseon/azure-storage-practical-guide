@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Performance Best Practices
 
 Storage performance depends on request shape, concurrency, partition distribution, chosen SKU, and network path. Good performance is designed, observed, and continuously retuned.

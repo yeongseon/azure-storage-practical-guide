@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Use Private Endpoints
 
 Enable private connectivity to your storage account via Azure Private Link.

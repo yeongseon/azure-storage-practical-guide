@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lifecycle Management Best Practices
 
 Lifecycle management is the control plane for keeping Blob storage aligned to access, retention, and deletion rules. Without it, storage estates become expensive, risky, and difficult to audit.

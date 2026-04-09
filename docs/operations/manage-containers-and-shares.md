@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Manage Containers and Shares
 
 Organize unstructured and shared data effectively.

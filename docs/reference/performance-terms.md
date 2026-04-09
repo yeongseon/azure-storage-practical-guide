@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Performance Terms
 
 Understanding Azure Storage performance metrics is critical for optimizing application throughput and latency.

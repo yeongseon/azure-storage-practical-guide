@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Quick Diagnosis Cards
 
 Use these cards when you have less than a minute to decide which storage playbook to open first.

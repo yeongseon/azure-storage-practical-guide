@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Performance and Scaling Basics
 
 Understanding performance limits and scaling targets is essential for designing efficient Azure Storage solutions.

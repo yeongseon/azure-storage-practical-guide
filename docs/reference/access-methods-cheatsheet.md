@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Access Methods Cheatsheet
 
 Azure Storage supports multiple authorization mechanisms to control data access.

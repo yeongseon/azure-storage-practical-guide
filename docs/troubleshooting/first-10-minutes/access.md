@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # First 10 Minutes: Access
 
 Use this checklist when the dominant symptom is endpoint reachability, DNS mismatch, private endpoint routing confusion, or file share mount failure.

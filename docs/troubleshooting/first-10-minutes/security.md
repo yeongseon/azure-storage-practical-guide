@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # First 10 Minutes: Security
 
 Use this checklist when the main symptom is 403, authorization mismatch, SAS rejection, or identity-policy confusion.

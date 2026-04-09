@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Reference
 
 This section provides quick lookup guides, technical comparisons, and dense summaries of Azure Storage core concepts. Use these tables and diagrams for architectural decision-making and performance tuning.

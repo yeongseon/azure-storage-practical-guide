@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Common Scenarios
 
 Azure Storage is used in diverse scenarios across cloud applications. This section maps business requirements to the most effective storage services.

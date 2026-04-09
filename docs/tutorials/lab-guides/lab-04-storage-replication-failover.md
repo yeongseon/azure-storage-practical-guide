@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 04: Storage Replication and Failover
 
 Create a geo-redundant storage account, record the baseline replication configuration, and practice the operational checklist that precedes a failover decision.

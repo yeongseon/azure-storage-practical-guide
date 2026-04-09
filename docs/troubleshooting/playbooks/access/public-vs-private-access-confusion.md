@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Public vs Private Access Confusion
 
 ## 1. Summary

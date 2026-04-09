@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Private Endpoint and DNS Issues
 
 ## 1. Summary

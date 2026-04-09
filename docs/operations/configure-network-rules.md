@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Configure Network Rules
 
 Control network access to your storage account using firewalls and VNets.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Access Models
 
 Azure Storage provides several options for authenticating and authorizing access to your data resources.

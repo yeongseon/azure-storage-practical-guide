@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # How Azure Storage Works
 
 Azure Storage provides a scalable, distributed storage platform for diverse data types, managed through specialized control and data planes.

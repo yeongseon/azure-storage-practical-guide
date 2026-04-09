@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Troubleshooting Mental Model
 
 The core storage troubleshooting rule is simple: **classify the failure surface first, then collect evidence from that surface before changing configuration**.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Redundancy Options
 
 Azure Storage provides multiple redundancy options to protect data from planned and unplanned events.

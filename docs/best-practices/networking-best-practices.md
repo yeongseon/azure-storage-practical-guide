@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Networking Best Practices
 
 Networking decisions determine whether storage is merely reachable or predictably reachable. Private routing, DNS, and firewall rules must be designed as one system.

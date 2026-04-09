@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # File Share Mount Issues
 
 ## 1. Summary

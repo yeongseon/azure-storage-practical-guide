@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Best Practices
 
 This section turns Azure Storage platform concepts into production operating guidance. Use it to move from “it works” to “it is secure, supportable, scalable, and cost-aware.”

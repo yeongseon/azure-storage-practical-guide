@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Azure Storage Practical Guide
 
 Welcome to the Azure Storage Practical Guide. This resource provides technical patterns and implementation strategies for Azure Storage services.

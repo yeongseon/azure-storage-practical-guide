@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Redundancy and Durability
 
 Azure Storage always stores multiple copies of your data so that it is protected from planned and unplanned events.

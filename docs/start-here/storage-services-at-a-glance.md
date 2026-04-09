@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Services at a Glance
 
 Azure Storage provides several services tailored to specific data types and access requirements. Selecting the right service is critical for performance and cost optimization.

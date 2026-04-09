@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # First 10 Minutes Checklists
 
 These checklists narrow the problem category fast so you can open the right playbook with evidence already in hand.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Create Storage Account
 
 Define parameters for consistent storage account creation.

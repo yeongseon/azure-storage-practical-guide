@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Account Design Baseline
 
 Use this baseline to standardize Azure Storage account design before application teams begin workload-specific tuning. A disciplined baseline reduces avoidable redesign, security exceptions, and runaway cost.

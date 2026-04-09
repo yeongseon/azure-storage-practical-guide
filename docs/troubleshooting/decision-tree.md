@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Troubleshooting Decision Tree
 
 Use this page when you need to route from a storage symptom to the most relevant playbook in the first few minutes.

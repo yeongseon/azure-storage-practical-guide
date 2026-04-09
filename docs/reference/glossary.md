@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Glossary
 This glossary provides definitions for core Azure Storage concepts and features.
 !!! note

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 01: Blob Lifecycle Management
 
 Build a StorageV2 account, upload sample blobs into lifecycle-targeted prefixes, apply a management policy, and validate tier movement expectations.

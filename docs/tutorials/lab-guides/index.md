@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab Guides
 
 Use these hands-on labs to practice storage configuration patterns in an isolated resource group before applying them to production workloads.

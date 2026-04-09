@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Start Here
 
 Begin your journey into Azure Storage. This section provides the fundamental context needed to understand the more technical sections of the guide.

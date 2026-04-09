@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Queue and Table Basics
 
 Azure Queue and Table Storage provide lightweight, scalable solutions for asynchronous messaging and NoSQL data storage.

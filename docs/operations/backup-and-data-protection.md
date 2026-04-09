@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Backup and Data Protection
 
 Ensure data durability and availability using layered protection features.

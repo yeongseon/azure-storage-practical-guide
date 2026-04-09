@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Common Anti-Patterns
 
 These anti-patterns appear repeatedly in storage estates that grew quickly without guardrails. Recognizing them early saves incident time, redesign cost, and security exposure.

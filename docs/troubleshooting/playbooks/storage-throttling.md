@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Throttling
 
 Use this playbook when clients report ServerBusy, 429-like retry behavior, 503 responses, or sudden latency spikes during heavy upload, download, or file-share operations. The root cause is usually a mix of account limits, partition hotspots, concurrency overshoot, or cross-region traffic.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # AzCopy and Data Movement
 
 Perform high-performance data transfers to and from Azure Storage.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Cost Optimization Best Practices
 
 The cheapest storage design is rarely the one with the lowest monthly capacity line item. Real optimization balances storage, transactions, retrieval, egress, and operational risk.

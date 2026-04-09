@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Platform Fundamentals
 
 This section covers the core architectural components and operational principles of the Azure Storage platform.

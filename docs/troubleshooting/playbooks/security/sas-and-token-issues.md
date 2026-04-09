@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # SAS and Token Issues
 
 ## 1. Summary

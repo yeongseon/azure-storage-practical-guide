@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Evidence Map for Storage Troubleshooting
 
 This page maps common storage investigation questions to the best evidence source, the command to run, and the signal to interpret.

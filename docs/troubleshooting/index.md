@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Troubleshooting
 
 Use this section to move from a storage symptom to a validated cause quickly. The structure follows an App Service-style flow: mental model first, first-10-minutes checklists second, detailed playbooks third.

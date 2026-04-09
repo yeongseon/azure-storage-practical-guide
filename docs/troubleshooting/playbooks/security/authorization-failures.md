@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Authorization Failures
 
 ## 1. Summary

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Replication Lag Issues
 
 Use this playbook when teams expect near-immediate data visibility in a secondary region, read from RA-GRS or RA-GZRS secondaries and see stale results, or question whether failover is safe. Replication is asynchronous for geo-redundant options, so incidents usually come from misunderstanding lag and failover behavior.
