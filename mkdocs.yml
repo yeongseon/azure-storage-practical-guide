@@ -166,6 +166,7 @@ nav:
         - SAS and Token Issues: troubleshooting/playbooks/security/sas-and-token-issues.md
   - Reference:
     - reference/index.md
+    - Content Validation: reference/content-validation-status.md
     - Validation Status: reference/validation-status.md
     - Storage Service Selection Guide: reference/storage-service-selection-guide.md
     - Redundancy Options: reference/redundancy-options.md

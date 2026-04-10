@@ -106,6 +106,46 @@ For MkDocs admonitions (`!!!` / `???`), every line in the body must be indented 
 
 All architectural diagrams use Mermaid. Every documentation page should include at least one diagram. Test with `mkdocs build --strict`.
 
+## Content Source Requirements
+
+### MSLearn-First Policy
+
+All content MUST be traceable to official Microsoft Learn documentation:
+
+- **Platform content** (`docs/platform/`): MUST have direct Microsoft Learn source URLs
+- **Architecture diagrams**: MUST reference official Microsoft documentation
+- **Troubleshooting playbooks**: MAY synthesize Microsoft Learn content with clear attribution
+- **Self-generated content**: MUST have justification explaining the source basis
+
+### Source Types
+
+| Type | Description | Allowed? |
+|---|---|---|
+| `mslearn` | Directly from Microsoft Learn | Required for platform content |
+| `mslearn-adapted` | Microsoft Learn content adapted for this guide | Allowed with source URL |
+| `self-generated` | Original content for this guide | Requires justification |
+| `community` | From community sources | Not for core content |
+| `unknown` | Source not documented | Must be validated |
+
+### Diagram Source Documentation
+
+Every Mermaid diagram MUST have source metadata in frontmatter:
+
+```yaml
+content_sources:
+  diagrams:
+    - id: architecture-overview
+      type: flowchart
+      source: mslearn
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+    - id: troubleshooting-flow
+      type: flowchart
+      source: self-generated
+      justification: "Synthesized from Microsoft Learn articles"
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/storage/
+```
+
 ### Nested List Indentation
 
 All nested list items MUST use **4-space indent** (Python-Markdown standard).
