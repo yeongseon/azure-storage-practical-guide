@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-lifecycle-policy-not-working
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
 ---
 
 # Lifecycle Policy Not Working
@@ -16,6 +22,7 @@ Use this playbook when Blob management policies were created successfully but ob
 
 ## Diagnostic Flowchart
 
+<!-- diagram-id: troubleshooting-playbooks-lifecycle-policy-not-working -->
 ```mermaid
 flowchart TD
     A[Reported symptom] --> B[Confirm exact failing operation and time]

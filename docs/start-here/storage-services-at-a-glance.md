@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: start-here-storage-services-at-a-glance
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-decide-blobs-files-disks
 ---
 
 # Storage Services at a Glance
@@ -19,6 +25,7 @@ Azure Storage provides several services tailored to specific data types and acce
 
 ## Service Selection Decision
 
+<!-- diagram-id: start-here-storage-services-at-a-glance -->
 ```mermaid
 graph TD
     Data[What is your data?] --> Unstructured[Unstructured]

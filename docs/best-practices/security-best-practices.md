@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-security-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-security-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Security Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Security Best Practices** is defense-in-depth controls for
 
 **Reference scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
 
+<!-- diagram-id: best-practices-security-best-practices -->
 ```mermaid
 flowchart TD
     A[Defense-in-depth controls for azure storage data plane and management plane access] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-security-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

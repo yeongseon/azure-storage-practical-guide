@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-glossary
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 ---
 
 # Glossary
@@ -33,6 +39,7 @@ This glossary provides definitions for core Azure Storage concepts and features.
 | AzCopy | Command-line tool for high-performance data transfer. |
 | Data Lake Gen2 | Analytical storage optimized for big data workloads. |
 ## Core Concepts Relationship
+<!-- diagram-id: reference-glossary -->
 ```mermaid
 graph TD
     SA[Storage Account] --> Svc[Service Type]

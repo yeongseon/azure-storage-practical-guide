@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-performance-and-scaling-basics
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
 ---
 
 # Performance and Scaling Basics
@@ -14,6 +20,7 @@ Understanding performance limits and scaling targets is essential for designing 
 | **Egress** | Up to 50 Gbps (default); up to 200 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
 | **Capacity** | 5 PiB per account (default) | Service-specific premium targets (see source) | Up to 256 TiB (provisioned v2) |
 
+<!-- diagram-id: platform-performance-and-scaling-basics -->
 ```mermaid
 graph TD
     App[App Request] --> Th{Throttled?}

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-configure-access-and-identity
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
 ---
 
 # Configure Access and Identity
@@ -17,6 +23,7 @@ Secure storage access using RBAC and identity-based controls.
 !!! warning
     Disable shared key access whenever possible to enforce modern identity-based authentication.
 
+<!-- diagram-id: operations-configure-access-and-identity -->
 ```mermaid
 graph TD
     A[Identify Identity] --> B[Assign RBAC Role]

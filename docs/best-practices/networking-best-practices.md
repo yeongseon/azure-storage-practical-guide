@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-networking-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-networking-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Networking Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Networking Best Practices** is private connectivity, DNS d
 
 **Reference scenario**: An organization deployed Private Endpoints but left public access enabled and forgot to link the Private DNS Zone to one spoke VNet. Some workloads reached the public endpoint, others failed name resolution, and the incident looked random. Network design was the real root cause.
 
+<!-- diagram-id: best-practices-networking-best-practices -->
 ```mermaid
 flowchart TD
     A[Private connectivity, dns design, and network-boundary control for azure storage] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-networking-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

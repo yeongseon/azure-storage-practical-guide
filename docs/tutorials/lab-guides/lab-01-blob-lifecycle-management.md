@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: tutorials-lab-guides-lab-01-blob-lifecycle-management
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
 ---
 
 # Lab 01: Blob Lifecycle Management
@@ -17,6 +23,7 @@ Build a StorageV2 account, upload sample blobs into lifecycle-targeted prefixes,
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-01-blob-lifecycle-management -->
 ```mermaid
 flowchart LR
     A[Operator workstation] --> B[Azure CLI]

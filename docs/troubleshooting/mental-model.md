@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-mental-model
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
+    - id: troubleshooting-mental-model-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
 ---
 
 # Troubleshooting Mental Model
@@ -9,6 +19,7 @@ The core storage troubleshooting rule is simple: **classify the failure surface 
 
 ## Classification model
 
+<!-- diagram-id: troubleshooting-mental-model -->
 ```mermaid
 flowchart TD
     A[Observed storage symptom] --> B{Primary signal}
@@ -36,6 +47,7 @@ flowchart TD
 
 ## Reclassification trigger points
 
+<!-- diagram-id: troubleshooting-mental-model-2 -->
 ```mermaid
 flowchart LR
     A[Initial hypothesis] --> B{Does evidence contradict it?}

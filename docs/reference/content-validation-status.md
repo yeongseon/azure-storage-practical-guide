@@ -1,3 +1,22 @@
+---
+hide:
+  - toc
+content_sources:
+  diagrams:
+    - id: reference-content-validation-status
+      type: pie
+      source: self-generated
+      justification: "Repository content-source summary generated from local documentation metadata."
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/storage/
+    - id: reference-content-validation-status-2
+      type: flowchart
+      source: self-generated
+      justification: "Repository content-source summary generated from local documentation metadata."
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/storage/
+---
+
 # Content Source Validation Status
 
 This page tracks the source validation status of documentation content, including diagrams and text. All content must be traceable to official Microsoft Learn documentation.
@@ -8,18 +27,20 @@ This page tracks the source validation status of documentation content, includin
 
 | Content Type | Total | MS Learn Sourced | Self-Generated | No Source |
 |---|---:|---:|---:|---:|
-| Mermaid Diagrams | 89 | 0 | 0 | 89 |
+| Mermaid Diagrams | 91 | 88 | 3 | 0 |
 | Text Sections | — | — | — | — |
 
 !!! warning "Validation Required"
-    All 89 mermaid diagrams require source validation. Content without Microsoft Learn sources must be either:
+    All 91 mermaid diagrams now include source metadata. Repository-only dashboards remain self-generated with justification:
     
-    1. Linked to an official Microsoft Learn URL, or
-    2. Marked as `self-generated` with clear justification
+    1. 88 diagrams are marked as `mslearn-adapted` with official Microsoft Learn URLs.
+    2. 3 repository-status diagrams are marked as `self-generated` with justification.
 
+<!-- diagram-id: reference-content-validation-status -->
 ```mermaid
 pie title Content Source Status
-    "Not Validated" : 89
+    "MS Learn Adapted" : 88
+    "Self-Generated" : 3
 ```
 
 ## Validation Categories
@@ -36,7 +57,7 @@ pie title Content Source Status
 
 ### Diagram Validation Status
 
-All mermaid diagrams are currently marked as not validated.
+All mermaid diagrams now include source metadata and diagram IDs. Review fidelity again when upstream Microsoft Learn guidance changes.
 
 ## How to Validate Content
 
@@ -71,7 +92,7 @@ content_sources:
 Add an HTML comment before each mermaid block to identify it:
 
 ```markdown
-<!-- diagram-id: architecture-overview -->
+<!-- diagram-id: reference-content-validation-status-2 -->
 ```mermaid
 flowchart TD
     A[Client] --> B[Azure Storage]

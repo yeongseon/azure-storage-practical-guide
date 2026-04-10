@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-access-cannot-access-storage-account
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # Cannot Access Storage Account
@@ -9,6 +15,7 @@ hide:
 
 When a client cannot reach a storage account at all, the first question is whether the client is taking the intended public or private path.
 
+<!-- diagram-id: troubleshooting-playbooks-access-cannot-access-storage-account -->
 ```mermaid
 flowchart TD
     A[Access failure] --> B{DNS correct?}

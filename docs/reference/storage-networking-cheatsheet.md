@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-storage-networking-cheatsheet
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # Storage Networking Cheatsheet
@@ -21,6 +27,7 @@ Azure Storage provides several options for securing data access through network 
 
 ## Networking Decision Flow
 
+<!-- diagram-id: reference-storage-networking-cheatsheet -->
 ```mermaid
 graph TD
     Start[Network Request] --> Req{Requirement?}

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: start-here-common-scenarios
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#core-storage-services
 ---
 
 # Common Scenarios
@@ -20,6 +26,7 @@ Azure Storage is used in diverse scenarios across cloud applications. This secti
 
 ## Scenario Service Selection
 
+<!-- diagram-id: start-here-common-scenarios -->
 ```mermaid
 graph LR
     Log[Log/Backup] --> Blob[Blob Storage]

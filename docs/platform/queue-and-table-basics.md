@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-queue-and-table-basics
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
 ---
 
 # Queue and Table Basics
@@ -14,6 +20,7 @@ Azure Queue and Table Storage provide lightweight, scalable solutions for asynch
 | **Access Pattern** | First-In-First-Out (best effort). | Point lookups and range scans. |
 | **Scalability** | Depends on partitioning and workload; refer to current service limits. | Depends on partitioning and workload; refer to current service limits. |
 
+<!-- diagram-id: platform-queue-and-table-basics -->
 ```mermaid
 graph LR
     P[Producer] -- Put Message --> Q[Queue]

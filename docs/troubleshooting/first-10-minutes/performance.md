@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-first-10-minutes-performance
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
 ---
 
 # First 10 Minutes: Performance
 
 Use this checklist when the symptom is slow upload/download, latency growth, reduced throughput, or 429/503 throttling.
 
+<!-- diagram-id: troubleshooting-first-10-minutes-performance -->
 ```mermaid
 flowchart TD
     A[Performance complaint] --> B{429 or 503?}

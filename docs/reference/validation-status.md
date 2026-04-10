@@ -1,3 +1,16 @@
+---
+hide:
+  - toc
+content_sources:
+  diagrams:
+    - id: reference-validation-status
+      type: pie
+      source: self-generated
+      justification: "Repository validation summary generated from local tutorial validation metadata."
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/storage/
+---
+
 # Tutorial Validation Status
 
 This page tracks which lab guides have been validated against real Azure deployments. Each guide can be tested via **az-cli** (manual CLI commands) or **Bicep** (infrastructure as code). Guides not tested within 90 days are marked as stale.
@@ -14,6 +27,7 @@ This page tracks which lab guides have been validated against real Azure deploym
 | ❌ Failed | 0 |
 | ➖ Not tested | 5 |
 
+<!-- diagram-id: reference-validation-status -->
 ```mermaid
 pie title Tutorial Validation Status
     "Not Tested" : 5

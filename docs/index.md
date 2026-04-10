@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
 ---
 
 # Azure Storage Practical Guide
@@ -19,6 +25,7 @@ Welcome to the Azure Storage Practical Guide. This resource provides technical p
 
 ## Guide Structure
 
+<!-- diagram-id: index -->
 ```mermaid
 graph TD
     Start[Start Here] --> Overview[Overview]

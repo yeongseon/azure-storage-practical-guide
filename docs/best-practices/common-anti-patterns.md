@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-common-anti-patterns
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-common-anti-patterns-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Common Anti-Patterns
@@ -20,6 +30,7 @@ The primary goal of **Common Anti-Patterns** is identifying and correcting recur
 
 **Reference scenario**: Many storage incidents are not mysterious service failures. They are predictable results of a few recurring shortcuts: one giant shared account, permanent SAS links, public exposure left on after private rollout, and no lifecycle ownership. This page turns those mistakes into reviewable patterns.
 
+<!-- diagram-id: best-practices-common-anti-patterns -->
 ```mermaid
 flowchart TD
     A[Identifying and correcting recurring azure storage design mistakes] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-common-anti-patterns-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

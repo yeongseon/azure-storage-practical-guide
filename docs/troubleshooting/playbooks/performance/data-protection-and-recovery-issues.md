@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-performance-data-protection-and-recovery-issues
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs
 ---
 
 # Data Protection and Recovery Issues
@@ -9,6 +15,7 @@ hide:
 
 Recovery incidents are decided less by the current outage state and more by whether protective features such as soft delete, versioning, snapshots, or backup were enabled before data loss.
 
+<!-- diagram-id: troubleshooting-playbooks-performance-data-protection-and-recovery-issues -->
 ```mermaid
 flowchart TD
     A[Data lost or overwritten] --> B{Soft delete enabled earlier?}

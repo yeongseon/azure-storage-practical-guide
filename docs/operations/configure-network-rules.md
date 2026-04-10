@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-configure-network-rules
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # Configure Network Rules
@@ -17,6 +23,7 @@ Control network access to your storage account using firewalls and VNets.
 !!! warning
     Changing the default action to "Deny" immediately breaks all access not explicitly whitelisted.
 
+<!-- diagram-id: operations-configure-network-rules -->
 ```mermaid
 graph TD
     A[Incoming Request] --> B{Default Action?}

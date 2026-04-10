@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-performance-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-performance-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Performance Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Performance Best Practices** is throughput, latency, and s
 
 **Reference scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
 
+<!-- diagram-id: best-practices-performance-best-practices -->
 ```mermaid
 flowchart TD
     A[Throughput, latency, and scale planning for azure storage workloads] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-performance-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

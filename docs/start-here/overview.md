@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: start-here-overview
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 ---
 
 # Overview
@@ -19,6 +25,7 @@ Azure Storage is the foundational data service for Microsoft Azure. Most Azure s
 
 ## Service Hierarchy
 
+<!-- diagram-id: start-here-overview -->
 ```mermaid
 graph TD
     SA[Storage Account]

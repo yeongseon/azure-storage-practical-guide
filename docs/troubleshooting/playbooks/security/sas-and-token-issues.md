@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-security-sas-and-token-issues
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview
 ---
 
 # SAS and Token Issues
@@ -9,6 +15,7 @@ hide:
 
 SAS failures usually come from time-window, permission, scope, or restriction mismatches. The token often looks valid at a glance but is invalid for the exact request being made.
 
+<!-- diagram-id: troubleshooting-playbooks-security-sas-and-token-issues -->
 ```mermaid
 flowchart TD
     A[SAS request fails] --> B{Time window valid?}

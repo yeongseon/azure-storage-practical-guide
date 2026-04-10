@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-evidence-map
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # Evidence Map for Storage Troubleshooting
 
 This page maps common storage investigation questions to the best evidence source, the command to run, and the signal to interpret.
 
+<!-- diagram-id: troubleshooting-evidence-map -->
 ```mermaid
 flowchart LR
     A[Investigation question] --> B[Evidence source]

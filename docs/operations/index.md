@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 ---
 
 # Operations
@@ -22,6 +28,7 @@ The operations section covers fundamental management tasks for Azure Storage. Us
 | [Monitoring and Alerting](monitoring-and-alerting.md) | Tracking health and performance. |
 | [AzCopy and Data Movement](azcopy-and-data-movement.md) | Efficient data transfer operations. |
 
+<!-- diagram-id: operations-index -->
 ```mermaid
 graph TD
     A[Requirement] --> B[Creation]

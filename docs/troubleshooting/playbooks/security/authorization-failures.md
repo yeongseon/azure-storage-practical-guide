@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-security-authorization-failures
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
 ---
 
 # Authorization Failures
@@ -9,6 +15,7 @@ hide:
 
 Storage authorization failures are often caused by a mismatch between the chosen auth method and the required data-plane scope, not by a total lack of Azure permissions.
 
+<!-- diagram-id: troubleshooting-playbooks-security-authorization-failures -->
 ```mermaid
 flowchart TD
     A[403 or auth failure] --> B{Using Azure AD/RBAC?}

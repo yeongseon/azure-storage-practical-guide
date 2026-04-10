@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: tutorials-lab-guides-lab-05-static-website-cdn
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website
 ---
 
 # Lab 05: Static Website with CDN
@@ -17,6 +23,7 @@ Enable the static website feature on Blob storage, upload sample site content, a
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-05-static-website-cdn -->
 ```mermaid
 flowchart LR
     A[Operator workstation] --> B[Azure CLI]

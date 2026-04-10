@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-performance-throttling-and-performance-issues
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
 ---
 
 # Throttling and Performance Issues
@@ -9,6 +15,7 @@ hide:
 
 When Azure Storage returns 429 or 503, the investigation should focus on request shape, burst concurrency, and whether pressure is account-wide or concentrated on a hot path.
 
+<!-- diagram-id: troubleshooting-playbooks-performance-throttling-and-performance-issues -->
 ```mermaid
 flowchart TD
     A[429 or 503] --> B{Burst or sustained?}

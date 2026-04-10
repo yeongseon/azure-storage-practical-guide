@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-create-storage-account
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
 ---
 
 # Create Storage Account
@@ -18,6 +24,7 @@ Define parameters for consistent storage account creation.
 !!! note
     Naming restrictions require 3-24 characters, lowercase letters, and numbers. Names must be globally unique across Azure.
 
+<!-- diagram-id: operations-create-storage-account -->
 ```mermaid
 graph TD
     A[Choose Name] --> B[Select Region]

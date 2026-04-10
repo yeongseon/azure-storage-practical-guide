@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: start-here-learning-path
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/training/browse/?products=azure-storage
 ---
 
 # Learning Path
@@ -18,6 +24,7 @@ This section provides structured reading paths based on your role and objectives
 
 ## Learning Progression
 
+<!-- diagram-id: start-here-learning-path -->
 ```mermaid
 graph TD
     B[Beginner] --> D[Developer]

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-access-file-share-mount-issues
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
 ---
 
 # File Share Mount Issues
@@ -9,6 +15,7 @@ hide:
 
 Azure Files mount failures usually come from protocol prerequisites, network path, or auth mismatches rather than from the storage account being generally down.
 
+<!-- diagram-id: troubleshooting-playbooks-access-file-share-mount-issues -->
 ```mermaid
 flowchart TD
     A[Mount fails] --> B{Correct protocol?}

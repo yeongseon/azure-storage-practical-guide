@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: tutorials-lab-guides-lab-04-storage-replication-failover
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
 ---
 
 # Lab 04: Storage Replication and Failover
@@ -17,6 +23,7 @@ Create a geo-redundant storage account, record the baseline replication configur
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-04-storage-replication-failover -->
 ```mermaid
 flowchart LR
     A[Operator workstation] --> B[Azure CLI]

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-access-public-vs-private-access-confusion
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
 ---
 
 # Public vs Private Access Confusion
@@ -9,6 +15,7 @@ hide:
 
 This scenario happens when the intended access model and the actual DNS-routed path do not match, making the incident look random or policy-related.
 
+<!-- diagram-id: troubleshooting-playbooks-access-public-vs-private-access-confusion -->
 ```mermaid
 flowchart TD
     A[Access issue] --> B{Resolved IP type}

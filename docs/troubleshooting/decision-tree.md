@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-decision-tree
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
 ---
 
 # Troubleshooting Decision Tree
@@ -9,6 +15,7 @@ Use this page when you need to route from a storage symptom to the most relevant
 
 ## Main triage tree
 
+<!-- diagram-id: troubleshooting-decision-tree -->
 ```mermaid
 flowchart TD
     A[Incident begins] --> B{What is the dominant symptom?}

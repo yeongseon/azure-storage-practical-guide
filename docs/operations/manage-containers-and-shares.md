@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-manage-containers-and-shares
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
 ---
 
 # Manage Containers and Shares
@@ -18,6 +24,7 @@ Organize unstructured and shared data effectively.
 | Soft Delete | Yes | Yes |
 | Versioning | Yes | No |
 
+<!-- diagram-id: operations-manage-containers-and-shares -->
 ```mermaid
 graph LR
     A[Storage Account] --> B[Containers]

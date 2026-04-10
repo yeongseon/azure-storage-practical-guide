@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-access-private-endpoint-and-dns-issues
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity
 ---
 
 # Private Endpoint and DNS Issues
@@ -9,6 +15,7 @@ hide:
 
 Most private endpoint incidents are actually DNS path incidents: traffic resolves to the wrong IP and never reaches the intended private route.
 
+<!-- diagram-id: troubleshooting-playbooks-access-private-endpoint-and-dns-issues -->
 ```mermaid
 flowchart TD
     A[Private access expected] --> B{DNS returns private IP?}

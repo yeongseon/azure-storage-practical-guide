@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-replication-lag-issues
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
 ---
 
 # Replication Lag Issues
@@ -16,6 +22,7 @@ Use this playbook when teams expect near-immediate data visibility in a secondar
 
 ## Diagnostic Flowchart
 
+<!-- diagram-id: troubleshooting-playbooks-replication-lag-issues -->
 ```mermaid
 flowchart TD
     A[Reported symptom] --> B[Confirm exact failing operation and time]

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-monitoring-and-alerting
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage
 ---
 
 # Monitoring and Alerting
@@ -18,6 +24,7 @@ Track storage health, performance, and availability metrics.
 !!! tip
     Set alerts on "Availability < 99%" and "E2E Latency > Threshold" for early incident detection.
 
+<!-- diagram-id: operations-monitoring-and-alerting -->
 ```mermaid
 graph TD
     A[Monitor] --> B[Metrics]

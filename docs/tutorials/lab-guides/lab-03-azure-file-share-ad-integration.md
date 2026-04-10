@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: tutorials-lab-guides-lab-03-azure-file-share-ad-integration
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
 ---
 
 # Lab 03: Azure File Share AD Integration
@@ -17,6 +23,7 @@ Create an Azure Files share and configure identity-based access planning steps f
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-03-azure-file-share-ad-integration -->
 ```mermaid
 flowchart LR
     A[Operator workstation] --> B[Azure CLI]

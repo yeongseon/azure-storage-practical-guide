@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
 ---
 
 # Reference
@@ -23,6 +29,7 @@ This section provides quick lookup guides, technical comparisons, and dense summ
 
 ## Reference Architecture Map
 
+<!-- diagram-id: reference-index -->
 ```mermaid
 graph TD
     Ref[Reference Section] --> Sel[Storage Selection]

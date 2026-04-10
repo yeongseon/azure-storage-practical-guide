@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-redundancy-options
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
 ---
 
 # Redundancy Options
@@ -23,6 +29,7 @@ Azure Storage provides multiple redundancy options to protect data from planned 
 
 ## Redundancy Topology
 
+<!-- diagram-id: reference-redundancy-options -->
 ```mermaid
 graph TD
     Data[Data Ingest] --> Primary{Primary Region}

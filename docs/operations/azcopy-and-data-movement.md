@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-azcopy-and-data-movement
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 ---
 
 # AzCopy and Data Movement
@@ -17,6 +23,7 @@ Perform high-performance data transfers to and from Azure Storage.
 !!! note
     AzCopy supports both Shared Access Signatures (SAS) and Azure Active Directory (Azure AD) for authentication.
 
+<!-- diagram-id: operations-azcopy-and-data-movement -->
 ```mermaid
 graph TD
     A[Data Source] --> B{Data Size?}

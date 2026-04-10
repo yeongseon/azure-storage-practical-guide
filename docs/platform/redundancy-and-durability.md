@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-redundancy-and-durability
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
 ---
 
 # Redundancy and Durability
@@ -16,6 +22,7 @@ Azure Storage always stores multiple copies of your data so that it is protected
 | **RA-GRS** | 6 | Across Regions | 16 nines | 99.99% (read) | Read from secondary |
 | **RA-GZRS** | 6 | Zone + Region | 16 nines | 99.99% (read) | Read from secondary |
 
+<!-- diagram-id: platform-redundancy-and-durability -->
 ```mermaid
 graph TD
     Data[Your Data] --> LRS[LRS: Single Data Center]

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-storage-throttling
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
 ---
 
 # Storage Throttling
@@ -16,6 +22,7 @@ Use this playbook when clients report ServerBusy, 429-like retry behavior, 503 r
 
 ## Diagnostic Flowchart
 
+<!-- diagram-id: troubleshooting-playbooks-storage-throttling -->
 ```mermaid
 flowchart TD
     A[Reported symptom] --> B[Confirm exact failing operation and time]

@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-blob-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-blob-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Blob Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Blob Best Practices** is operating block blobs, append blo
 
 **Reference scenario**: A document platform stored everything in the Hot tier with sequential names such as `invoice000001.pdf`. Costs climbed, parallel upload performance flattened, and archive retrieval became a manual fire drill. Blob-specific design fixes all three problems.
 
+<!-- diagram-id: best-practices-blob-best-practices -->
 ```mermaid
 flowchart TD
     A[Operating block blobs, append blobs, and object lifecycle patterns safely at scale] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-blob-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

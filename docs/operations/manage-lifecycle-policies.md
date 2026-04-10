@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-manage-lifecycle-policies
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
 ---
 
 # Manage Lifecycle Policies
@@ -17,6 +23,7 @@ Automate data transitions based on age and access patterns.
 !!! note
     Rehydrating data from the Archive tier can take several hours depending on the request priority.
 
+<!-- diagram-id: operations-manage-lifecycle-policies -->
 ```mermaid
 graph TD
     A[Upload Data] --> B[Hot Tier]

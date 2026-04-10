@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-use-private-endpoints
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
 ---
 
 # Use Private Endpoints
@@ -20,6 +26,7 @@ Enable private connectivity to your storage account via Azure Private Link.
 
     Creating a private endpoint does not deny public traffic by itself. Validate DNS first, then disable public network access or apply firewall rules to complete the isolation.
 
+<!-- diagram-id: operations-use-private-endpoints -->
 ```mermaid
 graph TD
     A[VNet Subnet] --> B[Private Endpoint]

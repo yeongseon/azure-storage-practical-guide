@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-first-10-minutes-security
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
 ---
 
 # First 10 Minutes: Security
 
 Use this checklist when the main symptom is 403, authorization mismatch, SAS rejection, or identity-policy confusion.
 
+<!-- diagram-id: troubleshooting-first-10-minutes-security -->
 ```mermaid
 flowchart TD
     A[Security or auth failure] --> B{Using SAS?}

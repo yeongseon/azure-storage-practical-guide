@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-blob-access-denied
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # Blob Access Denied
@@ -16,6 +22,7 @@ Use this playbook when Blob operations return 403, AuthorizationPermissionMismat
 
 ## Diagnostic Flowchart
 
+<!-- diagram-id: troubleshooting-playbooks-blob-access-denied -->
 ```mermaid
 flowchart TD
     A[Reported symptom] --> B[Confirm exact failing operation and time]

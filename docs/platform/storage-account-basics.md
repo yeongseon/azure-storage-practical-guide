@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-storage-account-basics
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
 ---
 
 # Storage Account Basics
@@ -14,6 +20,7 @@ A storage account is the container for all your Azure Storage data objects, incl
 | **Premium File Shares** | Azure Files only | Premium SSD | Enterprise-scale file shares. |
 | **Premium Page Blobs** | Page Blobs only | Premium SSD | Disk-heavy workloads. |
 
+<!-- diagram-id: platform-storage-account-basics -->
 ```mermaid
 graph TD
     Sub[Azure Subscription] --> RG[Resource Group]

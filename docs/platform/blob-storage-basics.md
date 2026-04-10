@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-blob-storage-basics
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
 ---
 
 # Blob Storage Basics
@@ -14,6 +20,7 @@ Blob Storage is Azure's object storage solution for the cloud, optimized for sto
 | **Cold** | Medium | Lower | Higher | 90 days |
 | **Archive** | Lowest | Lowest | Highest | 180 days |
 
+<!-- diagram-id: platform-blob-storage-basics -->
 ```mermaid
 graph LR
     H[Hot Tier] -- Frequent --> C[Cool Tier]

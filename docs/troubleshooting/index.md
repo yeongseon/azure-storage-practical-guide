@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
 ---
 
 # Troubleshooting
 
 Use this section to move from a storage symptom to a validated cause quickly. The structure follows an App Service-style flow: mental model first, first-10-minutes checklists second, detailed playbooks third.
 
+<!-- diagram-id: troubleshooting-index -->
 ```mermaid
 flowchart TD
     A[Incident starts] --> B[Quick Diagnosis Cards]

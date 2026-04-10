@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-performance-slow-upload-download
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
 ---
 
 # Slow Upload / Download
@@ -9,6 +15,7 @@ hide:
 
 Slow transfer problems are often caused by client-side design choices such as low concurrency, many small files, or long RTT rather than by storage account throttling.
 
+<!-- diagram-id: troubleshooting-playbooks-performance-slow-upload-download -->
 ```mermaid
 flowchart TD
     A[Slow transfer] --> B{429 or 503 present?}

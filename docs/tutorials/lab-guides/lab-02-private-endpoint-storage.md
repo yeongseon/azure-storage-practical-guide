@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: tutorials-lab-guides-lab-02-private-endpoint-storage
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
 ---
 
 # Lab 02: Private Endpoint for Storage
@@ -17,6 +23,7 @@ Deploy a storage account with a Private Endpoint and Private DNS Zone, then vali
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-02-private-endpoint-storage -->
 ```mermaid
 flowchart LR
     A[Operator workstation] --> B[Azure CLI]

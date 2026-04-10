@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-file-storage-basics
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
 ---
 
 # File Storage Basics
@@ -14,6 +20,7 @@ Azure Files offers fully managed file shares in the cloud that are accessible vi
 | **OS Support** | Windows, Linux, macOS | Linux only |
 | **Use Case** | Traditional Windows apps | High-performance Linux apps |
 
+<!-- diagram-id: platform-file-storage-basics -->
 ```mermaid
 graph TD
     Client[Client App] -- Mount --> Share[Azure File Share]

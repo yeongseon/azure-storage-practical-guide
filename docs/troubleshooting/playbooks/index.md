@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-playbooks-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
 ---
 
 # Playbooks
 
 These playbooks give operators focused, symptom-first guidance for recurring Azure Storage incidents. Start with the targeted playbooks below when the failure mode is already known, then move into the broader access, performance, or security collections if you need deeper branching guidance.
 
+<!-- diagram-id: troubleshooting-playbooks-index -->
 ```mermaid
 flowchart TD
     A[Storage incident] --> B[Targeted playbooks]

@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-storage-service-selection-guide
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#azure-storage-services
 ---
 
 # Storage Service Selection Guide
@@ -19,6 +25,7 @@ Choosing the right storage service depends on data structure, access protocols, 
 
 ## Selection Decision Tree
 
+<!-- diagram-id: reference-storage-service-selection-guide -->
 ```mermaid
 graph TD
     Start[New Workload] --> Unstruct{Data Type?}

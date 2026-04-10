@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-lifecycle-management-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-lifecycle-management-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Lifecycle Management Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Lifecycle Management Best Practices** is automating data m
 
 **Reference scenario**: A team promised to delete exports after 30 days but relied on engineers to run manual cleanup scripts. Some exports lived for years, some were deleted too soon, and nobody could prove policy compliance. Lifecycle management provides an auditable system of record.
 
+<!-- diagram-id: best-practices-lifecycle-management-best-practices -->
 ```mermaid
 flowchart TD
     A[Automating data movement, retention, and deletion decisions for blob data] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-lifecycle-management-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

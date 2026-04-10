@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-access-methods-cheatsheet
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
 ---
 
 # Access Methods Cheatsheet
@@ -19,6 +25,7 @@ Azure Storage supports multiple authorization mechanisms to control data access.
 
 ## Access Method Decision Flow
 
+<!-- diagram-id: reference-access-methods-cheatsheet -->
 ```mermaid
 graph TD
     Start[Access Request] --> Type{Client?}

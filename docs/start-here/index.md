@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: start-here-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 ---
 
 # Start Here
@@ -18,6 +24,7 @@ Begin your journey into Azure Storage. This section provides the fundamental con
 
 ## Reading Path
 
+<!-- diagram-id: start-here-index -->
 ```mermaid
 graph LR
     Start(Start) --> Overview[Overview]

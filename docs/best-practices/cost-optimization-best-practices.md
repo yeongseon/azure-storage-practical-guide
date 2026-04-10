@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-cost-optimization-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-cost-optimization-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Cost Optimization Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Cost Optimization Best Practices** is reducing Azure Stora
 
 **Reference scenario**: A finance review moved terabytes to a lower tier and celebrated the capacity savings. Two weeks later, analytics jobs triggered unexpected retrieval charges and slow reads. Cost optimization must model the entire usage pattern, not just bytes stored.
 
+<!-- diagram-id: best-practices-cost-optimization-best-practices -->
 ```mermaid
 flowchart TD
     A[Reducing azure storage spend without undermining reliability or security] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-cost-optimization-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

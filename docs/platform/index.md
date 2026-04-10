@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 ---
 
 # Platform Fundamentals
@@ -19,6 +25,7 @@ This section covers the core architectural components and operational principles
 | [Networking and Private Access](networking-and-private-access.md) | Securing storage with firewalls, Service Endpoints, and Private Endpoints. |
 | [Performance and Scaling](performance-and-scaling-basics.md) | Understanding limits, partitioning, and throughput optimization. |
 
+<!-- diagram-id: platform-index -->
 ```mermaid
 graph TD
     A[Platform Fundamentals] --> B[Architecture]

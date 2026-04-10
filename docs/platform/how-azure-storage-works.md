@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-how-azure-storage-works
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 ---
 
 # How Azure Storage Works
@@ -12,6 +18,7 @@ Azure Storage provides a scalable, distributed storage platform for diverse data
 | **Control Plane** | Managing storage accounts and resources. | Azure Resource Manager (ARM) | Affects configuration, not data content. |
 | **Data Plane** | Interacting with stored data objects. | REST APIs, Client SDKs, Storage Explorer | Directly reads or writes data content. |
 
+<!-- diagram-id: platform-how-azure-storage-works -->
 ```mermaid
 graph TD
     User([User Request]) --> DNS[Azure Storage DNS]

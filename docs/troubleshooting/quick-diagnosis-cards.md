@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-quick-diagnosis-cards
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/troubleshoot-storage-client-application-errors
 ---
 
 # Quick Diagnosis Cards
 
 Use these cards when you have less than a minute to decide which storage playbook to open first.
 
+<!-- diagram-id: troubleshooting-quick-diagnosis-cards -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[First check]

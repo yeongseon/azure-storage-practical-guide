@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-storage-account-design-baseline
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-storage-account-design-baseline-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Storage Account Design Baseline
@@ -20,6 +30,7 @@ The primary goal of **Storage Account Design Baseline** is establishing producti
 
 **Reference scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
 
+<!-- diagram-id: best-practices-storage-account-design-baseline -->
 ```mermaid
 flowchart TD
     A[Establishing production-ready defaults for new storage accounts] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-storage-account-design-baseline-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

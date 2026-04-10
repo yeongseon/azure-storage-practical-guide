@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-file-share-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-file-share-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # File Share Best Practices
@@ -20,6 +30,7 @@ The primary goal of **File Share Best Practices** is running SMB and NFS file sh
 
 **Reference scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
 
+<!-- diagram-id: best-practices-file-share-best-practices -->
 ```mermaid
 flowchart TD
     A[Running smb and nfs file shares with predictable access, performance, and security] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-file-share-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

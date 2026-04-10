@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-architecture-overview
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    - id: troubleshooting-architecture-overview-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
 ---
 
 # Troubleshooting Architecture Overview
@@ -9,6 +19,7 @@ This page answers the first question in a storage incident: **where in the stora
 
 ## Storage failure path
 
+<!-- diagram-id: troubleshooting-architecture-overview -->
 ```mermaid
 flowchart LR
     A[Client or workload] --> B[Identity or token]
@@ -39,6 +50,7 @@ flowchart LR
 
 ## Public and private access model
 
+<!-- diagram-id: troubleshooting-architecture-overview-2 -->
 ```mermaid
 flowchart TD
     A[Client request for <account>.blob.core.windows.net] --> B{DNS answer}

@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+    - id: best-practices-index-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
 ---
 
 # Best Practices
@@ -18,6 +28,7 @@ Storage workloads often start simple and become complex quickly. A few container
 - Performance design using regional placement, partition-aware naming, and throughput testing.
 - Cost optimization that includes transactions, retrieval, and egress rather than just capacity.
 
+<!-- diagram-id: best-practices-index -->
 ```mermaid
 flowchart TD
     A[Best Practices Program] --> B[Storage account baseline]
@@ -72,6 +83,7 @@ flowchart TD
 
 ## Cross-Cutting Architecture View
 
+<!-- diagram-id: best-practices-index-2 -->
 ```mermaid
 flowchart LR
     A[Applications] --> B[Identity and RBAC]

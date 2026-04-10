@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: operations-backup-and-data-protection
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview
 ---
 
 # Backup and Data Protection
@@ -19,6 +25,7 @@ Ensure data durability and availability using layered protection features.
 
 Note: Point-in-time restore applies to Standard GPv2 accounts with block blobs in hot/cool tiers only, and is not supported for HNS-enabled (Data Lake Gen2) accounts. Azure Backup also supports Azure Files through file share snapshots in a Recovery Services vault.
 
+<!-- diagram-id: operations-backup-and-data-protection -->
 ```mermaid
 graph TD
     A[Data Layer] --> B[Versioning]

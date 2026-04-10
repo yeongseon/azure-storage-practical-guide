@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: reference-performance-terms
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets
 ---
 
 # Performance Terms
@@ -33,6 +39,7 @@ Understanding Azure Storage performance metrics is critical for optimizing appli
 
 ## Performance Concepts Relationship
 
+<!-- diagram-id: reference-performance-terms -->
 ```mermaid
 graph LR
     Perf[Performance] --> Lat[Latency]

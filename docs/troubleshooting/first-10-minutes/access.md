@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-first-10-minutes-access
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # First 10 Minutes: Access
 
 Use this checklist when the dominant symptom is endpoint reachability, DNS mismatch, private endpoint routing confusion, or file share mount failure.
 
+<!-- diagram-id: troubleshooting-first-10-minutes-access -->
 ```mermaid
 flowchart TD
     A[Access failure] --> B{DNS correct?}

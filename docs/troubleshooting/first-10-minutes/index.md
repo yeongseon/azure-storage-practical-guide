@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: troubleshooting-first-10-minutes-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
 ---
 
 # First 10 Minutes Checklists
 
 These checklists narrow the problem category fast so you can open the right playbook with evidence already in hand.
 
+<!-- diagram-id: troubleshooting-first-10-minutes-index -->
 ```mermaid
 flowchart TD
     A[Initial storage incident] --> B{Primary symptom}

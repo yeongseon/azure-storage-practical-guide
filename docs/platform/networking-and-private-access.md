@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-networking-and-private-access
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
 ---
 
 # Networking and Private Access
@@ -14,6 +20,7 @@ Azure Storage provides multiple networking options to secure and control access 
 | **Service EP** | High | Public IP | Low | VNet-to-Service traffic. |
 | **Private EP** | Highest | Private IP | High | Fully isolated access. |
 
+<!-- diagram-id: platform-networking-and-private-access -->
 ```mermaid
 graph TD
     VNet[Azure Virtual Network] -- Private Link --> PE[Private Endpoint]

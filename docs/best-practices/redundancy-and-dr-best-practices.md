@@ -1,6 +1,16 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: best-practices-redundancy-and-dr-best-practices
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+    - id: best-practices-redundancy-and-dr-best-practices-2
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 ---
 
 # Redundancy and DR Best Practices
@@ -20,6 +30,7 @@ The primary goal of **Redundancy and DR Best Practices** is aligning storage rep
 
 **Reference scenario**: A workload moved to GRS and assumed the job was done. During a corruption event, the secondary copy faithfully replicated the bad data. The team had redundancy but not recovery. Durable design requires recovery planning in addition to replication.
 
+<!-- diagram-id: best-practices-redundancy-and-dr-best-practices -->
 ```mermaid
 flowchart TD
     A[Aligning storage replication choices with continuity objectives and failover readiness] --> B[Storage account type selection]
@@ -403,6 +414,7 @@ az monitor diagnostic-settings create \
     --output json
 ```
 
+<!-- diagram-id: best-practices-redundancy-and-dr-best-practices-2 -->
 ```mermaid
 flowchart LR
     A[Application or user] --> B[Identity and RBAC]

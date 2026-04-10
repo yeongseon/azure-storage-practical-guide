@@ -1,6 +1,12 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: platform-access-models
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
 ---
 
 # Access Models
@@ -14,6 +20,7 @@ Azure Storage provides several options for authenticating and authorizing access
 | **RBAC** | Resource level | N/A | High | Identity-based permissioning. |
 | **Managed ID** | Identity level | Dynamic | Highest | Secure service-to-service auth. |
 
+<!-- diagram-id: platform-access-models -->
 ```mermaid
 graph TD
     Start{Request Access} --> ID[Managed Identity?]

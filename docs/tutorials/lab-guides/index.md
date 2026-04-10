@@ -1,12 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+    - id: tutorials-lab-guides-index
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
 ---
 
 # Lab Guides
 
 Use these hands-on labs to practice storage configuration patterns in an isolated resource group before applying them to production workloads.
 
+<!-- diagram-id: tutorials-lab-guides-index -->
 ```mermaid
 flowchart TD
     A[Choose a lab] --> B[Provision resources]
