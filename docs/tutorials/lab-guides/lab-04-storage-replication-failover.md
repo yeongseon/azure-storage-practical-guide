@@ -1,6 +1,4 @@
 ---
-hide:
-  - toc
 content_sources:
   diagrams:
     - id: tutorials-lab-guides-lab-04-storage-replication-failover

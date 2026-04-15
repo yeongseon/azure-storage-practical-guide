@@ -1,6 +1,4 @@
 ---
-hide:
-  - toc
 content_sources:
   diagrams:
     - id: reference-validation-status
@@ -49,8 +47,6 @@ To mark a lab guide as validated, add a `validation` block to its YAML frontmatt
 
 ```yaml
 ---
-hide:
-  - toc
 validation:
   az_cli:
     last_tested: 2026-04-09
