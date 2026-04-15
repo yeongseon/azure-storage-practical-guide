@@ -23,7 +23,7 @@ Create an Azure Files share and configure identity-based access planning steps f
 
 <!-- diagram-id: tutorials-lab-guides-lab-03-azure-file-share-ad-integration -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Operator workstation] --> B[Azure CLI]
     B --> C[Resource group]
     C --> D[Storage account]

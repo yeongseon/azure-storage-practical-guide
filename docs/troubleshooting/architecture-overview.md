@@ -19,7 +19,7 @@ This page answers the first question in a storage incident: **where in the stora
 
 <!-- diagram-id: troubleshooting-architecture-overview -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Client or workload] --> B[Identity or token]
     B --> C[DNS resolution]
     C --> D[Network path]

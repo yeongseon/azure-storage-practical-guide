@@ -13,7 +13,7 @@ Use these cards when you have less than a minute to decide which storage playboo
 
 <!-- diagram-id: troubleshooting-quick-diagnosis-cards -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[First check]
     B --> C[Likely category]
     C --> D[Playbook]

@@ -20,7 +20,7 @@ Azure Queue and Table Storage provide lightweight, scalable solutions for asynch
 
 <!-- diagram-id: platform-queue-and-table-basics -->
 ```mermaid
-graph LR
+graph TD
     P[Producer] -- Put Message --> Q[Queue]
     Q -- Get Message --> C[Consumer]
     C -- Delete Message --> Q

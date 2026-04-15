@@ -24,7 +24,7 @@ Begin your journey into Azure Storage. This section provides the fundamental con
 
 <!-- diagram-id: start-here-index -->
 ```mermaid
-graph LR
+graph TD
     Start(Start) --> Overview[Overview]
     Overview --> Comparison[Services At a Glance]
     Comparison --> Path[Learning Path]

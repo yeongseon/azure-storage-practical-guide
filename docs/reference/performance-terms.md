@@ -39,7 +39,7 @@ Understanding Azure Storage performance metrics is critical for optimizing appli
 
 <!-- diagram-id: reference-performance-terms -->
 ```mermaid
-graph LR
+graph TD
     Perf[Performance] --> Lat[Latency]
     Perf --> TP[Throughput]
     Perf --> IOPS[IOPS]

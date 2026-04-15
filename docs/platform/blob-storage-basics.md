@@ -20,7 +20,7 @@ Blob Storage is Azure's object storage solution for the cloud, optimized for sto
 
 <!-- diagram-id: platform-blob-storage-basics -->
 ```mermaid
-graph LR
+graph TD
     H[Hot Tier] -- Frequent --> C[Cool Tier]
     C -- Infrequent --> CL[Cold Tier]
     CL -- Rare --> A[Archive Tier]

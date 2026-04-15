@@ -23,7 +23,7 @@ Enable the static website feature on Blob storage, upload sample site content, a
 
 <!-- diagram-id: tutorials-lab-guides-lab-05-static-website-cdn -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Operator workstation] --> B[Azure CLI]
     B --> C[Resource group]
     C --> D[Storage account]

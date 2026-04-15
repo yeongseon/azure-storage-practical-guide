@@ -23,7 +23,7 @@ Create a geo-redundant storage account, record the baseline replication configur
 
 <!-- diagram-id: tutorials-lab-guides-lab-04-storage-replication-failover -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Operator workstation] --> B[Azure CLI]
     B --> C[Resource group]
     C --> D[Storage account]

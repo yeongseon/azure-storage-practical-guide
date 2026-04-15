@@ -414,7 +414,7 @@ az monitor diagnostic-settings create \
 
 <!-- diagram-id: best-practices-performance-best-practices-2 -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Application or user] --> B[Identity and RBAC]
     A --> C[Network path]
     B --> D[Storage account]

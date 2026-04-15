@@ -83,7 +83,7 @@ flowchart TD
 
 <!-- diagram-id: best-practices-index-2 -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Applications] --> B[Identity and RBAC]
     A --> C[Private connectivity]
     B --> D[Storage account type selection]

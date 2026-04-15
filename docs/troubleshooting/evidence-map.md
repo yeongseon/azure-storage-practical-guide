@@ -13,7 +13,7 @@ This page maps common storage investigation questions to the best evidence sourc
 
 <!-- diagram-id: troubleshooting-evidence-map -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Investigation question] --> B[Evidence source]
     B --> C[Command or portal check]
     C --> D[Proof artifact]

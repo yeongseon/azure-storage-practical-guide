@@ -47,7 +47,7 @@ flowchart TD
 
 <!-- diagram-id: troubleshooting-mental-model-2 -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Initial hypothesis] --> B{Does evidence contradict it?}
     B -->|No| C[Stay on current playbook]
     B -->|Yes| D[Reclassify symptom]

@@ -13,7 +13,7 @@ This section contains hands-on storage exercises designed to reinforce the best-
 
 <!-- diagram-id: tutorials-index -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Read the concept] --> B[Follow a lab guide]
     B --> C[Validate the outcome]
     C --> D[Apply the pattern in production]

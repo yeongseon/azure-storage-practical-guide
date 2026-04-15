@@ -23,7 +23,7 @@ Deploy a storage account with a Private Endpoint and Private DNS Zone, then vali
 
 <!-- diagram-id: tutorials-lab-guides-lab-02-private-endpoint-storage -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Operator workstation] --> B[Azure CLI]
     B --> C[Resource group]
     C --> D[Storage account]

@@ -24,7 +24,7 @@ Organize unstructured and shared data effectively.
 
 <!-- diagram-id: operations-manage-containers-and-shares -->
 ```mermaid
-graph LR
+graph TD
     A[Storage Account] --> B[Containers]
     A --> C[File Shares]
     B --> D[Blobs]

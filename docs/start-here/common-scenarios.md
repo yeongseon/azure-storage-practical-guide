@@ -26,7 +26,7 @@ Azure Storage is used in diverse scenarios across cloud applications. This secti
 
 <!-- diagram-id: start-here-common-scenarios -->
 ```mermaid
-graph LR
+graph TD
     Log[Log/Backup] --> Blob[Blob Storage]
     Static[Static Web] --> Blob
     Legacy[Legacy Apps] --> Files[Azure Files]

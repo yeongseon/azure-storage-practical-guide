@@ -23,7 +23,7 @@ Build a StorageV2 account, upload sample blobs into lifecycle-targeted prefixes,
 
 <!-- diagram-id: tutorials-lab-guides-lab-01-blob-lifecycle-management -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Operator workstation] --> B[Azure CLI]
     B --> C[Resource group]
     C --> D[Storage account]
