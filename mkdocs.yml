@@ -175,6 +175,8 @@ nav:
     - Storage Networking Cheatsheet: reference/storage-networking-cheatsheet.md
     - Performance Terms: reference/performance-terms.md
     - Glossary: reference/glossary.md
+  - Contributing:
+    - contributing/index.md
 
 extra:
   social:
