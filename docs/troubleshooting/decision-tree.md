@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-decision-tree
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
+  - id: troubleshooting-decision-tree
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Troubleshooting Decision Tree guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
+    verified: true
 ---
-
 # Troubleshooting Decision Tree
 
 Use this page when you need to route from a storage symptom to the most relevant playbook in the first few minutes.

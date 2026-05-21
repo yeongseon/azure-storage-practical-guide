@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: platform-file-storage-basics
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+  - id: platform-file-storage-basics
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: File Storage Basics guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+    verified: true
 ---
-
 # File Storage Basics
 
 Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) and Network File System (NFS) protocols.

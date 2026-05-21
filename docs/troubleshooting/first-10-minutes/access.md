@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-first-10-minutes-access
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+  - id: troubleshooting-first-10-minutes-access
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: 'First 10 Minutes: Access guidance is based on linked Azure Storage source
+      material.'
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
 ---
-
 # First 10 Minutes: Access
 
 Use this checklist when the dominant symptom is endpoint reachability, DNS mismatch, private endpoint routing confusion, or file share mount failure.

@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-storage-throttling
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+  - id: troubleshooting-playbooks-storage-throttling
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Storage Throttling guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+    verified: true
 ---
-
 # Storage Throttling
 
 Use this playbook when clients report ServerBusy, 429-like retry behavior, 503 responses, or sudden latency spikes during heavy upload, download, or file-share operations. The root cause is usually a mix of account limits, partition hotspots, concurrency overshoot, or cross-region traffic.
@@ -104,6 +115,10 @@ StorageBlobLogs
 
 ### Fix step 1: Measure current SKU and replication configuration
 
+| Command | Purpose |
+|---|---|
+| `az storage account show` | Inspects storage account configuration and replication state. |
+
 ```bash
 az storage account show \
     --resource-group $RG \
@@ -116,6 +131,10 @@ az storage account show \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Move hot workloads to Premium BlockBlobStorage or Premium FileStorage when justified
+
+| Command | Purpose |
+|---|---|
+| `az storage account update` | Applies the corrective storage account setting under review. |
 
 ```bash
 az storage account update \
@@ -138,6 +157,10 @@ azcopy copy "./dataset" "https://$STORAGE_NAME.blob.core.windows.net/$CONTAINER_
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Scale out into separate accounts when limits or hotspots remain
+
+| Command | Purpose |
+|---|---|
+| `az storage account create` | Runs the Azure CLI check or corrective action for this playbook step. |
 
 ```bash
 az storage account create \

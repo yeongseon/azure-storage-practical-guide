@@ -5,36 +5,60 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+validation:
+  az_cli:
+    last_tested: null
+    cli_version: null
+    result: not_tested
+  bicep:
+    last_tested: null
+    result: not_tested
 ---
 
 # Lab 01: Blob Lifecycle Management
 
-Build a StorageV2 account, upload sample blobs into lifecycle-targeted prefixes, apply a management policy, and validate tier movement expectations.
+Build a StorageV2 account, upload sample blobs under lifecycle-targeted prefixes, apply a management policy, and inspect the configured rule.
+
+## Lab Metadata
+
+| Field | Value |
+|---|---|
+| Difficulty | Beginner |
+| Duration | 45-60 minutes |
+| Services | Blob Storage, Lifecycle Management |
+| Validation status | Not tested in a live subscription |
 
 ## Prerequisites
 
-- Azure subscription with permission to create storage, networking, and monitoring resources.
-- Azure CLI logged in with the correct tenant and subscription.
-- Variables defined for `$RG`, `$LOCATION`, `$STORAGE_NAME`, and any lab-specific names.
-- A workstation or Cloud Shell session with access to the resource group.
-- Optional Log Analytics workspace if you want to capture diagnostics during the lab.
+- Azure CLI authenticated to the intended tenant and subscription.
+- Variables from this lab are set before running commands.
+- The resource group is dedicated to the lab so cleanup is safe.
+- The lab validation status is intentionally `not_tested` until the full sequence is executed in Azure.
 
-## Architecture Diagram
+## What You Will Build
 
 <!-- diagram-id: tutorials-lab-guides-lab-01-blob-lifecycle-management -->
 ```mermaid
 flowchart TD
-    A[Operator workstation] --> B[Azure CLI]
-    B --> C[Resource group]
-    C --> D[Storage account]
-    D --> E[Data path under test]
-    D --> F[Lifecycle, networking, or replication control]
-    D --> G[Validation and cleanup]
+    A[Create account]
+    B[Create container]
+    A --> B
+    C[Upload sample blobs]
+    B --> C
+    D[Apply lifecycle policy]
+    C --> D
+    E[Inspect rule]
+    D --> E
 ```
 
-## Step-by-Step Instructions
+## Steps
 
-### Step 1: Create the resource group and storage account
+### Step 1: Create the account
+
+| Command | Purpose |
+|---|---|
+| `az group create` | Creates the lab resource group. |
+| `az storage account create` | Creates a secure StorageV2 account for lifecycle testing. |
 
 ```bash
 az group create \
@@ -53,10 +77,12 @@ az storage account create \
     --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 2: Create the container and upload sample data
+### Step 2: Upload lifecycle sample data
+
+| Command | Purpose |
+|---|---|
+| `az storage container create` | Creates the target container. |
+| `az storage blob upload-batch` | Uploads local sample objects used by the policy rule. |
 
 ```bash
 az storage container create \
@@ -70,13 +96,16 @@ az storage blob upload-batch \
     --destination $CONTAINER_NAME \
     --source ./lab-data/lifecycle \
     --pattern "*.json" \
+    --auth-mode login \
     --output table
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 3: Apply a lifecycle policy
+### Step 3: Apply the lifecycle policy
+
+| Command | Purpose |
+|---|---|
+| `az storage account management-policy create` | Applies the policy file supplied with this lab. |
+| `az storage account management-policy show` | Displays the active policy for inspection. |
 
 ```bash
 az storage account management-policy create \
@@ -84,12 +113,18 @@ az storage account management-policy create \
     --account-name $STORAGE_NAME \
     --policy @lifecycle-policy.json \
     --output json
+
+az storage account management-policy show \
+    --resource-group $RG \
+    --account-name $STORAGE_NAME \
+    --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 4: Inspect sample blobs
+## Verification
+
+| Command | Purpose |
+|---|---|
+| `verification command` | Collects evidence that the lab configuration exists and matches the expected state. |
 
 ```bash
 az storage blob show \
@@ -100,53 +135,27 @@ az storage blob show \
     --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+## Next Steps / Clean Up
 
-## Validation Steps
+- Preserve command output needed for your lab notes.
+- Do not execute destructive failover or delete commands in shared subscriptions without approval.
+- Delete the resource group when the lab is complete if it contains only lab resources.
 
-1. Confirm the storage account properties match the intended SKU, kind, and access posture.
-2. Validate the lab-specific feature from the consumer point of view rather than trusting only control-plane success.
-3. Capture one or more JSON outputs that prove the configuration is active.
-4. Record any timing behavior that matters, especially for lifecycle or replication scenarios.
-5. Note the operational follow-up required before using the same pattern in production.
-
-### Example validation commands
-
-```bash
-az storage account show \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --output json
-```
-
-```bash
-az monitor diagnostic-settings list \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-```
-
-## Cleanup Instructions
-
-- Delete lab resources when validation is complete to prevent ongoing cost.
-- Preserve any JSON output or screenshots you need before deletion.
-- If you created role assignments or network links used elsewhere, confirm scope before removing them.
+| Command | Purpose |
+|---|---|
+| `az group delete` | Deletes lab resources after you confirm the resource group is dedicated to this lab. |
 
 ```bash
 az group delete \
     --name $RG \
-    --yes \
-    --no-wait
+    --yes
 ```
 
 ## See Also
 
 - [Lifecycle Management Best Practices](../../best-practices/lifecycle-management-best-practices.md)
 - [Manage Lifecycle Policies](../../operations/manage-lifecycle-policies.md)
-- [Lifecycle Policy Not Working](../../troubleshooting/playbooks/lifecycle-policy-not-working.md)
 
 ## Sources
 
-- [azure/storage/blobs/lifecycle-management-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)
-- [azure/storage/blobs/storage-lifecycle-management-concepts](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts)
+- [Microsoft Learn source](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)

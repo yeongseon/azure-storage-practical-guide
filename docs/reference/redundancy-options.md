@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: reference-redundancy-options
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+  - id: reference-redundancy-options
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: GRS and GZRS data in the secondary region is not directly available for
+      read or write access unless failover occurs.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+    verified: true
+  - claim: Azure Files does not support RA-GRS or RA-GZRS.
+    source: https://learn.microsoft.com/en-us/azure/storage/files/files-redundancy
+    verified: true
 ---
-
 # Redundancy Options
 
 Azure Storage provides multiple redundancy options to protect data from planned and unplanned events.
@@ -24,6 +35,9 @@ Azure Storage provides multiple redundancy options to protect data from planned 
 | GZRS | 6 | Two | Yes | Yes (Customer-managed) | 16 nines | 99.9% (Cool 99%) |
 | RA-GRS | 6 | Two | No | Read from secondary | 16 nines | 99.99% read / 99.9% write |
 | RA-GZRS | 6 | Two | Yes | Read from secondary | 16 nines | 99.99% read / 99.9% write |
+
+!!! important "Azure Files exception"
+    The RA-GRS and RA-GZRS rows apply only to services that support secondary read access. Azure Files does not support RA-GRS or RA-GZRS; eligible geo-redundant file shares use GRS or GZRS, and secondary-region access requires failover.
 
 ## Redundancy Topology
 
@@ -53,3 +67,4 @@ graph TD
 
 - [Azure Storage redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)
 - [Review storage redundancy levels](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy#redundancy-in-a-secondary-region)
+- [Azure Files data redundancy](https://learn.microsoft.com/en-us/azure/storage/files/files-redundancy)

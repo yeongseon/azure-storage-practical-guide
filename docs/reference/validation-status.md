@@ -1,12 +1,21 @@
 ---
 content_sources:
   diagrams:
-    - id: reference-validation-status
+    - id: tutorial-validation-status-pie
       type: pie
       source: self-generated
-      justification: "Repository validation summary generated from local tutorial validation metadata."
-      based_on:
-        - https://learn.microsoft.com/en-us/azure/storage/
+      justification: Auto-generated dashboard from tutorial validation frontmatter.
+content_validation:
+  status: verified
+  last_reviewed: "2026-05-21"
+  reviewer: ai-agent
+  core_claims:
+    - claim: "This dashboard is generated from lab validation frontmatter."
+      source: "scripts/generate_validation_status.py"
+      verified: true
+    - claim: "Lab validation results are only marked pass when frontmatter records a tested method."
+      source: "AGENTS.md"
+      verified: true
 ---
 
 # Tutorial Validation Status
@@ -15,7 +24,7 @@ This page tracks which lab guides have been validated against real Azure deploym
 
 ## Summary
 
-*Generated: 2026-04-09*
+*Generated: 2026-05-21*
 
 | Metric | Count |
 |---|---:|
@@ -25,7 +34,7 @@ This page tracks which lab guides have been validated against real Azure deploym
 | ❌ Failed | 0 |
 | ➖ Not tested | 5 |
 
-<!-- diagram-id: reference-validation-status -->
+<!-- diagram-id: tutorial-validation-status-pie -->
 ```mermaid
 pie title Tutorial Validation Status
     "Not Tested" : 5
@@ -35,11 +44,11 @@ pie title Tutorial Validation Status
 
 | Lab Guide | az-cli | Bicep | Last Tested | Status |
 |---|---|---|---|---|
-| [Lab 01 Blob Lifecycle Management](../tutorials/lab-guides/lab-01-blob-lifecycle-management.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 02 Private Endpoint Storage](../tutorials/lab-guides/lab-02-private-endpoint-storage.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 03 Azure File Share Ad Integration](../tutorials/lab-guides/lab-03-azure-file-share-ad-integration.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 04 Storage Replication Failover](../tutorials/lab-guides/lab-04-storage-replication-failover.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 05 Static Website Cdn](../tutorials/lab-guides/lab-05-static-website-cdn.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
+| [Lab 01 Blob Lifecycle Management](../tutorials/lab-guides/lab-01-blob-lifecycle-management.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 02 Private Endpoint Storage](../tutorials/lab-guides/lab-02-private-endpoint-storage.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 03 Azure File Share Ad Integration](../tutorials/lab-guides/lab-03-azure-file-share-ad-integration.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 04 Storage Replication Failover](../tutorials/lab-guides/lab-04-storage-replication-failover.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 05 Static Website Cdn](../tutorials/lab-guides/lab-05-static-website-cdn.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
 
 ## How to Update
 
@@ -47,6 +56,8 @@ To mark a lab guide as validated, add a `validation` block to its YAML frontmatt
 
 ```yaml
 ---
+hide:
+  - toc
 validation:
   az_cli:
     last_tested: 2026-04-09

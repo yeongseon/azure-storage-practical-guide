@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: index
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+  - id: index
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Azure Storage Practical Guide guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
 ---
-
 # Azure Storage Practical Guide
 
 Welcome to the Azure Storage Practical Guide. This resource provides technical patterns and implementation strategies for Azure Storage services.

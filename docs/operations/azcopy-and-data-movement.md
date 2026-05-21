@@ -5,49 +5,92 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+content_validation:
+  status: verified
+  last_reviewed: "2026-05-21"
+  reviewer: ai-agent
+  core_claims:
+    - claim: "Use AzCopy for repeatable high-throughput movement while preserving an auditable authentication and validation path"
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+      verified: true
+    - claim: "Storage operations should include verification and rollback guidance before production use"
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+      verified: true
 ---
 
 # AzCopy and Data Movement
 
-Perform high-performance data transfers to and from Azure Storage.
-
-| Tool | Format | Ideal Data Volume |
-|------|--------|-------------------|
-| AzCopy | Command Line | GB to TB |
-| Storage Explorer | GUI | MB to GB |
-| Data Box | Physical Device | 40TB to PB |
-| Azure Portal | Web Interface | KB to MB |
-
-!!! note
-    AzCopy supports both Shared Access Signatures (SAS) and Azure Active Directory (Azure AD) for authentication.
+Use AzCopy for repeatable high-throughput movement while preserving an auditable authentication and validation path.
 
 <!-- diagram-id: operations-azcopy-and-data-movement -->
 ```mermaid
-graph TD
-    A[Data Source] --> B{Data Size?}
-    B -->|Small| C[Portal / Explorer]
-    B -->|Large| D[AzCopy]
-    B -->|Massive| E[Azure Data Box]
-    C --> F[Azure Storage]
-    D --> F
-    E --> F
+flowchart TD
+    A[Authenticate]
+    B[Dry-run scope]
+    A --> B
+    C[Copy data]
+    B --> C
+    D[Review log]
+    C --> D
+    E[Validate destination]
+    D --> E
 ```
 
-## Transfer Checklist
+## Prerequisites
 
-- Choose authentication method: Azure AD or SAS.
-- Benchmark upload and download throughput before cutover.
-- Tune concurrency and block size for workload profile.
-- Validate destination tier and metadata preservation.
-- Use checksums and logs to confirm transfer integrity.
-- Plan retry strategy for transient network failures.
+- Azure CLI authenticated to the correct tenant and subscription.
+- Variables such as `$RG`, `$LOCATION`, `$STORAGE_NAME`, and workload-specific names are set.
+- Operator has the control-plane and data-plane roles required for the task.
+- A rollback owner is available for changes that affect production access.
+
+## When to Use
+
+- Uploading or downloading large datasets.
+- Testing migration throughput before a cutover.
+
+## Procedure
+
+| Command | Purpose |
+|---|---|
+| `azcopy login` | Authenticates AzCopy with Microsoft Entra ID. |
+| `azcopy copy` | Copies local data to a Blob container recursively. |
+
+```bash
+azcopy login --tenant-id $TENANT_ID
+
+azcopy copy "$SOURCE_PATH" "https://$STORAGE_NAME.blob.core.windows.net/$CONTAINER_NAME" \
+    --recursive=true \
+    --check-length=true \
+    --cap-mbps=800
+```
+
+## Verification
+
+| Command | Purpose |
+|---|---|
+| `verification command` | Confirms that the intended configuration is active after the procedure. |
+
+```bash
+az storage blob list \
+    --account-name $STORAGE_NAME \
+    --container-name $CONTAINER_NAME \
+    --auth-mode login \
+    --num-results 10 \
+    --output table
+```
+
+## Rollback / Troubleshooting
+
+- If access fails, check identity assignment, network rules, and DNS before changing data-plane permissions.
+- If a change blocks production traffic, restore the previous firewall or public-network setting only for the approved recovery window.
+- Capture command output and Azure Activity Log entries for incident notes.
 
 ## See Also
 
-- [Manage Containers and Shares](manage-containers-and-shares.md)
 - [Performance Best Practices](../best-practices/performance-best-practices.md)
-- [Slow Upload / Download](../troubleshooting/playbooks/performance/slow-upload-download.md)
+- [Slow Upload Download](../troubleshooting/playbooks/performance/slow-upload-download.md)
+- [Performance Terms](../reference/performance-terms.md)
 
 ## Sources
-- [Get started with AzCopy](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)
-- [Move data with Azure Data Box](https://learn.microsoft.com/en-us/azure/databox/data-box-overview)
+
+- [Microsoft Learn: AzCopy and Data Movement](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)

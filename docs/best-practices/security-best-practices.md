@@ -4,524 +4,125 @@ content_sources:
     - id: best-practices-security-best-practices
       type: flowchart
       source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
-    - id: best-practices-security-best-practices-2
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+content_validation:
+  status: verified
+  last_reviewed: "2026-05-21"
+  reviewer: ai-agent
+  core_claims:
+    - claim: "Secure Azure Storage by combining identity-based access, key discipline, network controls, encryption defaults, and audit evidence"
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+      verified: true
+    - claim: "An application team uses a long-lived SAS in build logs. Security guidance replaces that pattern with RBAC, user delegation SAS where needed, and diagnostics"
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+      verified: true
 ---
 
 # Security Best Practices
 
-Storage security works when identity, network, encryption, and observability controls are layered together. Any single control used alone will eventually be bypassed or misconfigured.
+Secure Azure Storage by combining identity-based access, key discipline, network controls, encryption defaults, and audit evidence.
 
 ## Why This Matters
 
-The primary goal of **Security Best Practices** is defense-in-depth controls for Azure Storage data plane and management plane access. Azure Storage is deceptively easy to start with, but production incidents usually come from design drift rather than service unavailability. Teams need a repeatable model that covers:
-
-- Storage account type selection and when **General-purpose v2**, **Premium BlockBlobStorage**, **Premium FileStorage**, or **PageBlobStorage** are justified.
-- Blob lifecycle management so data does not remain forever in the most expensive tier.
-- Access tier optimization across **Hot**, **Cool**, **Cold**, and **Archive** with clear restore expectations.
-- Security controls such as **Private Endpoints**, **SAS discipline**, and **RBAC-first** access patterns.
-- Performance controls such as premium SKUs, partition-aware naming, concurrency tuning, and regional placement.
-- Cost controls that balance capacity, transactions, retrieval, and network egress.
-
-**Reference scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
+An application team uses a long-lived SAS in build logs. Security guidance replaces that pattern with RBAC, user delegation SAS where needed, and diagnostics.
 
 <!-- diagram-id: best-practices-security-best-practices -->
 ```mermaid
 flowchart TD
-    A[Defense-in-depth controls for azure storage data plane and management plane access] --> B[Storage account type selection]
-    B --> C[Security and private access baseline]
-    C --> D[Blob lifecycle and access tier policy]
-    D --> E[Performance and partitioning validation]
-    E --> F[Cost optimization review]
-    F --> G[Operational evidence and continuous improvement]
+    A[Identity]
+    B[RBAC scope]
+    A --> B
+    C[Key policy]
+    B --> C
+    D[SAS exception]
+    C --> D
+    E[Audit logs]
+    D --> E
 ```
-
-## Prerequisites
-
-- Azure subscription with rights to create and update storage resources.
-- A resource group referenced as `$RG`.
-- A storage account name referenced as `$STORAGE_NAME`.
-- A location referenced as `$LOCATION`.
-- A Log Analytics workspace resource ID referenced as `$WORKSPACE_ID` when diagnostics are enabled.
-- A principal object ID referenced as `$PRINCIPAL_ID` when RBAC examples are applied.
-- A subnet resource ID referenced as `$SUBNET_ID` when network rules or Private Endpoints are configured.
 
 ## Recommended Practices
 
-### Practice 1: Make Microsoft Entra ID and RBAC the default
+### Practice 1: Prefer Microsoft Entra ID for data access
 
-**Why**: Account keys create broad, hard-to-audit access paths.
-
-**Real-world scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
+**Why**: RBAC gives revocation, audit, and least-privilege scoping that account keys cannot provide.
 
 **How**:
 
-- Assign least-privilege built-in roles or custom roles to identities that need data-plane access.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
+- Assign data-plane roles such as Storage Blob Data Reader or Contributor instead of broad control-plane roles.
+- Use managed identities for applications running on Azure services.
+- Audit role assignments at account, container, and share scopes.
 
-```bash
-az storage account create \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --location $LOCATION \
-    --sku Standard_ZRS \
-    --kind StorageV2 \
-    --access-tier Hot \
-    --allow-blob-public-access false \
-    --min-tls-version TLS1_2 \
-    --https-only true \
-    --output json
+### Practice 2: Disable Shared Key when workloads support it
 
-az storage account show \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --query "{name:name,kind:kind,sku:sku.name,publicAccess:allowBlobPublicAccess,httpsOnly:enableHttpsTrafficOnly}" \
-    --output json
-```
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-### Practice 2: Use SAS only as a controlled exception
-
-**Why**: SAS is powerful but easy to overscope or forget.
-
-**Real-world scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
+**Why**: This blocks account-key based authorization and forces modern identity paths.
 
 **How**:
 
-- Prefer user delegation SAS, narrow permissions, set IP and protocol restrictions, and use short expiry windows.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
+- Inventory scripts and apps that still use account keys before changing the account policy.
+- Disable Shared Key only after identity-based access paths have been tested.
+- Keep exceptions documented with an owner and retirement date.
+
+### Practice 3: Use short-lived scoped SAS only by exception
+
+**Why**: SAS tokens are bearer credentials and should have narrow permissions and expiry.
+
+**How**:
+
+- Set expiry, permissions, protocol, and IP restrictions for every SAS token.
+- Prefer read-only or write-only permissions instead of broad `racwdl` grants.
+- Rotate or revoke SAS usage when ownership or business purpose changes.
+
+### Practice 4: Collect authorization failures
+
+**Why**: Logs are required to distinguish missing RBAC, invalid SAS, network deny, and key policy issues.
+
+**How**:
+
+- Enable diagnostic logs for the storage services in use.
+- Correlate 403 responses with identity, SAS, Shared Key, and network decisions.
+- Keep sample failed and successful requests in the incident record.
+
+### CLI Validation Example
+
+| Command | Purpose |
+|---|---|
+| `az storage account update` | Disables Shared Key authorization for compatible workloads. |
+| `az role assignment create` | Grants data-plane access at the storage account scope. |
 
 ```bash
-az storage account network-rule add \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --subnet $SUBNET_ID \
-    --output json
-
 az storage account update \
     --resource-group $RG \
     --name $STORAGE_NAME \
-    --default-action Deny \
-    --public-network-access Disabled \
+    --allow-shared-key-access false \
     --output json
-```
 
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-### Practice 3: Block unnecessary public network paths
-
-**Why**: Storage accounts are common exfiltration targets because they hold concentrated data value.
-
-**Real-world scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
-
-**How**:
-
-- Disable public access when workloads are private-only and require Private Endpoints for production paths.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
-
-```bash
 az role assignment create \
     --assignee-object-id $PRINCIPAL_ID \
     --assignee-principal-type ServicePrincipal \
     --role "Storage Blob Data Contributor" \
     --scope $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
     --output json
-
-az storage container generate-sas \
-    --as-user \
-    --auth-mode login \
-    --account-name $STORAGE_NAME \
-    --name $CONTAINER_NAME \
-    --permissions rl \
-    --expiry 2026-12-31T23:00Z \
-    --https-only \
-    --output tsv
-```
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-### Practice 4: Enable logging and threat detection
-
-**Why**: You cannot investigate abuse without data-plane telemetry and change history.
-
-**Real-world scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
-
-**How**:
-
-- Forward diagnostic settings to Log Analytics and enable Defender for Storage where risk justifies it.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
-
-```bash
-az storage account management-policy create \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --policy @lifecycle-policy.json \
-    --output json
-
-az storage account management-policy show \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --output json
-```
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-### Practice 5: Use encryption options deliberately
-
-**Why**: Encryption is enabled by default, but regulated workloads may require customer-managed keys or infrastructure encryption.
-
-**Real-world scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
-
-**How**:
-
-- Document why Microsoft-managed keys are sufficient or why CMK and rotation procedures are required.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_NAME \
-    --destination $CONTAINER_NAME \
-    --source ./dataset \
-    --max-connections 32 \
-    --pattern "*.parquet" \
-    --output table
-```
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-### Practice 6: Separate duties across platform and app teams
-
-**Why**: Storage security fails when anyone can create SAS, change firewall rules, and bypass policy without review.
-
-**Real-world scenario**: A partner integration used an account key copied into multiple scripts. When a contractor left, nobody knew which process still depended on that key. Rotating the key caused an outage, yet leaving it unchanged was a security risk. Identity-first design avoids this trap.
-
-**How**:
-
-- Split management-plane rights, data-plane rights, and emergency access under clear approvals.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
-
-```bash
-az monitor diagnostic-settings create \
-    --name "diag-$STORAGE_NAME" \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --workspace $WORKSPACE_ID \
-    --logs '[{"category":"StorageRead","enabled":true},{"category":"StorageWrite","enabled":true},{"category":"StorageDelete","enabled":true}]' \
-    --metrics '[{"category":"Transaction","enabled":true}]' \
-    --output json
-```
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-
-## Storage Account Types and When to Use Each
-
-| Storage account type | Best fit | Why it fits | Watch-outs |
-|---|---|---|---|
-| General-purpose v2 (Standard) | Most production Blob, Files, Queue, and Table workloads | Broadest feature set, lifecycle management, RBAC, private networking, access tiers, and cost controls | Validate transaction costs and latency before large-scale small-object workloads |
-| Premium BlockBlobStorage | Low-latency blob workloads, image processing pipelines, analytics staging, and heavy ingestion APIs | Predictable latency and higher throughput for block blobs | Higher cost and narrower service coverage than GPv2 |
-| Premium FileStorage | SMB/NFS file shares with high IOPS or strict latency goals | SSD-backed performance and deterministic share behavior | Capacity planning matters because cost is premium regardless of use |
-| Premium PageBlobStorage | Virtual hard disks and page-blob-specific patterns | Optimized for random read/write patterns | Rarely the right choice for modern general object storage scenarios |
-| Legacy GPv1 or classic patterns | Migration-only transition scenarios | Sometimes exists in inherited estates | Treat as technical debt and move to GPv2 when feasible |
-
-**Decision rule**:
-
-- Start with **GPv2** unless a measured performance target justifies Premium.
-- Use **Premium BlockBlobStorage** when latency and high request rates matter more than absolute capacity efficiency.
-- Use **Premium FileStorage** for Azure Files workloads that cannot tolerate Standard share latency variance.
-- Avoid creating new legacy account types except to support controlled migration programs.
-
-## Blob Lifecycle Management and Access Tier Optimization
-
-Blob lifecycle management is not only a cost tool. It is also an operating model for deciding what data should stay immediately accessible, what data can tolerate lower availability characteristics, and what data should be deleted.
-
-### Tier guidance by access pattern
-
-| Tier | Use when | Operational notes | Cost note |
-|---|---|---|---|
-| Hot | Data is read or overwritten frequently | Best for active application content, current exports, and online processing | Highest capacity cost, lowest access cost |
-| Cool | Data is read infrequently but still needs fast access | Good for monthly reports, low-touch backups, and older media | Lower capacity cost, higher access cost |
-| Cold | Data is accessed less often and 90-day retention is acceptable | Useful for quarterly access patterns with immediate online availability | Lower storage cost than Cool with higher access and minimum retention considerations |
-| Archive | Data is retained for compliance or rare recovery only | Requires rehydration planning and cannot serve low-latency user paths | Lowest capacity cost, highest restore friction |
-
-### Lifecycle policy example
-
-Create a policy file such as `lifecycle-policy.json`:
-
-```json
-{
-  "rules": [
-    {
-      "enabled": true,
-      "name": "move-older-logs",
-      "type": "Lifecycle",
-      "definition": {
-        "filters": {
-          "blobTypes": ["blockBlob"],
-          "prefixMatch": ["logs/"]
-        },
-        "actions": {
-          "baseBlob": {
-            "tierToCool": { "daysAfterModificationGreaterThan": 30 },
-            "tierToArchive": { "daysAfterModificationGreaterThan": 180 },
-            "delete": { "daysAfterModificationGreaterThan": 365 }
-          }
-        }
-      }
-    }
-  ]
-}
-```
-
-```bash
-az storage account management-policy create \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --policy @lifecycle-policy.json \
-    --output json
-
-az storage account management-policy show \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --output json
-```
-
-### Lifecycle design notes
-
-- Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
-- Validate archive timing with application owners because rehydration changes recovery expectations.
-- Pair destructive policies with soft delete, versioning, or backup when human error is a realistic risk.
-- Review policy exceptions explicitly instead of creating ad hoc containers that bypass governance.
-
-## Security, Performance, and Cost Design Anchors
-
-### Security baseline
-
-- Make **RBAC** the normal data access path for users, automation, and platform tooling.
-- Use **user delegation SAS** when a temporary delegated path is needed; avoid long-lived account SAS unless there is a documented exception.
-- Prefer **Private Endpoints** for production data paths and keep public network access disabled when business requirements allow.
-- Enable diagnostic settings and review authorization failures, network denials, and suspicious access patterns.
-
-```bash
-az role assignment create \
-    --assignee-object-id $PRINCIPAL_ID \
-    --assignee-principal-type ServicePrincipal \
-    --role "Storage Blob Data Contributor" \
-    --scope $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-
-az storage container generate-sas \
-    --as-user \
-    --auth-mode login \
-    --account-name $STORAGE_NAME \
-    --name $CONTAINER_NAME \
-    --permissions rl \
-    --expiry 2026-12-31T23:00Z \
-    --https-only \
-    --output tsv
-```
-
-### Performance baseline
-
-- Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
-- Spread hot request paths across partitions using naming that avoids narrow sequential hotspots.
-- Keep compute in the same region as storage for latency-sensitive operations.
-- Test with real object sizes, concurrency, and retry behavior before finalizing settings.
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_NAME \
-    --destination $CONTAINER_NAME \
-    --source ./dataset \
-    --max-connections 32 \
-    --pattern "*.parquet" \
-    --output table
-```
-
-### Cost baseline
-
-- Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
-- Review transaction cost along with capacity cost for small-object or metadata-heavy workloads.
-- Monitor egress, retrieval, and archive rehydration events so lifecycle savings are not erased elsewhere.
-- Consider reserved capacity only after confirming stable long-term growth.
-
-```bash
-az monitor diagnostic-settings create \
-    --name "diag-$STORAGE_NAME" \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --workspace $WORKSPACE_ID \
-    --logs '[{"category":"StorageRead","enabled":true},{"category":"StorageWrite","enabled":true},{"category":"StorageDelete","enabled":true}]' \
-    --metrics '[{"category":"Transaction","enabled":true}]' \
-    --output json
-```
-
-<!-- diagram-id: best-practices-security-best-practices-2 -->
-```mermaid
-flowchart TD
-    A[Application or user] --> B[Identity and RBAC]
-    A --> C[Network path]
-    B --> D[Storage account]
-    C --> D
-    D --> E[Hot tier data]
-    D --> F[Cool or Cold tier data]
-    D --> G[Archive or retained backup set]
-    D --> H[Metrics, logs, and alerts]
 ```
 
 ## Common Mistakes / Anti-Patterns
 
-### Anti-pattern 1: Treating the storage account as a generic bucket for every use case
-
-**What happens**: Logging, customer files, analytics staging, and backup artifacts all land in one account.
-
-**Why it is wrong**:
-
-- Blast radius grows.
-- Cost signals blur.
-- RBAC and firewall exceptions multiply.
-- Lifecycle rules become overly broad or dangerously complex.
-
-**Correct approach**: Split accounts or containers by security boundary, access pattern, and lifecycle ownership.
-
-### Anti-pattern 2: Leaving everything in the Hot tier forever
-
-**What happens**: Old data continues consuming premium-priced capacity without delivering business value.
-
-**Why it is wrong**:
-
-- Storage cost rises silently over time.
-- Retrieval expectations stay undefined.
-- Teams cannot distinguish active data from retained data.
-
-**Correct approach**: Implement lifecycle movement to Cool, Cold, or Archive and delete truly expired data.
-
-### Anti-pattern 3: Using Shared Key or broad SAS for convenience
-
-**What happens**: Scripts, apps, and partners all receive wide permissions that are difficult to audit.
-
-**Why it is wrong**:
-
-- Rotation becomes risky.
-- Least privilege is lost.
-- Incident investigation becomes slower.
-
-**Correct approach**: Use Microsoft Entra ID, RBAC, and short-lived user delegation SAS.
-
-### Anti-pattern 4: Turning on Private Endpoints without validating DNS and route ownership
-
-**What happens**: Some clients succeed while others fail or unexpectedly use public endpoints.
-
-**Why it is wrong**:
-
-- Troubleshooting becomes inconsistent and time-consuming.
-- Security intent is not enforced uniformly.
-- Failures appear random across environments.
-
-**Correct approach**: Validate private DNS links, VNet reachability, and firewall posture from every client network.
-
-### Anti-pattern 5: Assuming capacity cost tells the whole story
-
-**What happens**: A “cheaper” tier is chosen that later produces retrieval bills, slower restores, or user-facing delays.
-
-**Why it is wrong**:
-
-- Optimization shifts cost into other services or operations.
-- Teams lose trust in storage governance.
-- Recovery steps become slower and more expensive.
-
-**Correct approach**: Evaluate total cost of ownership across storage, transactions, retrieval, egress, and operational effort.
+- Embedding account keys in scripts or connection strings.
+- Granting Storage Account Contributor for data access.
+- Issuing SAS tokens without start time, expiry, IP, protocol, and permission review.
 
 ## Validation Checklist
 
-- [ ] The storage account type is explicitly justified and documented.
-- [ ] Replication choice maps to business continuity needs.
-- [ ] Public access is disabled unless a documented exception exists.
-- [ ] Private networking and DNS design are validated from every client segment.
-- [ ] RBAC is the preferred access model for humans and applications.
-- [ ] SAS usage is short-lived, least-privilege, and tracked.
-- [ ] Blob lifecycle management rules exist for non-permanent data.
-- [ ] Hot, Cool, Cold, and Archive tier decisions are based on real access expectations.
-- [ ] Diagnostic settings are enabled for logs and metrics.
-- [ ] Alerting exists for failures, latency, and suspicious access.
-- [ ] Premium storage is used only where measured performance requires it.
-- [ ] Naming or partition strategy was reviewed for high-traffic workloads.
-- [ ] Backup, soft delete, versioning, or snapshot protections align to recovery goals.
-- [ ] Capacity, transaction, retrieval, and egress costs are reviewed together.
-- [ ] Ownership for lifecycle policy changes is defined.
-- [ ] Documentation includes rollback and investigation steps.
+- Shared Key is disabled or has an exception record.
+- Data-plane RBAC scopes are least privilege.
+- SAS use is logged with owner and expiry.
+- Diagnostics are enabled for the services in use.
 
 ## See Also
 
 - [Access Models](../platform/access-models.md)
-- [Configure Access and Identity](../operations/configure-access-and-identity.md)
-- [Networking Best Practices](networking-best-practices.md)
+- [Configure Access And Identity](../operations/configure-access-and-identity.md)
 - [Authorization Failures](../troubleshooting/playbooks/security/authorization-failures.md)
 
 ## Sources
 
-- [azure/storage/common/storage-account-overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
-- [azure/storage/blobs/access-tiers-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)
-- [azure/storage/blobs/lifecycle-management-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)
-- [azure/storage/common/storage-network-security](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
-- [azure/storage/common/storage-private-endpoints](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
-- [azure/storage/common/storage-use-azcopy-v10](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)
-- [azure/storage/common/storage-security-guide](https://learn.microsoft.com/en-us/azure/storage/common/storage-security-guide)
-- [azure/storage/blobs/security-recommendations](https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations)
-- [azure/defender-for-cloud/defender-for-storage-introduction](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction)
+- [Microsoft Learn: Security Best Practices](https://learn.microsoft.com/en-us/azure/storage/common/storage-auth)

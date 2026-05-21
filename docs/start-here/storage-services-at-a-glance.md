@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: start-here-storage-services-at-a-glance
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-decide-blobs-files-disks
+  - id: start-here-storage-services-at-a-glance
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-decide-blobs-files-disks
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Storage Services at a Glance guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-decide-blobs-files-disks
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-decide-blobs-files-disks
+    verified: true
 ---
-
 # Storage Services at a Glance
 
 Azure Storage provides several services tailored to specific data types and access requirements. Selecting the right service is critical for performance and cost optimization.

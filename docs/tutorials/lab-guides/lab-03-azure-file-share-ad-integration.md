@@ -5,36 +5,60 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
+validation:
+  az_cli:
+    last_tested: null
+    cli_version: null
+    result: not_tested
+  bicep:
+    last_tested: null
+    result: not_tested
 ---
 
 # Lab 03: Azure File Share AD Integration
 
-Create an Azure Files share and configure identity-based access planning steps for SMB using Active Directory integration placeholders.
+Create a Premium Azure Files share and walk through the control-plane checks used before enabling identity-based SMB access.
+
+## Lab Metadata
+
+| Field | Value |
+|---|---|
+| Difficulty | Intermediate |
+| Duration | 45-60 minutes |
+| Services | Azure Files, RBAC, SMB |
+| Validation status | Not tested in a live subscription |
 
 ## Prerequisites
 
-- Azure subscription with permission to create storage, networking, and monitoring resources.
-- Azure CLI logged in with the correct tenant and subscription.
-- Variables defined for `$RG`, `$LOCATION`, `$STORAGE_NAME`, and any lab-specific names.
-- A workstation or Cloud Shell session with access to the resource group.
-- Optional Log Analytics workspace if you want to capture diagnostics during the lab.
+- Azure CLI authenticated to the intended tenant and subscription.
+- Variables from this lab are set before running commands.
+- The resource group is dedicated to the lab so cleanup is safe.
+- The lab validation status is intentionally `not_tested` until the full sequence is executed in Azure.
 
-## Architecture Diagram
+## What You Will Build
 
 <!-- diagram-id: tutorials-lab-guides-lab-03-azure-file-share-ad-integration -->
 ```mermaid
 flowchart TD
-    A[Operator workstation] --> B[Azure CLI]
-    B --> C[Resource group]
-    C --> D[Storage account]
-    D --> E[Data path under test]
-    D --> F[Lifecycle, networking, or replication control]
-    D --> G[Validation and cleanup]
+    A[Create FileStorage account]
+    B[Create SMB share]
+    A --> B
+    C[Configure identity placeholders]
+    B --> C
+    D[Assign RBAC]
+    C --> D
+    E[Inspect share]
+    D --> E
 ```
 
-## Step-by-Step Instructions
+## Steps
 
 ### Step 1: Create a Premium FileStorage account and share
+
+| Command | Purpose |
+|---|---|
+| `az storage account create` | Creates a Premium FileStorage account. |
+| `az storage share-rm create` | Creates an SMB file share. |
 
 ```bash
 az storage account create \
@@ -43,7 +67,6 @@ az storage account create \
     --location $LOCATION \
     --sku Premium_LRS \
     --kind FileStorage \
-    --allow-blob-public-access false \
     --output json
 
 az storage share-rm create \
@@ -55,10 +78,12 @@ az storage share-rm create \
     --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 2: Configure Azure Files identity settings with placeholder domain values
+### Step 2: Document identity settings before applying them
+
+| Command | Purpose |
+|---|---|
+| `az storage account update` | Shows the shape of identity configuration with placeholders that must be replaced in a real domain. |
+| `az storage share-rm show` | Confirms the share exists before RBAC testing. |
 
 ```bash
 az storage account update \
@@ -73,12 +98,19 @@ az storage account update \
     --azure-storage-sid <azure-storage-sid> \
     --sam-account-name $STORAGE_NAME \
     --output json
+
+az storage share-rm show \
+    --resource-group $RG \
+    --storage-account $STORAGE_NAME \
+    --name $SHARE_NAME \
+    --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
 ### Step 3: Assign share-level RBAC
+
+| Command | Purpose |
+|---|---|
+| `az role assignment create` | Grants SMB share data access at the share scope. |
 
 ```bash
 az role assignment create \
@@ -89,66 +121,40 @@ az role assignment create \
     --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 4: Inspect share properties
+## Verification
+
+| Command | Purpose |
+|---|---|
+| `verification command` | Collects evidence that the lab configuration exists and matches the expected state. |
 
 ```bash
-az storage share-rm show \
-    --resource-group $RG \
-    --storage-account $STORAGE_NAME \
-    --name $SHARE_NAME \
-    --output json
+az role assignment list \
+    --assignee $PRINCIPAL_ID \
+    --scope $(az storage share-rm show --resource-group $RG --storage-account $STORAGE_NAME --name $SHARE_NAME --query id --output tsv) \
+    --output table
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+## Next Steps / Clean Up
 
-## Validation Steps
+- Preserve command output needed for your lab notes.
+- Do not execute destructive failover or delete commands in shared subscriptions without approval.
+- Delete the resource group when the lab is complete if it contains only lab resources.
 
-1. Confirm the storage account properties match the intended SKU, kind, and access posture.
-2. Validate the lab-specific feature from the consumer point of view rather than trusting only control-plane success.
-3. Capture one or more JSON outputs that prove the configuration is active.
-4. Record any timing behavior that matters, especially for lifecycle or replication scenarios.
-5. Note the operational follow-up required before using the same pattern in production.
-
-### Example validation commands
-
-```bash
-az storage account show \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --output json
-```
-
-```bash
-az monitor diagnostic-settings list \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-```
-
-## Cleanup Instructions
-
-- Delete lab resources when validation is complete to prevent ongoing cost.
-- Preserve any JSON output or screenshots you need before deletion.
-- If you created role assignments or network links used elsewhere, confirm scope before removing them.
+| Command | Purpose |
+|---|---|
+| `az group delete` | Deletes lab resources after you confirm the resource group is dedicated to this lab. |
 
 ```bash
 az group delete \
     --name $RG \
-    --yes \
-    --no-wait
+    --yes
 ```
 
 ## See Also
 
 - [File Share Best Practices](../../best-practices/file-share-best-practices.md)
-- [Manage Containers and Shares](../../operations/manage-containers-and-shares.md)
-- [File Share Mount Issues](../../troubleshooting/playbooks/access/file-share-mount-issues.md)
+- [Configure Access And Identity](../../operations/configure-access-and-identity.md)
 
 ## Sources
 
-- [azure/storage/files/storage-files-active-directory-overview](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview)
-- [azure/storage/files/storage-files-planning](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning)
+- [Microsoft Learn source](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview)

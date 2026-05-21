@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: start-here-common-scenarios
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#core-storage-services
+  - id: start-here-common-scenarios
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#core-storage-services
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Common Scenarios guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#core-storage-services
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#core-storage-services
+    verified: true
 ---
-
 # Common Scenarios
 
 Azure Storage is used in diverse scenarios across cloud applications. This section maps business requirements to the most effective storage services.

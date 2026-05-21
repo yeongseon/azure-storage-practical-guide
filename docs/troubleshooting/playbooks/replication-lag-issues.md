@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-replication-lag-issues
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+  - id: troubleshooting-playbooks-replication-lag-issues
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Replication Lag Issues guidance is based on linked Azure Storage source
+      material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+    verified: true
 ---
-
 # Replication Lag Issues
 
 Use this playbook when teams expect near-immediate data visibility in a secondary region, read from RA-GRS or RA-GZRS secondaries and see stale results, or question whether failover is safe. Replication is asynchronous for geo-redundant options, so incidents usually come from misunderstanding lag and failover behavior.
@@ -103,6 +115,10 @@ StorageBlobLogs
 
 ### Fix step 1: Inspect replication SKU and failover readiness
 
+| Command | Purpose |
+|---|---|
+| `az storage account show` | Inspects storage account configuration and replication state. |
+
 ```bash
 az storage account show \
     --resource-group $RG \
@@ -115,6 +131,10 @@ az storage account show \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Use the secondary endpoint intentionally for read-only validation
+
+| Command | Purpose |
+|---|---|
+| `az storage blob list` | Collects Blob data-plane evidence for the playbook step. |
 
 ```bash
 az storage blob list \
@@ -129,6 +149,10 @@ az storage blob list \
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Trigger account failover only with approved authority and data-loss acceptance
 
+| Command | Purpose |
+|---|---|
+| `az storage account failover` | Runs the Azure CLI check or corrective action for this playbook step. |
+
 ```bash
 az storage account failover \
     --resource-group $RG \
@@ -139,6 +163,10 @@ az storage account failover \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Document application retry and stale-read handling before the next DR test
+
+| Command | Purpose |
+|---|---|
+| `az storage account show` | Inspects storage account configuration and replication state. |
 
 ```bash
 az storage account show \

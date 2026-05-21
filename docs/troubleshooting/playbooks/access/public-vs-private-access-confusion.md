@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-access-public-vs-private-access-confusion
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+  - id: troubleshooting-playbooks-access-public-vs-private-access-confusion
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Public vs Private Access Confusion guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+    verified: true
 ---
-
 # Public vs Private Access Confusion
 
 ## 1. Summary

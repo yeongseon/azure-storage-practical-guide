@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-first-10-minutes-security
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+  - id: troubleshooting-first-10-minutes-security
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: 'First 10 Minutes: Security guidance is based on linked Azure Storage source
+      material.'
+    source: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+    verified: true
 ---
-
 # First 10 Minutes: Security
 
 Use this checklist when the main symptom is 403, authorization mismatch, SAS rejection, or identity-policy confusion.

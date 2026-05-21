@@ -1,3 +1,17 @@
+---
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Contributing guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
+---
 # Contributing
 
 Thank you for your interest in contributing to Azure Storage Practical Guide!

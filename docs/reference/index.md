@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: reference-index
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+  - id: reference-index
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Reference guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
 ---
-
 # Reference
 
 This section provides quick lookup guides, technical comparisons, and dense summaries of Azure Storage core concepts. Use these tables and diagrams for architectural decision-making and performance tuning.

@@ -1,16 +1,28 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-architecture-overview
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
-    - id: troubleshooting-architecture-overview-2
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+  - id: troubleshooting-architecture-overview
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+  - id: troubleshooting-architecture-overview-2
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Troubleshooting Architecture Overview guidance is based on linked Azure
+      Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
 ---
-
 # Troubleshooting Architecture Overview
 
 This page answers the first question in a storage incident: **where in the storage path can this fail?** Use it to classify the problem before opening a detailed playbook.

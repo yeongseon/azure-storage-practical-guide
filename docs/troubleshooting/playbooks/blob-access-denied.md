@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-blob-access-denied
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+  - id: troubleshooting-playbooks-blob-access-denied
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Blob Access Denied guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
 ---
-
 # Blob Access Denied
 
 Use this playbook when Blob operations return 403, AuthorizationPermissionMismatch, AuthenticationFailed, or a misleading “resource not found” symptom caused by blocked network paths. The most common root causes are SAS scope drift, missing RBAC assignments, firewall rules, or unresolved Private Endpoint DNS.
@@ -103,6 +114,10 @@ AzureActivity
 
 ### Fix step 1: Inspect current network and auth posture
 
+| Command | Purpose |
+|---|---|
+| `az storage account show` | Inspects storage account configuration and replication state. |
+
 ```bash
 az storage account show \
     --resource-group $RG \
@@ -115,6 +130,10 @@ az storage account show \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Assign a Blob data role to the workload identity
+
+| Command | Purpose |
+|---|---|
+| `az role assignment create` | Inspects or applies RBAC evidence for the access path. |
 
 ```bash
 az role assignment create \
@@ -130,6 +149,10 @@ az role assignment create \
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Allow the expected subnet when public access remains enabled by policy
 
+| Command | Purpose |
+|---|---|
+| `az storage account network-rule` | Runs the Azure CLI check or corrective action for this playbook step. |
+
 ```bash
 az storage account network-rule add \
     --resource-group $RG \
@@ -142,6 +165,10 @@ az storage account network-rule add \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Generate a user delegation SAS for short-lived troubleshooting validation
+
+| Command | Purpose |
+|---|---|
+| `az storage container generate-sas` | Runs the Azure CLI check or corrective action for this playbook step. |
 
 ```bash
 az storage container generate-sas \

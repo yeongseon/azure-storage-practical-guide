@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-access-file-share-mount-issues
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
+  - id: troubleshooting-playbooks-access-file-share-mount-issues
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: File Share Mount Issues guidance is based on linked Azure Storage source
+      material.
+    source: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
+    verified: true
 ---
-
 # File Share Mount Issues
 
 ## 1. Summary

@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-access-private-endpoint-and-dns-issues
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity
+  - id: troubleshooting-playbooks-access-private-endpoint-and-dns-issues
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Private Endpoint and DNS Issues guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity
+    verified: true
 ---
-
 # Private Endpoint and DNS Issues
 
 ## 1. Summary

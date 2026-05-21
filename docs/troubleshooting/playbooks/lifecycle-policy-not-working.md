@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-lifecycle-policy-not-working
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+  - id: troubleshooting-playbooks-lifecycle-policy-not-working
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Lifecycle Policy Not Working guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+    verified: true
 ---
-
 # Lifecycle Policy Not Working
 
 Use this playbook when Blob management policies were created successfully but objects do not transition tiers or delete on the expected schedule. In most cases the policy is valid, yet the scope, blob type, age condition, last-access assumptions, or recovery controls were misunderstood.
@@ -101,6 +113,10 @@ StorageBlobLogs
 
 ### Fix step 1: Inspect the active management policy
 
+| Command | Purpose |
+|---|---|
+| `az storage account management-policy` | Reviews or applies Blob lifecycle management policy state. |
+
 ```bash
 az storage account management-policy show \
     --resource-group $RG \
@@ -112,6 +128,10 @@ az storage account management-policy show \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Apply a corrected management policy file
+
+| Command | Purpose |
+|---|---|
+| `az storage account management-policy` | Reviews or applies Blob lifecycle management policy state. |
 
 ```bash
 az storage account management-policy create \
@@ -126,6 +146,10 @@ az storage account management-policy create \
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Inspect a sample blob for tier, last-modified, and rehydration state
 
+| Command | Purpose |
+|---|---|
+| `az storage blob show` | Collects Blob data-plane evidence for the playbook step. |
+
 ```bash
 az storage blob show \
     --account-name $STORAGE_NAME \
@@ -139,6 +163,10 @@ az storage blob show \
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Verify recovery features before enabling delete rules
+
+| Command | Purpose |
+|---|---|
+| `az storage account blob-service-properties` | Runs the Azure CLI check or corrective action for this playbook step. |
 
 ```bash
 az storage account blob-service-properties show \

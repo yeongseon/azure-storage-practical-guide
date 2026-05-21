@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-evidence-map
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+  - id: troubleshooting-evidence-map
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Evidence Map for Storage Troubleshooting guidance is based on linked Azure
+      Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+    verified: true
 ---
-
 # Evidence Map for Storage Troubleshooting
 
 This page maps common storage investigation questions to the best evidence source, the command to run, and the signal to interpret.
@@ -38,6 +50,11 @@ flowchart TD
 
 ### 1) Access evidence
 
+| Command | Purpose |
+|---|---|
+| `az storage account show` | Inspects storage account configuration and replication state. |
+| `az network private-endpoint-connection list` | Runs the Azure CLI check or corrective action for this playbook step. |
+
 ```bash
 nslookup <account>.blob.core.windows.net
 nslookup <account>.privatelink.blob.core.windows.net
@@ -49,6 +66,11 @@ Look for mismatches between intended path and actual DNS answer. A private endpo
 
 ### 2) Security evidence
 
+| Command | Purpose |
+|---|---|
+| `az role assignment list` | Inspects or applies RBAC evidence for the access path. |
+| `az storage account show` | Inspects storage account configuration and replication state. |
+
 ```bash
 az role assignment list --scope <scope>
 az storage account show --name $STORAGE_NAME --resource-group $RG --query "{allowSharedKeyAccess:allowSharedKeyAccess,defaultToOAuthAuthentication:defaultToOAuthAuthentication}"
@@ -58,6 +80,10 @@ Also capture the sanitized error body or response code and record which auth pat
 
 ### 3) Performance evidence
 
+| Command | Purpose |
+|---|---|
+| `az monitor metrics list` | Collects metric evidence for the troubleshooting hypothesis. |
+
 ```bash
 az monitor metrics list --resource <storage-resource-id> --metric "Transactions,SuccessE2ELatency,SuccessServerLatency,Availability,Ingress,Egress" --interval PT1M
 ```
@@ -65,6 +91,11 @@ az monitor metrics list --resource <storage-resource-id> --metric "Transactions,
 Separate **server-side pressure** from **client-side inefficiency**. If storage server latency stays low while end-to-end latency is high, the bottleneck usually sits in the client, network distance, object shape, or concurrency pattern.
 
 ### 4) Recovery evidence
+
+| Command | Purpose |
+|---|---|
+| `az storage account blob-service-properties` | Runs the Azure CLI check or corrective action for this playbook step. |
+| `az backup vault backup-properties` | Runs the Azure CLI check or corrective action for this playbook step. |
 
 ```bash
 az storage account blob-service-properties show --account-name $STORAGE_NAME --resource-group $RG

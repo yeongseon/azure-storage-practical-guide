@@ -5,36 +5,60 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website
+validation:
+  az_cli:
+    last_tested: null
+    cli_version: null
+    result: not_tested
+  bicep:
+    last_tested: null
+    result: not_tested
 ---
 
 # Lab 05: Static Website with CDN
 
-Enable the static website feature on Blob storage, upload sample site content, and place a CDN endpoint in front of the origin to test caching and global delivery basics.
+Enable static website hosting, upload sample HTML, and configure a CDN endpoint against the discovered web endpoint host.
+
+## Lab Metadata
+
+| Field | Value |
+|---|---|
+| Difficulty | Intermediate |
+| Duration | 60-75 minutes |
+| Services | Blob static website, Azure CDN |
+| Validation status | Not tested in a live subscription |
 
 ## Prerequisites
 
-- Azure subscription with permission to create storage, networking, and monitoring resources.
-- Azure CLI logged in with the correct tenant and subscription.
-- Variables defined for `$RG`, `$LOCATION`, `$STORAGE_NAME`, and any lab-specific names.
-- A workstation or Cloud Shell session with access to the resource group.
-- Optional Log Analytics workspace if you want to capture diagnostics during the lab.
+- Azure CLI authenticated to the intended tenant and subscription.
+- Variables from this lab are set before running commands.
+- The resource group is dedicated to the lab so cleanup is safe.
+- The lab validation status is intentionally `not_tested` until the full sequence is executed in Azure.
 
-## Architecture Diagram
+## What You Will Build
 
 <!-- diagram-id: tutorials-lab-guides-lab-05-static-website-cdn -->
 ```mermaid
 flowchart TD
-    A[Operator workstation] --> B[Azure CLI]
-    B --> C[Resource group]
-    C --> D[Storage account]
-    D --> E[Data path under test]
-    D --> F[Lifecycle, networking, or replication control]
-    D --> G[Validation and cleanup]
+    A[Create account]
+    B[Enable website]
+    A --> B
+    C[Upload site]
+    B --> C
+    D[Create CDN endpoint]
+    C --> D
+    E[Purge cache]
+    D --> E
 ```
 
-## Step-by-Step Instructions
+## Steps
 
-### Step 1: Create the storage account and enable static website hosting
+### Step 1: Create the account and enable static website hosting
+
+| Command | Purpose |
+|---|---|
+| `az storage account create` | Creates the StorageV2 account. |
+| `az storage blob service-properties update` | Enables static website hosting on the Blob service. |
 
 ```bash
 az storage account create \
@@ -50,30 +74,36 @@ az storage blob service-properties update \
     --account-name $STORAGE_NAME \
     --static-website \
     --index-document index.html \
-    --404-document error.html \
+    --404-document 404.html \
     --output json
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 2: Upload the website files
+### Step 2: Upload static website files
+
+| Command | Purpose |
+|---|---|
+| `az storage blob upload-batch` | Uploads the sample HTML files into the special static website container. |
 
 ```bash
 az storage blob upload-batch \
     --account-name $STORAGE_NAME \
-    --destination \$web \
+    --destination '$web' \
     --source ./lab-data/static-site \
     --pattern "*.html" \
     --output table
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 3: Create a CDN profile and endpoint
+### Step 3: Create and test CDN endpoint
+
+| Command | Purpose |
+|---|---|
+| `az cdn profile create` | Creates a CDN profile for the lab. |
+| `az cdn endpoint create` | Creates the CDN endpoint using the discovered static website host. |
+| `az cdn endpoint purge` | Purges cached content after a content change. |
 
 ```bash
+STATIC_HOST=$(az storage account show --resource-group $RG --name $STORAGE_NAME --query primaryEndpoints.web --output tsv | sed 's#^https://##; s#/$##')
+
 az cdn profile create \
     --resource-group $RG \
     --name $CDN_PROFILE_NAME \
@@ -85,17 +115,10 @@ az cdn endpoint create \
     --resource-group $RG \
     --profile-name $CDN_PROFILE_NAME \
     --name $CDN_ENDPOINT_NAME \
-    --origin $STORAGE_NAME.z13.web.core.windows.net \
-    --origin-host-header $STORAGE_NAME.z13.web.core.windows.net \
+    --origin $STATIC_HOST \
+    --origin-host-header $STATIC_HOST \
     --output json
-```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
-### Step 4: Purge CDN cache after content changes
-
-```bash
 az cdn endpoint purge \
     --resource-group $RG \
     --profile-name $CDN_PROFILE_NAME \
@@ -103,53 +126,48 @@ az cdn endpoint purge \
     --content-paths "/*"
 ```
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+## Verification
 
-## Validation Steps
-
-1. Confirm the storage account properties match the intended SKU, kind, and access posture.
-2. Validate the lab-specific feature from the consumer point of view rather than trusting only control-plane success.
-3. Capture one or more JSON outputs that prove the configuration is active.
-4. Record any timing behavior that matters, especially for lifecycle or replication scenarios.
-5. Note the operational follow-up required before using the same pattern in production.
-
-### Example validation commands
+| Command | Purpose |
+|---|---|
+| `verification command` | Collects evidence that the lab configuration exists and matches the expected state. |
 
 ```bash
 az storage account show \
     --resource-group $RG \
     --name $STORAGE_NAME \
+    --query "primaryEndpoints.web" \
+    --output tsv
+
+az cdn endpoint show \
+    --resource-group $RG \
+    --profile-name $CDN_PROFILE_NAME \
+    --name $CDN_ENDPOINT_NAME \
+    --query "{hostName:hostName,originHostHeader:originHostHeader}" \
     --output json
 ```
 
-```bash
-az monitor diagnostic-settings list \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-```
+## Next Steps / Clean Up
 
-## Cleanup Instructions
+- Preserve command output needed for your lab notes.
+- Do not execute destructive failover or delete commands in shared subscriptions without approval.
+- Delete the resource group when the lab is complete if it contains only lab resources.
 
-- Delete lab resources when validation is complete to prevent ongoing cost.
-- Preserve any JSON output or screenshots you need before deletion.
-- If you created role assignments or network links used elsewhere, confirm scope before removing them.
+| Command | Purpose |
+|---|---|
+| `az group delete` | Deletes lab resources after you confirm the resource group is dedicated to this lab. |
 
 ```bash
 az group delete \
     --name $RG \
-    --yes \
-    --no-wait
+    --yes
 ```
 
 ## See Also
 
-- [Blob Best Practices](../../best-practices/blob-best-practices.md)
-- [AzCopy and Data Movement](../../operations/azcopy-and-data-movement.md)
-- [Cost Optimization Best Practices](../../best-practices/cost-optimization-best-practices.md)
+- [Azcopy And Data Movement](../../operations/azcopy-and-data-movement.md)
+- [Networking Best Practices](../../best-practices/networking-best-practices.md)
 
 ## Sources
 
-- [azure/storage/blobs/storage-blob-static-website](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website)
-- [azure/cdn/cdn-create-new-endpoint](https://learn.microsoft.com/en-us/azure/cdn/cdn-create-new-endpoint)
+- [Microsoft Learn source](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website)

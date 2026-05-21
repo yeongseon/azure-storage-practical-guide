@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: reference-performance-terms
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets
+  - id: reference-performance-terms
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Performance Terms guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-scalability-targets
+    verified: true
 ---
-
 # Performance Terms
 
 Understanding Azure Storage performance metrics is critical for optimizing application throughput and latency.

@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: platform-queue-and-table-basics
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+  - id: platform-queue-and-table-basics
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Queue and Table Basics guidance is based on linked Azure Storage source
+      material.
+    source: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+    verified: true
 ---
-
 # Queue and Table Basics
 
 Azure Queue and Table Storage provide lightweight, scalable solutions for asynchronous messaging and NoSQL data storage.

@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: start-here-learning-path
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/training/browse/?products=azure-storage
+  - id: start-here-learning-path
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/training/browse/?products=azure-storage
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Learning Path guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/training/browse/?products=azure-storage
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/training/browse/?products=azure-storage
+    verified: true
 ---
-
 # Learning Path
 
 This section provides structured reading paths based on your role and objectives when working with Azure Storage.

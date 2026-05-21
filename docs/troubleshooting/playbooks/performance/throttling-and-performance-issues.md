@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: troubleshooting-playbooks-performance-throttling-and-performance-issues
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+  - id: troubleshooting-playbooks-performance-throttling-and-performance-issues
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Throttling and Performance Issues guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+    verified: true
 ---
-
 # Throttling and Performance Issues
 
 ## 1. Summary

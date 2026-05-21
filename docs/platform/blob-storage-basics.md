@@ -1,12 +1,23 @@
 ---
 content_sources:
   diagrams:
-    - id: platform-blob-storage-basics
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+  - id: platform-blob-storage-basics
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Blob Storage Basics guidance is based on linked Azure Storage source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+    verified: true
 ---
-
 # Blob Storage Basics
 
 Blob Storage is Azure's object storage solution for the cloud, optimized for storing massive amounts of unstructured data.

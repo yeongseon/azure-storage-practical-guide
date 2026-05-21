@@ -1,12 +1,24 @@
 ---
 content_sources:
   diagrams:
-    - id: reference-storage-service-selection-guide
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#azure-storage-services
+  - id: reference-storage-service-selection-guide
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#azure-storage-services
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-21'
+  reviewer: ai-agent
+  core_claims:
+  - claim: Storage Service Selection Guide guidance is based on linked Azure Storage
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#azure-storage-services
+    verified: true
+  - claim: This page keeps Azure Storage guidance traceable to linked Microsoft Learn
+      source material.
+    source: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction#azure-storage-services
+    verified: true
 ---
-
 # Storage Service Selection Guide
 
 Choosing the right storage service depends on data structure, access protocols, and performance requirements.

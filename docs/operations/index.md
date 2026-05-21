@@ -4,53 +4,63 @@ content_sources:
     - id: operations-index
       type: flowchart
       source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
+      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+content_validation:
+  status: verified
+  last_reviewed: "2026-05-21"
+  reviewer: ai-agent
+  core_claims:
+    - claim: "Azure Storage day-2 operations should include creation, access, networking, protection, monitoring, and data movement runbooks"
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+      verified: true
 ---
-
 # Operations
 
-The operations section covers fundamental management tasks for Azure Storage. Use these guides to ensure consistency and reliability in your storage environment.
-
-!!! tip
-    Start with account provisioning, then lock down identity and networking, and finally enable monitoring and lifecycle controls.
-
-| Operation | Description |
-|-----------|-------------|
-| [Create Storage Account](create-storage-account.md) | Standardized storage account provisioning. |
-| [Manage Containers and Shares](manage-containers-and-shares.md) | Organizing blobs and file shares. |
-| [Configure Access and Identity](configure-access-and-identity.md) | RBAC and identity management. |
-| [Configure Network Rules](configure-network-rules.md) | Securing network access points. |
-| [Use Private Endpoints](use-private-endpoints.md) | Deploying private connectivity. |
-| [Manage Lifecycle Policies](manage-lifecycle-policies.md) | Automating data tiering and deletion. |
-| [Backup and Data Protection](backup-and-data-protection.md) | Ensuring data durability and recovery. |
-| [Monitoring and Alerting](monitoring-and-alerting.md) | Tracking health and performance. |
-| [AzCopy and Data Movement](azcopy-and-data-movement.md) | Efficient data transfer operations. |
+Use these runbooks to operate Azure Storage accounts with repeatable verification and rollback steps.
 
 <!-- diagram-id: operations-index -->
 ```mermaid
-graph TD
-    A[Requirement] --> B[Creation]
-    B --> C[Access Config]
-    C --> D[Network Security]
-    D --> E[Monitoring]
-    E --> F[Lifecycle Mgmt]
+flowchart TD
+    A[Provision]
+    B[Access]
+    A --> B
+    C[Network]
+    B --> C
+    D[Protection]
+    C --> D
+    E[Monitoring]
+    D --> E
+    F[Data movement]
+    E --> F
 ```
 
 ## Operational Sequence
 
-- Provision account settings and redundancy.
-- Configure identity and authorization model.
-- Apply network controls and private connectivity.
-- Enable protection controls and backups.
-- Monitor metrics, logs, and alerts.
-- Automate retention and data movement workflows.
+1. Create the storage account with secure defaults.
+2. Configure identity and network boundaries.
+3. Enable protection, monitoring, and lifecycle controls.
+4. Validate data movement and troubleshooting evidence.
+
+## Runbook Map
+
+| Runbook | Purpose |
+|---|---|
+| [Create Storage Account](create-storage-account.md) | Standard account provisioning and ownership metadata. |
+| [Manage Containers and Shares](manage-containers-and-shares.md) | Blob containers and Azure Files shares. |
+| [Configure Access and Identity](configure-access-and-identity.md) | RBAC, Shared Key policy, and identity checks. |
+| [Configure Network Rules](configure-network-rules.md) | Firewall and subnet access. |
+| [Use Private Endpoints](use-private-endpoints.md) | Private Link and DNS validation. |
+| [Manage Lifecycle Policies](manage-lifecycle-policies.md) | Tiering and retention automation. |
+| [Backup and Data Protection](backup-and-data-protection.md) | Soft delete, versioning, and restore readiness. |
+| [Monitoring and Alerting](monitoring-and-alerting.md) | Metrics, logs, and alerts. |
+| [AzCopy and Data Movement](azcopy-and-data-movement.md) | Bulk transfer and validation. |
 
 ## See Also
 
-- [Learning Path](../start-here/learning-path.md)
-- [Create Storage Account](create-storage-account.md)
+- [Best Practices](../best-practices/index.md)
 - [Troubleshooting](../troubleshooting/index.md)
+- [Storage Service Selection Guide](../reference/storage-service-selection-guide.md)
 
 ## Sources
-- [Azure Storage overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
-- [Storage account management](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+
+- [Microsoft Learn: Storage account overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)

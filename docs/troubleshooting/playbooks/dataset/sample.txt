@@ -1,0 +1,1 @@
+Sample object used by the storage throttling playbook.
