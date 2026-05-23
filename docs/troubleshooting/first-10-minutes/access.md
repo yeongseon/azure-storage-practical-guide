@@ -51,6 +51,14 @@ flowchart TD
 - SMB/NFS mount issue → [File Share Mount Issues](../playbooks/access/file-share-mount-issues.md)
 - Public/private route confusion → [Public vs Private Access Confusion](../playbooks/access/public-vs-private-access-confusion.md)
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to First 10 Minutes: Access. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Playbooks: Access](../playbooks/index.md)

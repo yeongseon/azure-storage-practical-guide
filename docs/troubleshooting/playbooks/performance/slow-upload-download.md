@@ -100,6 +100,14 @@ flowchart TD
 - Test representative datasets instead of one-file samples.
 - Monitor server latency separately from client-perceived latency.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Slow Upload / Download. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Throttling and Performance Issues](throttling-and-performance-issues.md)

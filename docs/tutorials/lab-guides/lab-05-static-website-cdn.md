@@ -1,10 +1,10 @@
 ---
 content_sources:
   diagrams:
-    - id: tutorials-lab-guides-lab-05-static-website-cdn
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website
+  - id: tutorials-lab-guides-lab-05-static-website-cdn
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website
 validation:
   az_cli:
     last_tested: null
@@ -13,8 +13,16 @@ validation:
   bicep:
     last_tested: null
     result: not_tested
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-23'
+  reviewer: agent
+  core_claims:
+  - claim: This page uses Microsoft Learn as the primary source basis for its Azure-specific
+      guidance.
+    source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website
+    verified: true
 ---
-
 # Lab 05: Static Website with CDN
 
 Enable static website hosting, upload sample HTML, and configure a CDN endpoint against the discovered web endpoint host.

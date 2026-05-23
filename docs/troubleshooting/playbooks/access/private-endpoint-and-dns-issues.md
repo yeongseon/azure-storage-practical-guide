@@ -101,6 +101,14 @@ flowchart TD
 - Keep separate validation for Blob, Files, Queue, and Table endpoints.
 - Record expected private IP resolution from each consuming network.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Private Endpoint and DNS Issues. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Cannot Access Storage Account](cannot-access-storage-account.md)

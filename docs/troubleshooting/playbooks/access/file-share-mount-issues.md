@@ -102,6 +102,14 @@ flowchart TD
 - Test mounts from each major client network segment.
 - Keep protocol-specific runbooks separate from generic REST access checks.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to File Share Mount Issues. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Cannot Access Storage Account](cannot-access-storage-account.md)

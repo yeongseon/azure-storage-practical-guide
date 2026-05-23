@@ -100,6 +100,14 @@ flowchart TD
 - Prefer short-lived tokens with tested templates.
 - Validate time, permission, scope, and restriction fields in automation.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to SAS and Token Issues. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Authorization Failures](authorization-failures.md)

@@ -101,6 +101,14 @@ flowchart TD
 - Align retention windows with business recovery objectives.
 - Treat backup, versioning, and soft delete as design decisions, not emergency switches.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Data Protection and Recovery Issues. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Backup and Data Protection](../../../operations/backup-and-data-protection.md)

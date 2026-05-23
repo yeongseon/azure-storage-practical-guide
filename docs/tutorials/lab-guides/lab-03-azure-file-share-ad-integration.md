@@ -1,10 +1,10 @@
 ---
 content_sources:
   diagrams:
-    - id: tutorials-lab-guides-lab-03-azure-file-share-ad-integration
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
+  - id: tutorials-lab-guides-lab-03-azure-file-share-ad-integration
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
 validation:
   az_cli:
     last_tested: null
@@ -13,8 +13,16 @@ validation:
   bicep:
     last_tested: null
     result: not_tested
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-23'
+  reviewer: agent
+  core_claims:
+  - claim: This page uses Microsoft Learn as the primary source basis for its Azure-specific
+      guidance.
+    source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
+    verified: true
 ---
-
 # Lab 03: Azure File Share AD Integration
 
 Create a Premium Azure Files share and walk through the control-plane checks used before enabling identity-based SMB access.

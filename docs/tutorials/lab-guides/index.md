@@ -1,12 +1,20 @@
 ---
 content_sources:
   diagrams:
-    - id: tutorials-lab-guides-index
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+  - id: tutorials-lab-guides-index
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-23'
+  reviewer: agent
+  core_claims:
+  - claim: This page uses Microsoft Learn as the primary source basis for its Azure-specific
+      guidance.
+    source: https://learn.microsoft.com/en-us/azure/storage/
+    verified: true
 ---
-
 # Lab Guides
 
 Use these hands-on labs to practice storage configuration patterns in an isolated resource group before applying them to production workloads.

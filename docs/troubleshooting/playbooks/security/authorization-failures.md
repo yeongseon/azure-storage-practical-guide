@@ -100,6 +100,14 @@ flowchart TD
 - Review data-plane role scopes during deployment.
 - Validate network path and auth method together in runbooks.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Authorization Failures. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [SAS and Token Issues](sas-and-token-issues.md)

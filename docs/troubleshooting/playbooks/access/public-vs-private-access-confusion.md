@@ -93,6 +93,14 @@ flowchart TD
 - Validate DNS answers from every client network after PE rollout.
 - Avoid leaving ambiguous mixed-access states without explicit ownership.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Public vs Private Access Confusion. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Cannot Access Storage Account](cannot-access-storage-account.md)

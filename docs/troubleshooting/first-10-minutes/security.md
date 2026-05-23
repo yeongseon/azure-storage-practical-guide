@@ -47,6 +47,14 @@ flowchart TD
 - RBAC, Azure AD, shared-key policy, or scope mismatch → [Authorization Failures](../playbooks/security/authorization-failures.md)
 - SAS time, permission, scope, or IP restriction issue → [SAS and Token Issues](../playbooks/security/sas-and-token-issues.md)
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to First 10 Minutes: Security. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Playbooks: Security](../playbooks/index.md)

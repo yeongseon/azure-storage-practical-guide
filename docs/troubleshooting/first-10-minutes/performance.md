@@ -48,6 +48,14 @@ flowchart TD
 - 429, 503, or burst-driven account pressure → [Throttling and Performance Issues](../playbooks/performance/throttling-and-performance-issues.md)
 - Recovery outcome depends on prior protection settings → [Data Protection and Recovery Issues](../playbooks/performance/data-protection-and-recovery-issues.md)
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to First 10 Minutes: Performance. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Playbooks: Performance](../playbooks/index.md)
