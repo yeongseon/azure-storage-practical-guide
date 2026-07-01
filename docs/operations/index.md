@@ -47,7 +47,7 @@ graph TD
 
 ## See Also
 
-- [Learning Path](../start-here/learning-path.md)
+- [Learning Paths](../start-here/learning-paths.md)
 - [Create Storage Account](create-storage-account.md)
 - [Troubleshooting](../troubleshooting/index.md)
 

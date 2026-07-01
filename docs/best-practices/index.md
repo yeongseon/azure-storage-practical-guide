@@ -361,7 +361,7 @@ az storage account management-policy show \
 
 ## See Also
 
-- [Learning Path](../start-here/learning-path.md)
+- [Learning Paths](../start-here/learning-paths.md)
 - [Storage Service Selection Guide](../reference/storage-service-selection-guide.md)
 - [Storage Account Design Baseline](storage-account-design-baseline.md)
 - [Common Anti-Patterns](common-anti-patterns.md)

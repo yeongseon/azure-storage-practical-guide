@@ -48,7 +48,7 @@ graph TD
 
 - [Storage Service Selection Guide](storage-service-selection-guide.md)
 - [Glossary](glossary.md)
-- [Learning Path](../start-here/learning-path.md)
+- [Learning Paths](../start-here/learning-paths.md)
 
 ## Sources
 

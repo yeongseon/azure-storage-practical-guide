@@ -17,7 +17,7 @@ Welcome to the Azure Storage Practical Guide. This resource provides technical p
 | ------- | ----------- |
 | [Start Here](start-here/index.md) | Introduction and learning paths |
 | [Overview](start-here/overview.md) | Key concepts and service dependencies |
-| [Learning Path](start-here/learning-path.md) | Role-based guidance |
+| [Learning Paths](start-here/learning-paths.md) | Role-based guidance |
 | [Services At a Glance](start-here/storage-services-at-a-glance.md) | Technical comparison of storage types |
 | [Common Scenarios](start-here/common-scenarios.md) | Mapping business needs to solutions |
 

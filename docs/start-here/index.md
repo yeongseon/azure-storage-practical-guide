@@ -16,7 +16,8 @@ Begin your journey into Azure Storage. This section provides the fundamental con
 | Page | Description |
 | ---- | ----------- |
 | [Overview](overview.md) | Fundamentals of Azure Storage and its importance |
-| [Learning Path](learning-path.md) | Structured routes for different job roles |
+| [Learning Paths](learning-paths.md) | Structured routes for different job roles |
+| [Repository Map](repository-map.md) | Map of major sections and when to use them |
 | [Services At a Glance](storage-services-at-a-glance.md) | High-level comparison of all storage services |
 | [Common Scenarios](common-scenarios.md) | Real-world applications and use cases |
 
@@ -27,8 +28,9 @@ Begin your journey into Azure Storage. This section provides the fundamental con
 graph TD
     Start(Start) --> Overview[Overview]
     Overview --> Comparison[Services At a Glance]
-    Comparison --> Path[Learning Path]
-    Path --> Scenarios[Common Scenarios]
+    Comparison --> Path[Learning Paths]
+    Path --> Map[Repository Map]
+    Map --> Scenarios[Common Scenarios]
 ```
 
 !!! tip
@@ -43,7 +45,8 @@ graph TD
 ## See Also
 
 - [Overview](overview.md)
-- [Learning Path](learning-path.md)
+- [Learning Paths](learning-paths.md)
+- [Repository Map](repository-map.md)
 - [Storage Services at a Glance](storage-services-at-a-glance.md)
 
 ## Sources

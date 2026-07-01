@@ -88,7 +88,8 @@ nav:
   - Start Here:
     - start-here/index.md
     - Overview: start-here/overview.md
-    - Learning Path: start-here/learning-path.md
+    - Learning Paths: start-here/learning-paths.md
+    - Repository Map: start-here/repository-map.md
     - Storage Services at a Glance: start-here/storage-services-at-a-glance.md
     - Common Scenarios: start-here/common-scenarios.md
   - Platform:
