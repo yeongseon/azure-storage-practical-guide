@@ -7,7 +7,7 @@ content_sources:
       mslearn_url: https://learn.microsoft.com/en-us/training/browse/?products=azure-storage
 ---
 
-# Learning Path
+# Learning Paths
 
 This section provides structured reading paths based on your role and objectives when working with Azure Storage.
 
