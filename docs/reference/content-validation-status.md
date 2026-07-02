@@ -1,121 +1,124 @@
 ---
+description: Diagram source metadata policy for the Azure Storage practical guide, and the CI tooling that keeps that metadata honest today.
 content_sources:
   diagrams:
     - id: reference-content-validation-status
       type: pie
       source: self-generated
-      justification: "Repository content-source summary generated from local documentation metadata."
+      justification: "Manually authored summary of repository diagram-source declarations. Not regenerated from live repo state."
       based_on:
         - https://learn.microsoft.com/en-us/azure/storage/
     - id: reference-content-validation-status-2
       type: flowchart
       source: self-generated
-      justification: "Repository content-source summary generated from local documentation metadata."
+      justification: "Manually authored diagram illustrating the declared source-metadata flow. Not regenerated from live repo state."
       based_on:
         - https://learn.microsoft.com/en-us/azure/storage/
 ---
 
 # Content Source Validation Status
 
-This page tracks the source validation status of documentation content, including diagrams and text. All content must be traceable to official Microsoft Learn documentation.
+This page describes how diagram and content sources are declared in this repository, and what tooling is available today to validate those declarations.
 
-## Summary
+!!! note "Current state"
+    Diagram-level source metadata (`content_sources.diagrams`) is used across the repository, and the tooling below runs in CI to keep that metadata honest. **Document-level `content_validation` metadata is not yet adopted in this repository** — the schema is documented in [AGENTS.md](https://github.com/yeongseon/azure-storage-practical-guide/blob/main/AGENTS.md) as an aspirational policy and is tracked as future work. Do not read the absence of `content_validation` blocks as a validation failure; read it as "not yet implemented."
 
-*Generated: 2026-04-10*
+## Diagram Inventory Snapshot
 
-| Content Type | Total | MS Learn Sourced | Self-Generated | No Source |
+*Snapshot date: 2026-04-10. Manually authored — this table does not update automatically when diagrams are added or reclassified.*
+
+| Content Type | Total | MSLearn Adapted | Self-Generated | No Source |
 |---|---:|---:|---:|---:|
 | Mermaid Diagrams | 91 | 88 | 3 | 0 |
-| Text Sections | — | — | — | — |
-
-!!! warning "Validation Required"
-    All 91 mermaid diagrams now include source metadata. Repository-only dashboards remain self-generated with justification:
-    
-    1. 88 diagrams are marked as `mslearn-adapted` with official Microsoft Learn URLs.
-    2. 3 repository-status diagrams are marked as `self-generated` with justification.
 
 <!-- diagram-id: reference-content-validation-status -->
 ```mermaid
 pie title Content Source Status
-    "MS Learn Adapted" : 88
+    "MSLearn Adapted" : 88
     "Self-Generated" : 3
 ```
 
-## Validation Categories
+A text-sections row was previously shown on this page with placeholder dashes. It has been removed because no text-level `content_validation` metadata is currently enforced or inventoried.
 
-### Source Types
+## Source Type Policy
 
-| Type | Description | Allowed? |
+The `content_sources.diagrams[].source` field must be one of the three values below. These are the exact set accepted by `scripts/validate_content_sources.py` today; any other value causes CI to fail.
+
+| Type | Description | Additional requirement |
 |---|---|---|
-| `mslearn` | Content directly from Microsoft Learn | Yes |
-| `mslearn-adapted` | Microsoft Learn content adapted for this guide | Yes, with source URL |
-| `self-generated` | Original content created for this guide | Requires justification |
-| `community` | From community sources | Not for core content |
-| `unknown` | Source not documented | Must be validated |
+| `mslearn` | Content directly from Microsoft Learn | `mslearn_url` OR a non-empty `based_on` list |
+| `mslearn-adapted` | Content adapted or synthesized from Microsoft Learn | `mslearn_url` OR a non-empty `based_on` list |
+| `self-generated` | Original content created for this guide | `justification` field |
 
-### Diagram Validation Status
+!!! note "Broader source vocabulary in AGENTS.md"
+    [AGENTS.md](https://github.com/yeongseon/azure-storage-practical-guide/blob/main/AGENTS.md) also references `community` and `unknown` source categories as part of the aspirational content-validation policy. Those values are **not** currently accepted by the validator on any Mermaid page in this repository; they belong to the same "not yet implemented" bucket as document-level `content_validation` metadata.
 
-All mermaid diagrams now include source metadata and diagram IDs. Review fidelity again when upstream Microsoft Learn guidance changes.
+## How Diagram Sources Are Declared
 
-## How to Validate Content
+### Step 1: Add `content_sources` to the document frontmatter
 
-### Step 1: Add Source Metadata to Frontmatter
-
-Add `content_sources` to the document's YAML frontmatter:
-
-```yaml
----
-title: Example Page
-content_sources:
-  diagrams:
-    - id: architecture-overview
-      type: flowchart
-      source: mslearn
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
-    - id: request-flow
-      type: sequence
-      source: self-generated
-      justification: "Synthesized from multiple Microsoft Learn articles for clarity"
-      based_on:
-        - https://learn.microsoft.com/en-us/azure/storage/
-  text:
-    - section: "## Summary"
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/
----
-```
-
-### Step 2: Mark Diagram Blocks with IDs
-
-Add an HTML comment before each mermaid block to identify it:
-
-```markdown
 <!-- diagram-id: reference-content-validation-status-2 -->
 ```mermaid
 flowchart TD
-    A[Client] --> B[Azure Storage]
-```
+    A[Add content_sources frontmatter] --> B[Mark each Mermaid block with diagram-id]
+    B --> C[Run validate_content_sources.py locally]
+    C --> D{CI: Validate Content Sources workflow}
+    D -->|pass| E[PR merges]
+    D -->|fail| F[Fix metadata, re-run]
 ```
 
-### Step 3: Run Validation Script
+```yaml
+---
+content_sources:
+  diagrams:
+    - id: architecture
+      type: flowchart
+      source: mslearn-adapted
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/storage/
+---
+```
+
+### Step 2: Mark each Mermaid block with its `diagram-id`
+
+```markdown
+<!-- diagram-id: architecture -->
+​```mermaid
+flowchart TD
+    A --> B
+​```
+```
+
+### Step 3: Run the diagram source validator
 
 ```bash
 python3 scripts/validate_content_sources.py
 ```
 
-### Step 4: Update This Page
+This is the same validator that runs in the `Validate Content Sources` CI workflow.
 
-```bash
-python3 scripts/generate_content_validation_status.py
-```
+## Tooling Available in This Repository
 
-## Validation Rules
+The following scripts run against the repository today. There is no dashboard-generator script in this repository, so this page is maintained manually rather than being regenerated.
 
-!!! danger "Mandatory Rules"
-    1. Platform diagrams (`docs/platform/`) must have Microsoft Learn sources
-    2. Architecture diagrams must reference official Microsoft documentation
-    3. Troubleshooting flowcharts may be self-generated if they synthesize Microsoft Learn content
-    4. Self-generated content must have a `justification` field explaining the source basis
+| Script | Purpose | Where it runs |
+|---|---|---|
+| `scripts/validate_content_sources.py` | Enforces that every Mermaid block has a `diagram-id` HTML comment and a matching `content_sources.diagrams[]` entry with a valid `source` value. | **Blocking** PR check (`Validate Content Sources`) |
+| `scripts/validate_mermaid_format.py` | Enforces Mermaid orientation rules and formatting conventions. | **Blocking** PR check (same workflow) |
+| `scripts/validate_mermaid_syntax.py` | Parses each Mermaid block to catch syntax errors before build. | **Blocking** PR check (same workflow) |
+| `scripts/validate_mslearn_urls.py` | Checks that Microsoft Learn URLs cited in `content_sources` are reachable. | **Reporting only:** runs on push to `main` with `continue-on-error`, not a blocking PR gate |
+| `scripts/generate_validation_status.py` | Regenerates `docs/reference/validation-status.md` — the **tutorial** validation dashboard, not this page. | Manual invocation by contributors |
+
+There is intentionally no `scripts/generate_content_validation_status.py` in this repository. Earlier revisions of this page referenced one, which was misleading; this page is authored by hand.
+
+## Validation Rules Enforced Today
+
+!!! danger "Enforced in CI"
+    1. Every Mermaid block must have a `diagram-id` HTML comment.
+    2. Every declared `diagram-id` must have a matching `content_sources.diagrams[]` entry.
+    3. `mslearn-adapted` and `mslearn` diagrams must have either an `mslearn_url` field or a **non-empty** `based_on` list. The validator does **not** currently verify that every `based_on` URL points to `learn.microsoft.com`; that is a repository convention, not an enforced rule.
+    4. `self-generated` diagrams must include a `justification` field.
+    5. Mermaid syntax must parse successfully.
 
 ## See Also
 
@@ -124,4 +127,4 @@ python3 scripts/generate_content_validation_status.py
 
 ## Sources
 
-- [Microsoft Learn: Azure Storage documentation](https://learn.microsoft.com/en-us/azure/storage/)
+- <https://learn.microsoft.com/en-us/azure/storage/>
