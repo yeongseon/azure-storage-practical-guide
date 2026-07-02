@@ -143,7 +143,7 @@ def validate_file(file_path: Path, verbose: bool = False) -> List[ValidationErro
     # Skip example code blocks in validation status pages
     if "content-validation-status" in rel_path or "validation-status" in rel_path:
         # These may contain example mermaid blocks in code fences
-        pass
+        return []
 
     # Check for frontmatter
     frontmatter, fm_end_line = extract_frontmatter(content)
