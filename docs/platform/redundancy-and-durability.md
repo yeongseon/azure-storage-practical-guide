@@ -34,6 +34,9 @@ graph TD
 !!! warning
     Replication is not a backup. It protects against hardware or datacenter failure, but it does not protect against accidental deletion or data corruption.
 
+!!! warning "Azure Files exception"
+    Azure Files does not support `RA-GRS` or `RA-GZRS`. For eligible HDD file shares, geo-redundancy is limited to `GRS` or `GZRS`; a storage account configured with `RA-GRS` or `RA-GZRS` still bills Azure Files as `GRS` or `GZRS`. Read access to the secondary region for Azure Files requires a failover, not RA-* read behavior.
+
 ## Key Concepts
 - **Durability**: The likelihood that data remains accessible and uncorrupted over time.
 - **Availability**: The percentage of time that a system is operational and accessible.
