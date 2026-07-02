@@ -13,9 +13,9 @@ Understanding performance limits and scaling targets is essential for designing 
 
 | Metric | Standard Account | Premium Block Blob | Premium File Share |
 | :--- | :--- | :--- | :--- |
-| **Request Rate** | Up to 20,000 requests/sec (default); up to 40,000 requests/sec in select regions | Service-specific premium targets (see source) | Up to 102,400 (provisioned SSD) |
-| **Ingress** | Up to 25 Gbps (default); up to 60 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
-| **Egress** | Up to 50 Gbps (default); up to 200 Gbps in select regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
+| **Request Rate** | Up to 40,000 requests/sec (default in listed regions); 20,000 requests/sec in other regions | Service-specific premium targets (see source) | Up to 102,400 (provisioned SSD) |
+| **Ingress** | Up to 60 Gbps (default in listed regions); 25 Gbps in other regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
+| **Egress** | Up to 200 Gbps (default in listed regions); 50 Gbps in other regions | Service-specific premium targets (see source) | Service/account-level throughput targets apply |
 | **Capacity** | 5 PiB per account (default) | Service-specific premium targets (see source) | Up to 256 TiB (provisioned v2) |
 
 <!-- diagram-id: platform-performance-and-scaling-basics -->
@@ -31,7 +31,7 @@ graph TD
 ```
 
 !!! note
-    Limits are region-dependent and workload-dependent. Higher capacity and ingress/egress limits can be requested through Azure Support.
+    Limits are region-dependent and workload-dependent. Higher capacity and ingress/egress limits can be requested through Azure Support. See the [Microsoft Learn source](https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account) for the current list of regions that receive the higher default targets.
 
 ## Key Concepts
 - **Throughput**: The amount of data transferred per second.

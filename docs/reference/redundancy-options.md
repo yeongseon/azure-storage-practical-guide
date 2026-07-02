@@ -25,6 +25,9 @@ Azure Storage provides multiple redundancy options to protect data from planned 
 | RA-GRS | 6 | Two | No | Read from secondary | 16 nines | 99.99% read / 99.9% write |
 | RA-GZRS | 6 | Two | Yes | Read from secondary | 16 nines | 99.99% read / 99.9% write |
 
+!!! warning "Azure Files exception"
+    Azure Files does not support `RA-GRS` or `RA-GZRS`. For eligible HDD file shares, geo-redundancy is limited to `GRS` or `GZRS`. Read access to the secondary region for Azure Files requires a failover, not RA-* read behavior.
+
 ## Redundancy Topology
 
 <!-- diagram-id: reference-redundancy-options -->
