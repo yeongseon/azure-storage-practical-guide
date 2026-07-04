@@ -28,13 +28,13 @@ Detailed coverage of Azure Storage offerings:
 ## Quick Start
 
 ```bash
-# Clone the repository
 git clone https://github.com/yeongseon/azure-storage-practical-guide.git
+cd azure-storage-practical-guide
 
-# Install MkDocs dependencies
-pip install mkdocs-material mkdocs-minify-plugin
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements-docs.txt
 
-# Start local documentation server
 mkdocs serve
 ```
 
