@@ -6,15 +6,17 @@ A practical guide covering Azure Storage data access, durability, operations, an
 
 ## What's Inside
 
-| Section | Description |
-|---------|-------------|
-| [Start Here](https://yeongseon.github.io/azure-storage-practical-guide/start-here/) | Storage overview, service selection guide, and common usage scenarios |
-| [Platform](https://yeongseon.github.io/azure-storage-practical-guide/platform/) | Deep dive into accounts, Blob, File, Queue, and Table services with redundancy models |
-| [Best Practices](https://yeongseon.github.io/azure-storage-practical-guide/best-practices/) | Production-ready design for security, networking, performance, and lifecycle management |
-| [Operations](https://yeongseon.github.io/azure-storage-practical-guide/operations/) | Day-2 guide for managing containers, shares, private endpoints, and data movement |
-| [Tutorials](https://yeongseon.github.io/azure-storage-practical-guide/tutorials/) | Hands-on labs for lifecycle policies, AD integration, and static websites with CDN |
-| [Troubleshooting](https://yeongseon.github.io/azure-storage-practical-guide/troubleshooting/) | Diagnosis playbooks for access denied, throttling, and replication lag issues |
-| [Reference](https://yeongseon.github.io/azure-storage-practical-guide/reference/) | Quick-lookup for service selection, redundancy options, and access cheatsheets |
+| Section | Description | Status |
+|---------|-------------|--------|
+| [Start Here](https://yeongseon.github.io/azure-storage-practical-guide/start-here/) | Storage overview, service selection guide, and common usage scenarios | Comprehensive |
+| [Platform](https://yeongseon.github.io/azure-storage-practical-guide/platform/) | Deep dive into accounts, Blob, File, Queue, and Table services with redundancy models | Comprehensive |
+| [Best Practices](https://yeongseon.github.io/azure-storage-practical-guide/best-practices/) | Production-ready design for security, networking, performance, and lifecycle management | Comprehensive |
+| [Operations](https://yeongseon.github.io/azure-storage-practical-guide/operations/) | Day-2 guide for managing containers, shares, private endpoints, and data movement | Comprehensive |
+| [Tutorials](https://yeongseon.github.io/azure-storage-practical-guide/tutorials/) | Hands-on labs for lifecycle policies, AD integration, and static websites with CDN | Comprehensive |
+| [Troubleshooting](https://yeongseon.github.io/azure-storage-practical-guide/troubleshooting/) | Diagnosis playbooks for access denied, throttling, and replication lag issues | Published |
+| [Reference](https://yeongseon.github.io/azure-storage-practical-guide/reference/) | Quick-lookup for service selection, redundancy options, and access cheatsheets | Comprehensive |
+
+**Status legend**: **Lab-validated** = Comprehensive + reproducible labs prove the guidance · **Comprehensive** = Full section, MSLearn-verified, production-ready · **Published** = Core content in place, still expanding · **In progress** = Partial content, active development · **Planned** = Placeholder, content not yet started
 
 ## Storage Services
 
