@@ -19,7 +19,7 @@ Begin your journey into Azure Storage. This section provides the fundamental con
 | [Learning Paths](learning-paths.md) | Structured routes for different job roles |
 | [Repository Map](repository-map.md) | Map of major sections and when to use them |
 | [Services At a Glance](storage-services-at-a-glance.md) | High-level comparison of all storage services |
-| [Common Scenarios](common-scenarios.md) | Real-world applications and use cases |
+| [Scenario Router](scenario-router.md) | Situation-to-destination router across Plan, Deploy, Operate, Troubleshoot |
 
 ## Reading Path
 
@@ -30,7 +30,7 @@ graph TD
     Overview --> Comparison[Services At a Glance]
     Comparison --> Path[Learning Paths]
     Path --> Map[Repository Map]
-    Map --> Scenarios[Common Scenarios]
+    Map --> Scenarios[Scenario Router]
 ```
 
 !!! tip
@@ -40,7 +40,7 @@ graph TD
 
 - Start with the Overview to understand the storage account model.
 - Use Services At a Glance to compare options before design decisions.
-- Read Common Scenarios to map workload patterns to service choices.
+- Read the Scenario Router to jump from situation to destination across all lifecycle phases.
 
 ## See Also
 

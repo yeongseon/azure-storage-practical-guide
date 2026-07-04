@@ -89,9 +89,9 @@ nav:
     - start-here/index.md
     - Overview: start-here/overview.md
     - Learning Paths: start-here/learning-paths.md
+    - Scenario Router: start-here/scenario-router.md
     - Repository Map: start-here/repository-map.md
     - Storage Services at a Glance: start-here/storage-services-at-a-glance.md
-    - Common Scenarios: start-here/common-scenarios.md
   - Platform:
     - platform/index.md
     - How Azure Storage Works: platform/how-azure-storage-works.md

@@ -19,7 +19,7 @@ Welcome to the Azure Storage Practical Guide. This resource provides technical p
 | [Overview](start-here/overview.md) | Key concepts and service dependencies |
 | [Learning Paths](start-here/learning-paths.md) | Role-based guidance |
 | [Services At a Glance](start-here/storage-services-at-a-glance.md) | Technical comparison of storage types |
-| [Common Scenarios](start-here/common-scenarios.md) | Mapping business needs to solutions |
+| [Scenario Router](start-here/scenario-router.md) | Situation-to-destination router across Plan, Deploy, Operate, Troubleshoot |
 
 ## Guide Structure
 
@@ -29,7 +29,7 @@ graph TD
     Start[Start Here] --> Overview[Overview]
     Overview --> Comparison[Services At a Glance]
     Overview --> Path[Learning Path]
-    Comparison --> Scenarios[Common Scenarios]
+    Comparison --> Scenarios[Scenario Router]
 ```
 
 !!! tip

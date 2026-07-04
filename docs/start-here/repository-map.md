@@ -33,7 +33,7 @@ graph TD
     - `learning-paths.md`: Role-based reading paths for beginners, developers, operators, and troubleshooters.
     - `repository-map.md`: This file — a map of major sections and when to use them.
     - `storage-services-at-a-glance.md`: High-level comparison of Blob, Files, Queue, and Table.
-    - `common-scenarios.md`: Common workload-to-service mapping patterns.
+    - `scenario-router.md`: Situation-to-destination router across Plan, Deploy, Operate, and Troubleshoot phases.
 - `docs/platform/`
     - Core concepts: how Azure Storage works, storage accounts, Blob/File/Queue/Table basics, redundancy and durability, access models, networking, performance and scaling.
 - `docs/best-practices/`
@@ -63,7 +63,7 @@ graph TD
 - [Overview](overview.md)
 - [Learning Paths](learning-paths.md)
 - [Storage Services at a Glance](storage-services-at-a-glance.md)
-- [Common Scenarios](common-scenarios.md)
+- [Scenario Router](scenario-router.md)
 
 ## Sources
 

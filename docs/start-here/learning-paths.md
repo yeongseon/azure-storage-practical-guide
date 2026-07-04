@@ -52,7 +52,7 @@ Use this page to choose a reading path based on your role and goal. Each path is
 |---|---|---|---|
 | **Beginner** | Understand storage accounts, services, and tiers | 1-2 hours | [Overview](overview.md), [Storage Services at a Glance](storage-services-at-a-glance.md) |
 | **Developer** | Read and write data from apps using SDK or REST | 2-3 hours | [Platform Hub](../platform/index.md), [Reference Hub](../reference/index.md) |
-| **Operator** | Configure redundancy, lifecycle, backup, and monitoring | 3-4 hours | [Common Scenarios](common-scenarios.md), [Operations Hub](../operations/index.md) |
+| **Operator** | Configure redundancy, lifecycle, backup, and monitoring | 3-4 hours | [Scenario Router](scenario-router.md), [Operations Hub](../operations/index.md) |
 | **Troubleshooter** | Diagnose access, throttling, and replication issues | 2-4 hours + on-call reference | [Troubleshooting Hub](../troubleshooting/index.md) |
 
 ## Recommended Sequence
@@ -92,7 +92,7 @@ Read in order:
 1. [Overview](overview.md)
 2. [Storage Services at a Glance](storage-services-at-a-glance.md)
 3. [Platform Hub](../platform/index.md) — storage account, blob, file, queue, table basics
-4. [Common Scenarios](common-scenarios.md)
+4. [Scenario Router](scenario-router.md)
 5. [Reference Hub](../reference/index.md) — glossary and service selection guide
 
 ### Outcomes
@@ -161,7 +161,7 @@ flowchart TD
 
 Read in order:
 
-1. [Common Scenarios](common-scenarios.md)
+1. [Scenario Router](scenario-router.md)
 2. [Operations Hub](../operations/index.md) — create account, network rules, private endpoints, lifecycle, backup, monitoring
 3. [Best Practices Hub](../best-practices/index.md) — redundancy, lifecycle, cost, networking, performance
 4. [Platform Hub](../platform/index.md) — redundancy and durability, networking and private access
@@ -232,7 +232,7 @@ Read in order:
 
 - [Overview](overview.md)
 - [Storage Services at a Glance](storage-services-at-a-glance.md)
-- [Common Scenarios](common-scenarios.md)
+- [Scenario Router](scenario-router.md)
 - [Repository Map](repository-map.md)
 - [Platform Hub](../platform/index.md)
 - [Operations Hub](../operations/index.md)
