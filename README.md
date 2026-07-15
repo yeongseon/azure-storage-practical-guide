@@ -4,6 +4,10 @@
 
 📘 Documentation site: <https://yeongseon.github.io/azure-storage-practical-guide/>
 
+[![Docs](https://github.com/yeongseon/azure-storage-practical-guide/actions/workflows/docs.yml/badge.svg)](https://github.com/yeongseon/azure-storage-practical-guide/actions/workflows/docs.yml)
+[![CI](https://github.com/yeongseon/azure-storage-practical-guide/actions/workflows/validate-content-sources.yml/badge.svg)](https://github.com/yeongseon/azure-storage-practical-guide/actions/workflows/validate-content-sources.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A practical guide covering Azure Storage data access, durability, operations, and troubleshooting — grounded in MS Learn documentation.
 
 ## What's Inside
@@ -75,4 +79,3 @@ This is an independent community project. Not affiliated with or endorsed by Mic
 ## License
 
 [MIT](LICENSE)
-
