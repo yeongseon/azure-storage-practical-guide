@@ -235,11 +235,11 @@ Portal screenshots:
 
 ### Manifest-driven capture pipeline
 
-Portal screenshots are managed as **build artifacts driven by a manifest** (`scripts/capture/`), not hand-placed files. Docs reference a screenshot by a **stable ID** via the `shot()` macro, so re-capturing a blade overwrites the same `.webp` and never requires editing markdown.
+Portal screenshots are managed as **build artifacts driven by a manifest**, not hand-placed files. The pipeline implementation lives in the central [`azure-guide-capture-toolkit`](https://github.com/yeongseon/azure-guide-capture-toolkit) package (installed via `requirements-docs.txt`); this repo keeps only `scripts/capture/manifest.yaml` and `scripts/portal-capture-helpers.js`. Docs reference a screenshot by a **stable ID** via the `shot()` macro, so re-capturing a blade overwrites the same `.webp` and never requires editing markdown.
 
 - Register every capture in `scripts/capture/manifest.yaml` with a stable `id` (equal to the file stem), `file` path under `docs/assets/`, and accurate `alt` text.
 - Reference it in markdown with `[[[ shot("<id>") ]]]` (custom Jinja delimiters `[[[ ]]]` / `[[% %]]` / `[[# #]]`, configured in `mkdocs.yml`, avoid collisions with `{{ }}`).
-- Encode/downscale raw PNGs to WebP with `scripts/capture/optimize_webp.py`; refresh existing captures through `scripts/capture/diff_gate.py` (below `diff_threshold` only `verified` is bumped, image bytes untouched).
+- Encode/downscale raw PNGs to WebP with `python3 -m azure_guide_capture_toolkit.optimize_webp`; refresh existing captures through `python3 -m azure_guide_capture_toolkit.diff_gate` (below `diff_threshold` only `verified` is bumped, image bytes untouched). Both CLIs require the toolkit's `capture` extra.
 - Screenshots may be committed as WebP produced by this pipeline. When a capture is optimized to WebP, the **final rendered `.webp`** — not only the raw PNG — MUST be visually verified for PII and caption accuracy before merge. A PII or caption defect introduced or hidden by re-encoding is treated the same as one in a raw PNG.
 - See `scripts/capture/README.md` for the full workflow.
 
