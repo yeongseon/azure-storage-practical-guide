@@ -4,20 +4,22 @@ Portal screenshots are treated as **build artifacts driven by a manifest**, not
 hand-placed files. Docs reference a screenshot by a **stable ID**; re-capturing a
 blade overwrites the same file and never requires editing markdown.
 
-This is the in-repo pilot. Once proven across a few sections it is intended to be
-extracted into a central `azure-guide-capture-toolkit` and consumed by every
-guide repo.
+The implementation lives in the central
+[`azure-guide-capture-toolkit`](https://github.com/yeongseon/azure-guide-capture-toolkit)
+package (installed via `requirements-docs.txt`). This directory keeps only the
+repo-specific pieces: `manifest.yaml` (the screenshot registry for this guide)
+and `portal-capture-helpers.js` (in `scripts/`).
 
 ## Components
 
-| File | Role |
-|---|---|
-| `manifest.yaml` | Single source of truth. One entry per screenshot: stable `id`, `file`, `alt`, `captured`/`verified` dates, `diff_threshold`. |
-| `screenshot_lib.py` | Shared manifest access. Reads via PyYAML (present at docs-build time); writes lazily via ruamel round-trip to preserve comments. |
-| `optimize_webp.py` | Downscales a raw PNG to `meta.target_width` (1440px) and encodes WebP, then stamps `captured`. |
-| `diff_gate.py` | Compares a fresh capture to the committed image. Below `diff_threshold` it leaves the image byte-identical and only bumps `verified`; above it, re-encodes and bumps `captured`. |
-| `mkdocs_macros.py` | Defines the `shot()` macro consumed at build time. |
-| `portal-capture-helpers.js` | (in `scripts/`) Playwright PII text-replacement + avatar masking used during raw capture. |
+| Piece | Where | Role |
+|---|---|---|
+| `manifest.yaml` | this directory | Single source of truth. One entry per screenshot: stable `id`, `file`, `alt`, `captured`/`verified` dates, `diff_threshold`. |
+| `screenshot_lib` | toolkit package | Shared manifest access. Reads via PyYAML (present at docs-build time); writes lazily via ruamel round-trip to preserve comments. |
+| `optimize_webp` | toolkit package | Downscales a raw PNG to `meta.target_width` (1440px) and encodes WebP, then stamps `captured`. |
+| `diff_gate` | toolkit package | Compares a fresh capture to the committed image. Below `diff_threshold` it leaves the image byte-identical and only bumps `verified`; above it, re-encodes and bumps `captured`. |
+| `mkdocs_macros` | toolkit package | Defines the `shot()` macro consumed at build time. Wired via the mkdocs-macros `modules:` option in `mkdocs.yml`. |
+| `portal-capture-helpers.js` | `scripts/` | Playwright PII text-replacement + avatar masking used during raw capture. |
 
 ## Referencing a screenshot in docs
 
@@ -37,10 +39,11 @@ sequences already present across the docs.
 1. Capture the raw Portal PNG with Playwright + `portal-capture-helpers.js`
    (see `scripts/portal-capture-helpers.md`).
 2. Add an entry to `manifest.yaml` (new `id` = intended file stem).
-3. Encode and stamp:
+3. Encode and stamp (requires the toolkit's `capture` extra —
+   `pip install "azure-guide-capture-toolkit[capture] @ git+https://github.com/yeongseon/azure-guide-capture-toolkit@v0.1.0"`):
 
     ```bash
-    python3 scripts/capture/optimize_webp.py /path/to/raw.png --id <shot-id>
+    python3 -m azure_guide_capture_toolkit.optimize_webp /path/to/raw.png --id <shot-id>
     ```
 
 4. Reference it in markdown with `[[[ shot("<shot-id>") ]]]`.
@@ -51,7 +54,7 @@ sequences already present across the docs.
 Feed the fresh raw PNG through the diff gate instead of the optimizer:
 
 ```bash
-python3 scripts/capture/diff_gate.py /path/to/fresh.png --id <shot-id>
+python3 -m azure_guide_capture_toolkit.diff_gate /path/to/fresh.png --id <shot-id>
 ```
 
 - **Unchanged** (below threshold): image bytes untouched, only `verified` is
@@ -60,7 +63,9 @@ python3 scripts/capture/diff_gate.py /path/to/fresh.png --id <shot-id>
 
 ## Requirements
 
-- Docs build: `mkdocs-macros-plugin` (in `requirements-docs.txt`), PyYAML (mkdocs
-  dependency). Never add a top-level `ruamel` import to `screenshot_lib.py` — the
-  docs-build Python may not have it.
-- Capture/CLI: Python with `Pillow` and `ruamel.yaml`; Node + Playwright.
+- Docs build: `mkdocs-macros-plugin` and `azure-guide-capture-toolkit` (both in
+  `requirements-docs.txt`), PyYAML (a mkdocs dependency). The toolkit never adds
+  a top-level `ruamel` import to its manifest reader — the docs-build Python may
+  not have it.
+- Capture/CLI: the toolkit's `capture` extra (`Pillow`, `ruamel.yaml`); Node +
+  Playwright.
