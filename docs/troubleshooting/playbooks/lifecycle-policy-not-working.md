@@ -108,6 +108,14 @@ az storage account management-policy show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account management-policy show` | Show the current blob lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account whose policy is shown. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -120,6 +128,15 @@ az storage account management-policy create \
     --policy @lifecycle-policy.json \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
@@ -135,6 +152,16 @@ az storage blob show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage blob show` | Show properties of a single blob, including its access tier. |
+| `--account-name` | Name of the storage account hosting the blob. |
+| `--container-name` | Container that holds the blob. |
+| `--name` | Name of the blob to inspect. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -146,6 +173,14 @@ az storage account blob-service-properties show \
     --resource-group $RG \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account blob-service-properties show` | Show blob service properties such as soft delete and versioning. |
+| `--account-name` | Name of the storage account to inspect. |
+| `--resource-group` | Resource group that contains the account. |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.

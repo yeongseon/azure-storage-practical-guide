@@ -55,6 +55,22 @@ az storage share-rm create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a premium file storage account. |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy tier, locally redundant Premium (`Premium_LRS`). |
+| `--kind` | Account kind, `FileStorage` for premium SMB/NFS shares. |
+| `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
+| `--output` | Output format for the result. |
+| `az storage share-rm create` | Create an Azure file share via the management plane. |
+| `--storage-account` | Name of the storage account hosting the share. |
+| `--quota` | Provisioned share size in GiB (`1024`). |
+| `--enabled-protocols` | File share protocol (`SMB`). |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -75,6 +91,22 @@ az storage account update \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account update` | Enable identity-based access for Azure Files on the account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to update. |
+| `--enable-files-aadds` | Enable Microsoft Entra Domain Services authentication for files. |
+| `--domain-name` | Primary domain name for the directory. |
+| `--net-bios-domain-name` | NetBIOS name of the domain. |
+| `--forest-name` | Active Directory forest name. |
+| `--domain-guid` | GUID of the domain. |
+| `--domain-sid` | Security identifier of the domain. |
+| `--azure-storage-sid` | Security identifier assigned to the storage account. |
+| `--sam-account-name` | SAM account name registered for the account. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -89,6 +121,16 @@ az role assignment create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az role assignment create` | Assign an Azure RBAC role to a principal. |
+| `--assignee-object-id` | Object ID of the user receiving the role. |
+| `--assignee-principal-type` | Principal type of the assignee (`User`). |
+| `--role` | RBAC role granted, `Storage File Data SMB Share Contributor` for share read/write. |
+| `--scope` | Resource scope of the assignment, here the file share ID. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -101,6 +143,15 @@ az storage share-rm show \
     --name $SHARE_NAME \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage share-rm show` | Show properties of an Azure file share via the management plane. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--storage-account` | Name of the storage account hosting the share. |
+| `--name` | Name of the file share to inspect. |
+| `--output` | Output format for the result. |
+
 
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
@@ -123,11 +174,26 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show full properties of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--output` | Output format for the result. |
+
+
 ```bash
 az monitor diagnostic-settings list \
     --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings list` | List diagnostic settings configured on a resource. |
+| `--resource` | Resource ID being inspected, here the storage account. |
+| `--output` | Output format for the result. |
+
 
 ## Cleanup Instructions
 
@@ -141,6 +207,14 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete a resource group and all resources in it. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the interactive confirmation prompt. |
+| `--no-wait` | Return immediately without waiting for deletion to finish. |
+
 
 ## See Also
 

@@ -45,6 +45,17 @@ az storage account show --name $STORAGE_NAME --resource-group $RG --query "{publ
 az network private-endpoint-connection list --id <storage-resource-id>
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `nslookup` | Resolve the blob and privatelink FQDNs to confirm which endpoint DNS returns. |
+| `az storage account show` | Show the storage account network posture. |
+| `--name` | Name of the storage account to inspect. |
+| `--resource-group` | Resource group that contains the account. |
+| `--query` | JMESPath expression selecting public network access and the network rule set. |
+| `az network private-endpoint-connection list` | List private endpoint connections on the storage account. |
+| `--id` | Resource ID of the storage account. |
+
+
 Look for mismatches between intended path and actual DNS answer. A private endpoint incident often starts as a DNS evidence problem, not a transport problem.
 
 ### 2) Security evidence
@@ -54,6 +65,16 @@ az role assignment list --scope <scope>
 az storage account show --name $STORAGE_NAME --resource-group $RG --query "{allowSharedKeyAccess:allowSharedKeyAccess,defaultToOAuthAuthentication:defaultToOAuthAuthentication}"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az role assignment list` | List RBAC role assignments at a scope. |
+| `--scope` | Resource scope whose assignments are listed. |
+| `az storage account show` | Show the storage account authentication posture. |
+| `--name` | Name of the storage account to inspect. |
+| `--resource-group` | Resource group that contains the account. |
+| `--query` | JMESPath expression selecting shared-key access and default OAuth settings. |
+
+
 Also capture the sanitized error body or response code and record which auth path was used: Azure AD, SAS, or shared key.
 
 ### 3) Performance evidence
@@ -61,6 +82,14 @@ Also capture the sanitized error body or response code and record which auth pat
 ```bash
 az monitor metrics list --resource <storage-resource-id> --metric "Transactions,SuccessE2ELatency,SuccessServerLatency,Availability,Ingress,Egress" --interval PT1M
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor metrics list` | List platform metric values for a resource. |
+| `--resource` | Resource ID of the storage account. |
+| `--metric` | Comma-separated metric names to return (transactions, latency, availability, ingress, egress). |
+| `--interval` | Aggregation interval (`PT1M` = one minute). |
+
 
 Separate **server-side pressure** from **client-side inefficiency**. If storage server latency stays low while end-to-end latency is high, the bottleneck usually sits in the client, network distance, object shape, or concurrency pattern.
 
@@ -70,6 +99,15 @@ Separate **server-side pressure** from **client-side inefficiency**. If storage 
 az storage account blob-service-properties show --account-name $STORAGE_NAME --resource-group $RG
 az backup vault backup-properties show --name <vault-name> --resource-group $RG
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account blob-service-properties show` | Show blob service properties such as soft delete and versioning. |
+| `--account-name` | Name of the storage account to inspect. |
+| `--resource-group` | Resource group that contains the account. |
+| `az backup vault backup-properties show` | Show backup properties of a Recovery Services vault. |
+| `--name` | Name of the Recovery Services vault. |
+
 
 The critical question is historical: was the protection feature already enabled before the delete or overwrite event?
 

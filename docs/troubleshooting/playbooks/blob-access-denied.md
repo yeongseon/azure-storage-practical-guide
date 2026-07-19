@@ -111,6 +111,15 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show the storage account network security posture. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--query` | JMESPath expression selecting public network access, public blob access, and firewall default action. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -125,6 +134,16 @@ az role assignment create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az role assignment create` | Assign an Azure RBAC role to a principal. |
+| `--assignee-object-id` | Object ID of the principal receiving the role. |
+| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
+| `--role` | RBAC role granted, `Storage Blob Data Reader` for read-only blob data. |
+| `--scope` | Resource scope of the assignment, here the storage account ID. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -137,6 +156,15 @@ az storage account network-rule add \
     --subnet $SUBNET_ID \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account network-rule add` | Add a virtual network rule to the storage account firewall. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account whose firewall is updated. |
+| `--subnet` | Resource ID of the subnet allowed to reach the account. |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
@@ -154,6 +182,19 @@ az storage container generate-sas \
     --https-only \
     --output tsv
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
+| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--account-name` | Name of the storage account hosting the container. |
+| `--name` | Name of the container to scope the SAS to. |
+| `--permissions` | Granted permissions, `rl` for read and list. |
+| `--expiry` | UTC expiry time of the SAS token. |
+| `--https-only` | Restrict the SAS to HTTPS requests. |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.

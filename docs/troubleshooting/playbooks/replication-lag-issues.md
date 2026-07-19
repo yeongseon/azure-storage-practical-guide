@@ -111,6 +111,15 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show replication and failover state of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--query` | JMESPath expression selecting SKU, primary/secondary locations, and their status. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -124,6 +133,15 @@ az storage blob list \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage blob list` | List blobs in a container, here on the secondary endpoint. |
+| `--account-name` | Storage account name with the `-secondary` suffix for read-access geo replication. |
+| `--container-name` | Container whose blobs are listed. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -134,6 +152,13 @@ az storage account failover \
     --resource-group $RG \
     --name $STORAGE_NAME
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account failover` | Fail the storage account over to its secondary region. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to fail over. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
@@ -146,6 +171,14 @@ az storage account show \
     --name $STORAGE_NAME \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show full properties of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
