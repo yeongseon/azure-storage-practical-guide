@@ -61,10 +61,13 @@ az storage account create \
 | `--output` | Output format for the result. |
 | `az storage account create` | Create a storage account. |
 | `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
 | `--sku` | Redundancy tier, locally redundant Standard (`Standard_LRS`). |
 | `--kind` | Account kind, `StorageV2` for general-purpose v2. |
 | `--access-tier` | Default blob access tier (`Hot`). |
 | `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.
@@ -95,9 +98,11 @@ az storage blob upload-batch \
 | `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
 | `--output` | Output format for the result. |
 | `az storage blob upload-batch` | Upload multiple files to the container in one operation. |
+| `--account-name` | Name of the destination storage account. |
 | `--destination` | Target container name. |
 | `--source` | Local directory whose files are uploaded. |
 | `--pattern` | Glob pattern selecting files to upload (`*.json`). |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.

@@ -47,7 +47,6 @@ az network private-endpoint-connection list --id <storage-resource-id>
 
 | Command | Purpose |
 | --- | --- |
-| `nslookup` | Resolve the blob and privatelink FQDNs to confirm which endpoint DNS returns. |
 | `az storage account show` | Show the storage account network posture. |
 | `--name` | Name of the storage account to inspect. |
 | `--resource-group` | Resource group that contains the account. |
@@ -107,6 +106,7 @@ az backup vault backup-properties show --name <vault-name> --resource-group $RG
 | `--resource-group` | Resource group that contains the account. |
 | `az backup vault backup-properties show` | Show backup properties of a Recovery Services vault. |
 | `--name` | Name of the Recovery Services vault. |
+| `--resource-group` | Resource group that contains the Recovery Services vault. |
 
 
 The critical question is historical: was the protection feature already enabled before the delete or overwrite event?

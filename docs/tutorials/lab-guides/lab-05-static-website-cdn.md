@@ -69,6 +69,7 @@ az storage blob service-properties update \
 | `--static-website` | Enable the static website feature. |
 | `--index-document` | Default index document served for the site. |
 | `--404-document` | Custom error document served for missing paths. |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.
@@ -121,14 +122,17 @@ az cdn endpoint create \
 | --- | --- |
 | `az cdn profile create` | Create an Azure CDN profile. |
 | `--resource-group` | Resource group that will contain the CDN resources. |
-| `--name` | Name of the CDN profile or endpoint depending on the command. |
+| `--name` | Name of the CDN profile to create. |
 | `--sku` | CDN pricing tier (`Standard_Microsoft`). |
 | `--location` | Location for the profile (`global`). |
 | `--output` | Output format for the result. |
 | `az cdn endpoint create` | Create a CDN endpoint fronting the static website origin. |
+| `--resource-group` | Resource group that contains the CDN profile. |
 | `--profile-name` | CDN profile that owns the endpoint. |
+| `--name` | Name of the CDN endpoint to create. |
 | `--origin` | Origin hostname, the static website endpoint. |
 | `--origin-host-header` | Host header sent to the origin. |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.

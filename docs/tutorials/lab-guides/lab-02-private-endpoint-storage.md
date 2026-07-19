@@ -66,9 +66,12 @@ az network vnet create \
 | `--public-network-access` | Disable the public endpoint when `Disabled`. |
 | `--output` | Output format for the result. |
 | `az network vnet create` | Create a virtual network with an initial subnet. |
+| `--resource-group` | Resource group that will contain the virtual network. |
+| `--name` | Name of the virtual network to create. |
 | `--address-prefixes` | Address space of the virtual network. |
 | `--subnet-name` | Name of the initial subnet. |
 | `--subnet-prefixes` | Address range of the initial subnet. |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.
@@ -98,9 +101,12 @@ az network private-dns link vnet create \
 | `--name` | Zone name (`privatelink.blob.core.windows.net`). |
 | `--output` | Output format for the result. |
 | `az network private-dns link vnet create` | Link the private DNS zone to a virtual network. |
+| `--resource-group` | Resource group that contains the private DNS zone. |
 | `--zone-name` | Name of the private DNS zone to link. |
+| `--name` | Name of the virtual network link to create. |
 | `--virtual-network` | Resource ID of the virtual network to link. |
 | `--registration-enabled` | Disable auto-registration of VM records when `false`. |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.

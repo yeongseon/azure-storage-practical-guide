@@ -101,7 +101,10 @@ az storage account show \
 | `--https-only` | Require HTTPS for all requests when `true`. |
 | `--output` | Output format for the result. |
 | `az storage account show` | Show properties of the storage account. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--name` | Name of the storage account to inspect. |
 | `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
+| `--output` | Output format for the result. |
 
 
 **Validation**:
@@ -149,9 +152,11 @@ az storage account update \
 | `--subnet` | Resource ID of the subnet allowed to reach the account. |
 | `--output` | Output format for the result. |
 | `az storage account update` | Update storage account configuration. |
+| `--resource-group` | Resource group that contains the storage account. |
 | `--name` | Name of the storage account to update. |
 | `--default-action` | Default firewall action for unmatched traffic (`Deny`). |
 | `--public-network-access` | Disable the public endpoint when `Disabled`. |
+| `--output` | Output format for the result. |
 
 
 **Validation**:
@@ -211,6 +216,7 @@ az storage container generate-sas \
 | `--permissions` | Granted permissions, `rl` for read and list. |
 | `--expiry` | UTC expiry time of the SAS token. |
 | `--https-only` | Restrict the SAS to HTTPS requests. |
+| `--output` | Output format for the result. |
 
 
 **Validation**:
@@ -256,6 +262,9 @@ az storage account management-policy show \
 | `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
 | `--output` | Output format for the result. |
 | `az storage account management-policy show` | Show the current lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--output` | Output format for the result. |
 
 
 **Validation**:
@@ -431,6 +440,9 @@ az storage account management-policy show \
 | `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
 | `--output` | Output format for the result. |
 | `az storage account management-policy show` | Show the current lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--output` | Output format for the result. |
 
 
 ### Lifecycle design notes
@@ -484,6 +496,7 @@ az storage container generate-sas \
 | `--permissions` | Granted permissions, `rl` for read and list. |
 | `--expiry` | UTC expiry time of the SAS token. |
 | `--https-only` | Restrict the SAS to HTTPS requests. |
+| `--output` | Output format for the result. |
 
 
 ### Performance baseline

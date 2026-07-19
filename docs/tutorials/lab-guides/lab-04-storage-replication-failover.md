@@ -106,12 +106,16 @@ az storage blob upload \
 | --- | --- |
 | `az storage container create` | Create a blob container in the storage account. |
 | `--account-name` | Name of the storage account hosting the container. |
-| `--name` | Name of the container or blob depending on the command. |
+| `--name` | Name of the container to create. |
 | `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
 | `--output` | Output format for the result. |
 | `az storage blob upload` | Upload a single file as a blob. |
+| `--account-name` | Name of the storage account hosting the container. |
 | `--container-name` | Container that will hold the blob. |
+| `--name` | Name of the destination blob. |
 | `--file` | Local file path to upload. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.

@@ -66,9 +66,12 @@ az storage share-rm create \
 | `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
 | `--output` | Output format for the result. |
 | `az storage share-rm create` | Create an Azure file share via the management plane. |
+| `--resource-group` | Resource group that contains the storage account. |
 | `--storage-account` | Name of the storage account hosting the share. |
+| `--name` | Name of the file share to create. |
 | `--quota` | Provisioned share size in GiB (`1024`). |
 | `--enabled-protocols` | File share protocol (`SMB`). |
+| `--output` | Output format for the result. |
 
 
 - Record the output and any IDs you will reuse in later steps.
