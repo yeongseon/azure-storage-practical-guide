@@ -126,7 +126,6 @@ az storage account create -g $RG -n $STORAGE_NAME  # ❌ Don't do this
 | `--resource-group` | Resource group that will contain the account. |
 | `--name` | Globally unique name of the storage account. |
 | `--location` | Azure region for the account. |
-| `az storage account create -g $RG -n $STORAGE_NAME  # ❌ Don't do this` |  |
 
 
 ### Variables
