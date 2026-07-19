@@ -120,6 +120,14 @@ az storage account create --resource-group $RG --name $STORAGE_NAME --location $
 az storage account create -g $RG -n $STORAGE_NAME  # ❌ Don't do this
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a storage account (shown with readable long flags). |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+
+
 ### Variables
 | Variable | Description | Example |
 |----------|-------------|---------|

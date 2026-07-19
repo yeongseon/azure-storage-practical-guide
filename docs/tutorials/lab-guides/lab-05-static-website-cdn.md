@@ -54,6 +54,24 @@ az storage blob service-properties update \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a storage account for static website hosting. |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy tier, locally redundant Standard (`Standard_LRS`). |
+| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
+| `--access-tier` | Default blob access tier (`Hot`). |
+| `--output` | Output format for the result. |
+| `az storage blob service-properties update` | Update blob service properties to enable static website hosting. |
+| `--account-name` | Name of the storage account to configure. |
+| `--static-website` | Enable the static website feature. |
+| `--index-document` | Default index document served for the site. |
+| `--404-document` | Custom error document served for missing paths. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -67,6 +85,16 @@ az storage blob upload-batch \
     --pattern "*.html" \
     --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage blob upload-batch` | Upload site files to the static website container. |
+| `--account-name` | Name of the destination storage account. |
+| `--destination` | Target container, the reserved `$web` static website container. |
+| `--source` | Local directory whose files are uploaded. |
+| `--pattern` | Glob pattern selecting files to upload (`*.html`). |
+| `--output` | Output format for the result. |
+
 
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
@@ -90,6 +118,23 @@ az cdn endpoint create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az cdn profile create` | Create an Azure CDN profile. |
+| `--resource-group` | Resource group that will contain the CDN resources. |
+| `--name` | Name of the CDN profile to create. |
+| `--sku` | CDN pricing tier (`Standard_Microsoft`). |
+| `--location` | Location for the profile (`global`). |
+| `--output` | Output format for the result. |
+| `az cdn endpoint create` | Create a CDN endpoint fronting the static website origin. |
+| `--resource-group` | Resource group that contains the CDN profile. |
+| `--profile-name` | CDN profile that owns the endpoint. |
+| `--name` | Name of the CDN endpoint to create. |
+| `--origin` | Origin hostname, the static website endpoint. |
+| `--origin-host-header` | Host header sent to the origin. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -102,6 +147,15 @@ az cdn endpoint purge \
     --name $CDN_ENDPOINT_NAME \
     --content-paths "/*"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az cdn endpoint purge` | Purge cached content from a CDN endpoint. |
+| `--resource-group` | Resource group that contains the CDN endpoint. |
+| `--profile-name` | CDN profile that owns the endpoint. |
+| `--name` | Name of the CDN endpoint to purge. |
+| `--content-paths` | Paths to purge (`/*` for everything). |
+
 
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
@@ -124,11 +178,26 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show full properties of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--output` | Output format for the result. |
+
+
 ```bash
 az monitor diagnostic-settings list \
     --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings list` | List diagnostic settings configured on a resource. |
+| `--resource` | Resource ID being inspected, here the storage account. |
+| `--output` | Output format for the result. |
+
 
 ## Cleanup Instructions
 
@@ -142,6 +211,14 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete a resource group and all resources in it. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the interactive confirmation prompt. |
+| `--no-wait` | Return immediately without waiting for deletion to finish. |
+
 
 ## See Also
 

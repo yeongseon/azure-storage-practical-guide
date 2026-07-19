@@ -112,6 +112,15 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show core configuration of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--query` | JMESPath expression selecting SKU, kind, access tier, and location. |
+| `--output` | Output format for the result. |
+
+
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
 - If the change is temporary, document the rollback and a permanent follow-up action.
@@ -124,6 +133,15 @@ az storage account update \
     --access-tier Hot \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account update` | Update storage account configuration. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to update. |
+| `--access-tier` | New default blob access tier (`Hot`). |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.
@@ -148,6 +166,17 @@ az storage account create \
     --kind BlockBlobStorage \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a premium block blob storage account. |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the alternate storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy tier, locally redundant Premium (`Premium_LRS`). |
+| `--kind` | Account kind, `BlockBlobStorage` for premium block blobs. |
+| `--output` | Output format for the result. |
+
 
 - Record the command output in the incident timeline.
 - Re-test from the same client identity and network path that originally failed.

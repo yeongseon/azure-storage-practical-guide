@@ -55,6 +55,25 @@ az network vnet create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a storage account with the public endpoint disabled. |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy tier, zone-redundant Standard (`Standard_ZRS`). |
+| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
+| `--public-network-access` | Disable the public endpoint when `Disabled`. |
+| `--output` | Output format for the result. |
+| `az network vnet create` | Create a virtual network with an initial subnet. |
+| `--resource-group` | Resource group that will contain the virtual network. |
+| `--name` | Name of the virtual network to create. |
+| `--address-prefixes` | Address space of the virtual network. |
+| `--subnet-name` | Name of the initial subnet. |
+| `--subnet-prefixes` | Address range of the initial subnet. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -75,6 +94,21 @@ az network private-dns link vnet create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az network private-dns zone create` | Create a private DNS zone for blob private endpoints. |
+| `--resource-group` | Resource group that will contain the zone. |
+| `--name` | Zone name (`privatelink.blob.core.windows.net`). |
+| `--output` | Output format for the result. |
+| `az network private-dns link vnet create` | Link the private DNS zone to a virtual network. |
+| `--resource-group` | Resource group that contains the private DNS zone. |
+| `--zone-name` | Name of the private DNS zone to link. |
+| `--name` | Name of the virtual network link to create. |
+| `--virtual-network` | Resource ID of the virtual network to link. |
+| `--registration-enabled` | Disable auto-registration of VM records when `false`. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -92,6 +126,19 @@ az network private-endpoint create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az network private-endpoint create` | Create a private endpoint for the storage account. |
+| `--resource-group` | Resource group that will contain the private endpoint. |
+| `--name` | Name of the private endpoint. |
+| `--vnet-name` | Virtual network that hosts the private endpoint subnet. |
+| `--subnet` | Subnet in which the private endpoint IP is allocated. |
+| `--private-connection-resource-id` | Resource ID of the storage account being connected. |
+| `--group-id` | Target sub-resource of the account (`blob`). |
+| `--connection-name` | Name of the private link connection. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -106,6 +153,17 @@ az network private-endpoint dns-zone-group create \
     --zone-name privatelink.blob.core.windows.net \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az network private-endpoint dns-zone-group create` | Associate a private DNS zone with the private endpoint. |
+| `--resource-group` | Resource group that contains the private endpoint. |
+| `--endpoint-name` | Name of the private endpoint to configure. |
+| `--name` | Name of the DNS zone group (`default`). |
+| `--private-dns-zone` | Private DNS zone to associate. |
+| `--zone-name` | Zone name key used within the group. |
+| `--output` | Output format for the result. |
+
 
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
@@ -128,11 +186,26 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show full properties of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--output` | Output format for the result. |
+
+
 ```bash
 az monitor diagnostic-settings list \
     --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings list` | List diagnostic settings configured on a resource. |
+| `--resource` | Resource ID being inspected, here the storage account. |
+| `--output` | Output format for the result. |
+
 
 ## Cleanup Instructions
 
@@ -146,6 +219,14 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete a resource group and all resources in it. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the interactive confirmation prompt. |
+| `--no-wait` | Return immediately without waiting for deletion to finish. |
+
 
 ## See Also
 

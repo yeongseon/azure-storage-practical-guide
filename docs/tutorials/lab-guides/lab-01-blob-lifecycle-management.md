@@ -53,6 +53,23 @@ az storage account create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az group create` | Create a resource group. |
+| `--name` | Name of the resource group to create. |
+| `--location` | Azure region for the resource group. |
+| `--output` | Output format for the result. |
+| `az storage account create` | Create a storage account. |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy tier, locally redundant Standard (`Standard_LRS`). |
+| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
+| `--access-tier` | Default blob access tier (`Hot`). |
+| `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -73,6 +90,21 @@ az storage blob upload-batch \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage container create` | Create a blob container in the storage account. |
+| `--account-name` | Name of the storage account hosting the container. |
+| `--name` | Name of the container to create. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--output` | Output format for the result. |
+| `az storage blob upload-batch` | Upload multiple files to the container in one operation. |
+| `--account-name` | Name of the destination storage account. |
+| `--destination` | Target container name. |
+| `--source` | Local directory whose files are uploaded. |
+| `--pattern` | Glob pattern selecting files to upload (`*.json`). |
+| `--output` | Output format for the result. |
+
+
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
 - Capture screenshots or JSON output for your lab notes if you are building internal training material.
@@ -85,6 +117,15 @@ az storage account management-policy create \
     --policy @lifecycle-policy.json \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
+| `--output` | Output format for the result. |
+
 
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
@@ -99,6 +140,16 @@ az storage blob show \
     --auth-mode login \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage blob show` | Show properties of a single blob, including its access tier. |
+| `--account-name` | Name of the storage account hosting the blob. |
+| `--container-name` | Container that holds the blob. |
+| `--name` | Path of the blob to inspect (`logs/example-001.json`). |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--output` | Output format for the result. |
+
 
 - Record the output and any IDs you will reuse in later steps.
 - If the command creates security-sensitive settings, confirm they match policy before moving on.
@@ -121,11 +172,26 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show full properties of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--output` | Output format for the result. |
+
+
 ```bash
 az monitor diagnostic-settings list \
     --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings list` | List diagnostic settings configured on a resource. |
+| `--resource` | Resource ID being inspected, here the storage account. |
+| `--output` | Output format for the result. |
+
 
 ## Cleanup Instructions
 
@@ -139,6 +205,14 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete a resource group and all resources in it. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the interactive confirmation prompt. |
+| `--no-wait` | Return immediately without waiting for deletion to finish. |
+
 
 ## See Also
 

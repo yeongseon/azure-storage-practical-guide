@@ -87,6 +87,26 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a storage account. |
+| `--resource-group` | Resource group that will contain the storage account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy and performance tier, here zone-redundant Standard (`Standard_ZRS`). |
+| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
+| `--access-tier` | Default blob access tier (`Hot`). |
+| `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
+| `--min-tls-version` | Minimum accepted TLS version (`TLS1_2`). |
+| `--https-only` | Require HTTPS for all requests when `true`. |
+| `--output` | Output format for the result. |
+| `az storage account show` | Show properties of the storage account. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--name` | Name of the storage account to inspect. |
+| `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
+| `--output` | Output format for the result. |
+
+
 **Validation**:
 
 - Confirm the command output matches the intended SKU, networking posture, and access model.
@@ -123,6 +143,21 @@ az storage account update \
     --public-network-access Disabled \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account network-rule add` | Add a virtual network rule to the storage account firewall. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account whose firewall is updated. |
+| `--subnet` | Resource ID of the subnet allowed to reach the account. |
+| `--output` | Output format for the result. |
+| `az storage account update` | Update storage account configuration. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--name` | Name of the storage account to update. |
+| `--default-action` | Default firewall action for unmatched traffic (`Deny`). |
+| `--public-network-access` | Disable the public endpoint when `Disabled`. |
+| `--output` | Output format for the result. |
+
 
 **Validation**:
 
@@ -165,6 +200,25 @@ az storage container generate-sas \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az role assignment create` | Assign an Azure RBAC role to a principal. |
+| `--assignee-object-id` | Object ID of the principal receiving the role. |
+| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
+| `--role` | RBAC role granted, `Storage Blob Data Contributor` for read/write blob data. |
+| `--scope` | Resource scope of the assignment, here the storage account ID. |
+| `--output` | Output format for the result. |
+| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
+| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--account-name` | Name of the storage account hosting the container. |
+| `--name` | Name of the container to scope the SAS to. |
+| `--permissions` | Granted permissions, `rl` for read and list. |
+| `--expiry` | UTC expiry time of the SAS token. |
+| `--https-only` | Restrict the SAS to HTTPS requests. |
+| `--output` | Output format for the result. |
+
+
 **Validation**:
 
 - Confirm the command output matches the intended SKU, networking posture, and access model.
@@ -200,6 +254,19 @@ az storage account management-policy show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
+| `--output` | Output format for the result. |
+| `az storage account management-policy show` | Show the current lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--output` | Output format for the result. |
+
+
 **Validation**:
 
 - Confirm the command output matches the intended SKU, networking posture, and access model.
@@ -232,6 +299,17 @@ az storage blob upload-batch \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage blob upload-batch` | Upload multiple files to a blob container in one operation. |
+| `--account-name` | Name of the destination storage account. |
+| `--destination` | Target container name. |
+| `--source` | Local directory whose files are uploaded. |
+| `--max-connections` | Number of parallel connections used for the transfer. |
+| `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
+| `--output` | Output format for the result. |
+
+
 **Validation**:
 
 - Confirm the command output matches the intended SKU, networking posture, and access model.
@@ -263,6 +341,17 @@ az monitor diagnostic-settings create \
     --metrics '[{"category":"Transaction","enabled":true}]' \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings create` | Create a diagnostic setting that routes logs and metrics to a workspace. |
+| `--name` | Name of the diagnostic setting. |
+| `--resource` | Resource ID being monitored, here the storage account. |
+| `--workspace` | Log Analytics workspace resource ID receiving the data. |
+| `--logs` | JSON array of log categories to enable (read, write, delete). |
+| `--metrics` | JSON array of metric categories to enable (`Transaction`). |
+| `--output` | Output format for the result. |
+
 
 **Validation**:
 
@@ -343,6 +432,19 @@ az storage account management-policy show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
+| `--output` | Output format for the result. |
+| `az storage account management-policy show` | Show the current lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account the policy applies to. |
+| `--output` | Output format for the result. |
+
+
 ### Lifecycle design notes
 
 - Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
@@ -378,6 +480,25 @@ az storage container generate-sas \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az role assignment create` | Assign an Azure RBAC role to a principal. |
+| `--assignee-object-id` | Object ID of the principal receiving the role. |
+| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
+| `--role` | RBAC role granted, `Storage Blob Data Contributor` for read/write blob data. |
+| `--scope` | Resource scope of the assignment, here the storage account ID. |
+| `--output` | Output format for the result. |
+| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
+| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
+| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
+| `--account-name` | Name of the storage account hosting the container. |
+| `--name` | Name of the container to scope the SAS to. |
+| `--permissions` | Granted permissions, `rl` for read and list. |
+| `--expiry` | UTC expiry time of the SAS token. |
+| `--https-only` | Restrict the SAS to HTTPS requests. |
+| `--output` | Output format for the result. |
+
+
 ### Performance baseline
 
 - Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
@@ -395,6 +516,17 @@ az storage blob upload-batch \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage blob upload-batch` | Upload multiple files to a blob container in one operation. |
+| `--account-name` | Name of the destination storage account. |
+| `--destination` | Target container name. |
+| `--source` | Local directory whose files are uploaded. |
+| `--max-connections` | Number of parallel connections used for the transfer. |
+| `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
+| `--output` | Output format for the result. |
+
+
 ### Cost baseline
 
 - Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
@@ -411,6 +543,17 @@ az monitor diagnostic-settings create \
     --metrics '[{"category":"Transaction","enabled":true}]' \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings create` | Create a diagnostic setting that routes logs and metrics to a workspace. |
+| `--name` | Name of the diagnostic setting. |
+| `--resource` | Resource ID being monitored, here the storage account. |
+| `--workspace` | Log Analytics workspace resource ID receiving the data. |
+| `--logs` | JSON array of log categories to enable (read, write, delete). |
+| `--metrics` | JSON array of metric categories to enable (`Transaction`). |
+| `--output` | Output format for the result. |
+
 
 <!-- diagram-id: best-practices-lifecycle-management-best-practices-2 -->
 ```mermaid

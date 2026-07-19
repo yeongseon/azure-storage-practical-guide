@@ -307,6 +307,21 @@ az storage account create \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account create` | Create a storage account. |
+| `--resource-group` | Resource group that will contain the account. |
+| `--name` | Globally unique name of the storage account. |
+| `--location` | Azure region for the account. |
+| `--sku` | Redundancy tier, locally redundant Standard (`Standard_LRS`). |
+| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
+| `--access-tier` | Default blob access tier (`Hot`). |
+| `--https-only` | Require HTTPS for all requests when `true`. |
+| `--min-tls-version` | Minimum accepted TLS version (`TLS1_2`). |
+| `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
+| `--output` | Output format for the result. |
+
+
 ```bash
 az storage account show \
     --resource-group $RG \
@@ -315,12 +330,29 @@ az storage account show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az storage account show` | Show properties of the storage account. |
+| `--resource-group` | Resource group that contains the account. |
+| `--name` | Name of the storage account to inspect. |
+| `--query` | JMESPath expression selecting kind, SKU, primary location, and public access. |
+| `--output` | Output format for the result. |
+
+
 ```bash
 az storage account management-policy show \
     --resource-group $RG \
     --account-name $STORAGE_NAME \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az storage account management-policy show` | Show the current blob lifecycle management policy. |
+| `--resource-group` | Resource group that contains the storage account. |
+| `--account-name` | Name of the storage account whose policy is shown. |
+| `--output` | Output format for the result. |
+
 
 ## Rollout Checklist by Phase
 
