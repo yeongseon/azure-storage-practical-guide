@@ -51,21 +51,33 @@ flowchart TD
 
 ## Recommended Practices
 
-### Practice 1: Place compute close to storage
-
-**Why**: Cross-region traffic adds latency and can amplify egress cost.
-
 **Real-world scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
 
-**How**:
+Every practice below is CLI-backed and shares the same review lens.
 
-- Deploy latency-sensitive compute in the same region as the storage account unless DR architecture explicitly requires otherwise.
+**Design review lens** (apply to every practice):
+
 - Review which storage account type supports the workload most directly instead of defaulting blindly.
 - Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
 - Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
 - Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
 - Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
 - Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
+
+**Validation lens** (confirm after every change):
+
+- Confirm the command output matches the intended SKU, networking posture, and access model.
+- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
+- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
+- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
+
+### Practice 1: Place compute close to storage
+
+**Why**: Cross-region traffic adds latency and can amplify egress cost.
+
+**How**:
+
+- Deploy latency-sensitive compute in the same region as the storage account unless DR architecture explicitly requires otherwise.
 
 ```bash
 az storage account create \
@@ -106,28 +118,13 @@ az storage account show \
 | `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 2: Use Premium only when measured needs justify it
 
 **Why**: Premium solves some problems but not bad partitioning or chatty client code.
 
-**Real-world scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
-
 **How**:
 
 - Upgrade after measuring latency, IOPS, and throughput requirements that Standard cannot satisfy.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage account network-rule add \
@@ -158,28 +155,13 @@ az storage account update \
 | `--public-network-access` | Disable the public endpoint when `Disabled`. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 3: Scale request concurrency intentionally
 
 **Why**: Single-threaded transfers waste throughput while uncontrolled parallelism causes throttling.
 
-**Real-world scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
-
 **How**:
 
 - Tune SDK or AzCopy concurrency with representative object sizes and client CPU headroom.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az role assignment create \
@@ -218,28 +200,13 @@ az storage container generate-sas \
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 4: Design for partition distribution
 
 **Why**: Hot partitions cap throughput long before overall account limits are reached.
 
-**Real-world scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
-
 **How**:
 
 - Spread object keys, isolate hot workloads, and avoid sequential naming for burst-heavy traffic.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage account management-policy create \
@@ -266,28 +233,13 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account the policy applies to. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 5: Right-size block and chunk strategies
 
 **Why**: Tiny chunks inflate transaction cost and protocol overhead.
 
-**Real-world scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
-
 **How**:
 
 - Use tested block sizes for large object upload and resume-friendly patterns for unstable networks.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage blob upload-batch \
@@ -309,28 +261,13 @@ az storage blob upload-batch \
 | `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 6: Observe latency, server busy, and retry patterns together
 
 **Why**: Performance investigations fail when teams look only at average latency.
 
-**Real-world scenario**: An ingestion service wrote millions of objects with narrow prefixes, small block sizes, and compute in another region. The team blamed Azure Storage latency, but the real issue was client-side design and partition pressure. Performance work starts with workload anatomy.
-
 **How**:
 
 - Correlate AzureMetrics, client retries, and server busy responses to distinguish account limits from client inefficiency.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az monitor diagnostic-settings create \
@@ -351,14 +288,6 @@ az monitor diagnostic-settings create \
 | `--logs` | JSON array of log categories to enable (read, write, delete). |
 | `--metrics` | JSON array of metric categories to enable (`Transaction`). |
 | `--output` | Output format for the result. |
-
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 
 ## Storage Account Types and When to Use Each
 
@@ -444,7 +373,6 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account the policy applies to. |
 | `--output` | Output format for the result. |
 
-
 ### Lifecycle design notes
 
 - Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
@@ -498,7 +426,6 @@ az storage container generate-sas \
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
 
-
 ### Performance baseline
 
 - Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
@@ -526,7 +453,6 @@ az storage blob upload-batch \
 | `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
 | `--output` | Output format for the result. |
 
-
 ### Cost baseline
 
 - Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
@@ -553,7 +479,6 @@ az monitor diagnostic-settings create \
 | `--logs` | JSON array of log categories to enable (read, write, delete). |
 | `--metrics` | JSON array of metric categories to enable (`Transaction`). |
 | `--output` | Output format for the result. |
-
 
 <!-- diagram-id: best-practices-performance-best-practices-2 -->
 ```mermaid

@@ -53,6 +53,9 @@ flowchart TD
 
 ## KQL Queries for Diagnostics
 
+For every query below, correlate the time range with the exact complaint
+window and any recent configuration change.
+
 ### Policy-related control-plane writes
 
 ```kusto
@@ -67,7 +70,6 @@ AzureActivity
 
 - Use this to confirm when the policy was last changed.
 - Unexpected recent updates may explain why behavior differs from documentation.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Candidate blobs that still look active
 
 ```kusto
@@ -81,7 +83,6 @@ StorageBlobLogs
 
 - Objects touched recently may not satisfy age-based lifecycle rules.
 - Use with prefix knowledge to compare expected versus actual scope.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Tier distribution snapshot
 
 ```kusto
@@ -95,9 +96,14 @@ StorageBlobLogs
 
 - This is a coarse operational signal to see whether tier transitions changed observed access patterns.
 - Combine with direct CLI inspection of blob properties for precise evidence.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 
 ## CLI Commands for Fixes
+
+After every fix step below, apply the same closing discipline:
+
+- Record the command output in the incident timeline.
+- Re-test from the same client identity and network path that originally failed.
+- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ### Fix step 1: Inspect the active management policy
 
@@ -115,10 +121,6 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account whose policy is shown. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Apply a corrected management policy file
 
 ```bash
@@ -137,10 +139,6 @@ az storage account management-policy create \
 | `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Inspect a sample blob for tier, last-modified, and rehydration state
 
 ```bash
@@ -161,10 +159,6 @@ az storage blob show \
 | `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Verify recovery features before enabling delete rules
 
 ```bash
@@ -180,11 +174,6 @@ az storage account blob-service-properties show \
 | `--account-name` | Name of the storage account to inspect. |
 | `--resource-group` | Resource group that contains the account. |
 | `--output` | Output format for the result. |
-
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ## Prevention Checklist
 
