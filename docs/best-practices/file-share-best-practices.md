@@ -51,21 +51,33 @@ flowchart TD
 
 ## Recommended Practices
 
-### Practice 1: Pick SMB or NFS from client and identity requirements
-
-**Why**: Protocol selection influences authentication, networking, and feature support.
-
 **Real-world scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
 
-**How**:
+Every practice below is CLI-backed and shares the same review lens.
 
-- Use SMB for Windows-native sharing and ACL workflows. Use NFS when Linux semantics and containerized access patterns are the priority.
+**Design review lens** (apply to every practice):
+
 - Review which storage account type supports the workload most directly instead of defaulting blindly.
 - Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
 - Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
 - Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
 - Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
 - Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
+
+**Validation lens** (confirm after every change):
+
+- Confirm the command output matches the intended SKU, networking posture, and access model.
+- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
+- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
+- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
+
+### Practice 1: Pick SMB or NFS from client and identity requirements
+
+**Why**: Protocol selection influences authentication, networking, and feature support.
+
+**How**:
+
+- Use SMB for Windows-native sharing and ACL workflows. Use NFS when Linux semantics and containerized access patterns are the priority.
 
 ```bash
 az storage account create \
@@ -106,28 +118,13 @@ az storage account show \
 | `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 2: Use private connectivity for production mounts
 
 **Why**: File shares exposed through broad public network rules are hard to reason about and harder to secure.
 
-**Real-world scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
-
 **How**:
 
 - Use Private Endpoints, Private DNS Zones, and explicit firewall deny-by-default posture.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage account network-rule add \
@@ -158,28 +155,13 @@ az storage account update \
 | `--public-network-access` | Disable the public endpoint when `Disabled`. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 3: Match share tier to observed IOPS and throughput
 
 **Why**: Standard shares are economical but can disappoint latency-sensitive workloads.
 
-**Real-world scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
-
 **How**:
 
 - Move performance-critical shares to Premium FileStorage after measuring queue depth, latency, and burst behavior.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az role assignment create \
@@ -218,28 +200,13 @@ az storage container generate-sas \
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 4: Integrate identity cleanly
 
 **Why**: Share-level RBAC and file-system ACLs serve different purposes and both matter.
 
-**Real-world scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
-
 **How**:
 
 - For SMB, align Azure Files identity integration with AD DS or Microsoft Entra Kerberos and document the ACL model.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage account management-policy create \
@@ -266,28 +233,13 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account the policy applies to. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 5: Plan backup and accidental delete controls
 
 **Why**: Users treat file shares like durable collaboration platforms, so restore expectations are high.
 
-**Real-world scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
-
 **How**:
 
 - Enable soft delete, snapshot strategy, and operational guidance for restore workflows.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage blob upload-batch \
@@ -309,28 +261,13 @@ az storage blob upload-batch \
 | `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 6: Control namespace growth and stale data
 
 **Why**: File shares accumulate abandoned exports, logs, and user drop folders.
 
-**Real-world scenario**: A lift-and-shift team mounted Azure Files over SMB from Azure VMs and on-premises servers without planning private DNS, AD integration, or Premium sizing. The result was intermittent mount failures and user complaints about latency. File-share design has to be intentional.
-
 **How**:
 
 - Apply naming conventions, retention ownership, and share inventory reviews to avoid uncontrolled sprawl.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az monitor diagnostic-settings create \
@@ -351,14 +288,6 @@ az monitor diagnostic-settings create \
 | `--logs` | JSON array of log categories to enable (read, write, delete). |
 | `--metrics` | JSON array of metric categories to enable (`Transaction`). |
 | `--output` | Output format for the result. |
-
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 
 ## Storage Account Types and When to Use Each
 
@@ -444,7 +373,6 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account the policy applies to. |
 | `--output` | Output format for the result. |
 
-
 ### Lifecycle design notes
 
 - Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
@@ -498,7 +426,6 @@ az storage container generate-sas \
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
 
-
 ### Performance baseline
 
 - Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
@@ -526,7 +453,6 @@ az storage blob upload-batch \
 | `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
 | `--output` | Output format for the result. |
 
-
 ### Cost baseline
 
 - Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
@@ -553,7 +479,6 @@ az monitor diagnostic-settings create \
 | `--logs` | JSON array of log categories to enable (read, write, delete). |
 | `--metrics` | JSON array of metric categories to enable (`Transaction`). |
 | `--output` | Output format for the result. |
-
 
 <!-- diagram-id: best-practices-file-share-best-practices-2 -->
 ```mermaid

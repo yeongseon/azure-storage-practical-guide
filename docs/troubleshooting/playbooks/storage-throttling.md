@@ -53,6 +53,9 @@ flowchart TD
 
 ## KQL Queries for Diagnostics
 
+For every query below, correlate the time range with the exact complaint
+window and any recent configuration change.
+
 ### Server busy responses
 
 ```kusto
@@ -67,7 +70,6 @@ StorageBlobLogs
 
 - Spikes during predictable transfer windows point to workload shape, not random failure.
 - Separate read-heavy and write-heavy operation names to find the hot path.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Account-level latency trend
 
 ```kusto
@@ -83,7 +85,6 @@ AzureMetrics
 
 - Compare latency against transaction volume to see whether load and slowdowns move together.
 - If volume is stable but latency spikes, check client network and region placement.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Prefix or container concentration
 
 ```kusto
@@ -98,9 +99,14 @@ StorageBlobLogs
 
 - A single container or prefix dominating requests is a hot-partition candidate.
 - Use this with application naming analysis for remediation.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 
 ## CLI Commands for Fixes
+
+After every fix step below, apply the same closing discipline:
+
+- Record the command output in the incident timeline.
+- Re-test from the same client identity and network path that originally failed.
+- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ### Fix step 1: Measure current SKU and replication configuration
 
@@ -120,10 +126,6 @@ az storage account show \
 | `--query` | JMESPath expression selecting SKU, kind, access tier, and location. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Move hot workloads to Premium BlockBlobStorage or Premium FileStorage when justified
 
 ```bash
@@ -142,19 +144,12 @@ az storage account update \
 | `--access-tier` | New default blob access tier (`Hot`). |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Use AzCopy with controlled concurrency during bulk transfers
 
 ```bash
 azcopy copy "./dataset" "https://$STORAGE_NAME.blob.core.windows.net/$CONTAINER_NAME?<sas-token>" --recursive=true --cap-mbps=800
 ```
 
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Scale out into separate accounts when limits or hotspots remain
 
 ```bash
@@ -176,11 +171,6 @@ az storage account create \
 | `--sku` | Redundancy tier, locally redundant Premium (`Premium_LRS`). |
 | `--kind` | Account kind, `BlockBlobStorage` for premium block blobs. |
 | `--output` | Output format for the result. |
-
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ## Prevention Checklist
 

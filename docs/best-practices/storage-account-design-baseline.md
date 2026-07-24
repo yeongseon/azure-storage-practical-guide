@@ -51,21 +51,33 @@ flowchart TD
 
 ## Recommended Practices
 
-### Practice 1: Standardize naming, tagging, and ownership
-
-**Why**: Operations break down when teams cannot quickly identify owner, environment, data classification, and backup expectations.
-
 **Real-world scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
 
-**How**:
+Every practice below is CLI-backed and shares the same review lens.
 
-- Create a mandatory tag set for owner, criticality, data-classification, lifecycle-owner, and cost-center. Block deployments that do not meet the baseline.
+**Design review lens** (apply to every practice):
+
 - Review which storage account type supports the workload most directly instead of defaulting blindly.
 - Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
 - Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
 - Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
 - Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
 - Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
+
+**Validation lens** (confirm after every change):
+
+- Confirm the command output matches the intended SKU, networking posture, and access model.
+- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
+- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
+- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
+
+### Practice 1: Standardize naming, tagging, and ownership
+
+**Why**: Operations break down when teams cannot quickly identify owner, environment, data classification, and backup expectations.
+
+**How**:
+
+- Create a mandatory tag set for owner, criticality, data-classification, lifecycle-owner, and cost-center. Block deployments that do not meet the baseline.
 
 ```bash
 az storage account create \
@@ -106,28 +118,13 @@ az storage account show \
 | `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 2: Choose replication from business RPO and RTO
 
 **Why**: Replication is a business continuity control, not a default checkbox.
 
-**Real-world scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
-
 **How**:
 
 - Map application recovery objectives to LRS, ZRS, GRS, RA-GRS, or GZRS. Document which failures are covered and which still require backup or restore.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage account network-rule add \
@@ -158,28 +155,13 @@ az storage account update \
 | `--public-network-access` | Disable the public endpoint when `Disabled`. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 3: Separate accounts by security boundary and operational blast radius
 
 **Why**: One oversized shared account makes firewall rules, RBAC, alerting, and incident ownership harder.
 
-**Real-world scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
-
 **How**:
 
 - Split production from non-production, customer data from diagnostics, and regulated from non-regulated datasets.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az role assignment create \
@@ -218,28 +200,13 @@ az storage container generate-sas \
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 4: Enable safe defaults before onboarding data
 
 **Why**: If network, logging, and delete protections arrive late, teams store data before controls exist.
 
-**Real-world scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
-
 **How**:
 
 - Enable diagnostic settings, soft delete, versioning where appropriate, and public access restrictions before application cutover.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage account management-policy create \
@@ -266,28 +233,13 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account the policy applies to. |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 5: Publish a baseline CLI runbook
 
 **Why**: Teams follow the path of least resistance. A documented runbook is the easiest way to make the right path the fast path.
 
-**Real-world scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
-
 **How**:
 
 - Provide repeatable Azure CLI commands with long flags only so engineers can bootstrap consistent accounts.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az storage blob upload-batch \
@@ -309,28 +261,13 @@ az storage blob upload-batch \
 | `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
 | `--output` | Output format for the result. |
 
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 ### Practice 6: Review account settings quarterly
 
 **Why**: Storage evolves as lifecycle rules, consumers, and network paths change over time.
 
-**Real-world scenario**: A platform team allowed each product team to create storage accounts ad hoc. Six months later, some accounts used Shared Key, others had public endpoints open, replication choices were inconsistent, and nobody could explain retention policy ownership. A baseline prevents that drift.
-
 **How**:
 
 - Run scheduled baseline audits that compare desired settings against actual configuration and observed usage patterns.
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
 
 ```bash
 az monitor diagnostic-settings create \
@@ -351,14 +288,6 @@ az monitor diagnostic-settings create \
 | `--logs` | JSON array of log categories to enable (read, write, delete). |
 | `--metrics` | JSON array of metric categories to enable (`Transaction`). |
 | `--output` | Output format for the result. |
-
-
-**Validation**:
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
 
 ## Storage Account Types and When to Use Each
 
@@ -444,7 +373,6 @@ az storage account management-policy show \
 | `--account-name` | Name of the storage account the policy applies to. |
 | `--output` | Output format for the result. |
 
-
 ### Lifecycle design notes
 
 - Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
@@ -498,7 +426,6 @@ az storage container generate-sas \
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
 
-
 ### Performance baseline
 
 - Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
@@ -526,7 +453,6 @@ az storage blob upload-batch \
 | `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
 | `--output` | Output format for the result. |
 
-
 ### Cost baseline
 
 - Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
@@ -553,7 +479,6 @@ az monitor diagnostic-settings create \
 | `--logs` | JSON array of log categories to enable (read, write, delete). |
 | `--metrics` | JSON array of metric categories to enable (`Transaction`). |
 | `--output` | Output format for the result. |
-
 
 <!-- diagram-id: best-practices-storage-account-design-baseline-2 -->
 ```mermaid

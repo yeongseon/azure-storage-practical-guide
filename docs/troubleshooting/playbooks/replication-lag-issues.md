@@ -53,6 +53,9 @@ flowchart TD
 
 ## KQL Queries for Diagnostics
 
+For every query below, correlate the time range with the exact complaint
+window and any recent configuration change.
+
 ### Recent storage account configuration changes
 
 ```kusto
@@ -67,7 +70,6 @@ AzureActivity
 
 - Use this to see if replication settings changed before the reported issue.
 - Unexpected writes can indicate a planned maintenance or configuration drift event.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Primary write success baseline
 
 ```kusto
@@ -82,7 +84,6 @@ StorageBlobLogs
 
 - This establishes whether the primary side is healthy.
 - If writes are failing in primary, the issue is not replication lag—it is an upstream service problem.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Secondary-read symptom tracking
 
 ```kusto
@@ -97,9 +98,14 @@ StorageBlobLogs
 
 - Secondary endpoint reads are the key evidence for stale-read complaints.
 - Correlate this with application-side timestamps for freshness expectations.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 
 ## CLI Commands for Fixes
+
+After every fix step below, apply the same closing discipline:
+
+- Record the command output in the incident timeline.
+- Re-test from the same client identity and network path that originally failed.
+- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ### Fix step 1: Inspect replication SKU and failover readiness
 
@@ -119,10 +125,6 @@ az storage account show \
 | `--query` | JMESPath expression selecting SKU, primary/secondary locations, and their status. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Use the secondary endpoint intentionally for read-only validation
 
 ```bash
@@ -141,10 +143,6 @@ az storage blob list \
 | `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Trigger account failover only with approved authority and data-loss acceptance
 
 ```bash
@@ -159,10 +157,6 @@ az storage account failover \
 | `--resource-group` | Resource group that contains the account. |
 | `--name` | Name of the storage account to fail over. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Document application retry and stale-read handling before the next DR test
 
 ```bash
@@ -178,11 +172,6 @@ az storage account show \
 | `--resource-group` | Resource group that contains the account. |
 | `--name` | Name of the storage account to inspect. |
 | `--output` | Output format for the result. |
-
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ## Prevention Checklist
 

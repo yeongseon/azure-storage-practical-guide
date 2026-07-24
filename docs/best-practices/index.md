@@ -98,194 +98,72 @@ flowchart TD
 
 ## Topic-by-Topic Guidance
 
-### Storage Account Design Baseline
+Every page below shares the same entry criteria and answers the same core
+questions. Each subsection's **Intent** and primary link show where the topic
+is covered in depth.
 
-**Intent**: Establishing production-ready defaults for new storage accounts.
-
-**Use this page when**:
+**Use any page below when**:
 
 - You are planning a new storage workload and need topic-specific guardrails.
 - You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
 - You need practical CLI-backed guidance rather than only conceptual documentation.
 
-**Priority questions answered**:
+**Core questions these pages answer**:
 
 - Which storage account type fits this workload best?
 - How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
 - Which security controls should be mandatory?
 - When does Premium storage or partition-aware design matter?
 - Which costs should be measured before sign-off?
+
+### Storage Account Design Baseline
+
+**Intent**: Establishing production-ready defaults for new storage accounts.
 
 Primary document: [Storage Account Design Baseline](storage-account-design-baseline.md)
 ### Blob Best Practices
 
 **Intent**: Operating block blobs, append blobs, and object lifecycle patterns safely at scale.
 
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
-
 Primary document: [Blob Best Practices](blob-best-practices.md)
 ### File Share Best Practices
 
 **Intent**: Running smb and nfs file shares with predictable access, performance, and security.
-
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
 
 Primary document: [File Share Best Practices](file-share-best-practices.md)
 ### Security Best Practices
 
 **Intent**: Defense-in-depth controls for azure storage data plane and management plane access.
 
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
-
 Primary document: [Security Best Practices](security-best-practices.md)
 ### Networking Best Practices
 
 **Intent**: Private connectivity, dns design, and network-boundary control for azure storage.
-
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
 
 Primary document: [Networking Best Practices](networking-best-practices.md)
 ### Redundancy and DR Best Practices
 
 **Intent**: Aligning storage replication choices with continuity objectives and failover readiness.
 
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
-
 Primary document: [Redundancy and DR Best Practices](redundancy-and-dr-best-practices.md)
 ### Performance Best Practices
 
 **Intent**: Throughput, latency, and scale planning for azure storage workloads.
-
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
 
 Primary document: [Performance Best Practices](performance-best-practices.md)
 ### Cost Optimization Best Practices
 
 **Intent**: Reducing azure storage spend without undermining reliability or security.
 
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
-
 Primary document: [Cost Optimization Best Practices](cost-optimization-best-practices.md)
 ### Lifecycle Management Best Practices
 
 **Intent**: Automating data movement, retention, and deletion decisions for blob data.
 
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
-
 Primary document: [Lifecycle Management Best Practices](lifecycle-management-best-practices.md)
 ### Common Anti-Patterns
 
 **Intent**: Identifying and correcting recurring azure storage design mistakes.
-
-**Use this page when**:
-
-- You are planning a new storage workload and need topic-specific guardrails.
-- You are reviewing an existing estate for security, lifecycle, cost, or performance debt.
-- You need practical CLI-backed guidance rather than only conceptual documentation.
-
-**Priority questions answered**:
-
-- Which storage account type fits this workload best?
-- How should Blob lifecycle and Hot/Cool/Cold/Archive tiers be applied?
-- Which security controls should be mandatory?
-- When does Premium storage or partition-aware design matter?
-- Which costs should be measured before sign-off?
 
 Primary document: [Common Anti-Patterns](common-anti-patterns.md)
 
@@ -321,7 +199,6 @@ az storage account create \
 | `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
 | `--output` | Output format for the result. |
 
-
 ```bash
 az storage account show \
     --resource-group $RG \
@@ -338,7 +215,6 @@ az storage account show \
 | `--query` | JMESPath expression selecting kind, SKU, primary location, and public access. |
 | `--output` | Output format for the result. |
 
-
 ```bash
 az storage account management-policy show \
     --resource-group $RG \
@@ -352,7 +228,6 @@ az storage account management-policy show \
 | `--resource-group` | Resource group that contains the storage account. |
 | `--account-name` | Name of the storage account whose policy is shown. |
 | `--output` | Output format for the result. |
-
 
 ## Rollout Checklist by Phase
 

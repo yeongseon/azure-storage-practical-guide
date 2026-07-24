@@ -53,6 +53,9 @@ flowchart TD
 
 ## KQL Queries for Diagnostics
 
+For every query below, correlate the time range with the exact complaint
+window and any recent configuration change.
+
 ### Recent 403 blob operations
 
 ```kusto
@@ -67,7 +70,6 @@ StorageBlobLogs
 
 - Focus on AuthenticationType to distinguish SAS, OAuth, or account key paths.
 - Compare CallerIpAddress with the expected source network.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### Firewall and deny trend
 
 ```kusto
@@ -82,7 +84,6 @@ StorageBlobLogs
 
 - A spike from a single IP often indicates firewall or route changes.
 - Mixed StatusText values can mean both auth and network controls are involved.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 ### RBAC-related control plane changes
 
 ```kusto
@@ -97,9 +98,14 @@ AzureActivity
 
 - Use this to correlate role assignment changes with the first failure time.
 - Storage account writes often reveal public-network-access or firewall changes.
-- Correlate the time range with the exact complaint window and any recent configuration change.
 
 ## CLI Commands for Fixes
+
+After every fix step below, apply the same closing discipline:
+
+- Record the command output in the incident timeline.
+- Re-test from the same client identity and network path that originally failed.
+- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ### Fix step 1: Inspect current network and auth posture
 
@@ -119,10 +125,6 @@ az storage account show \
 | `--query` | JMESPath expression selecting public network access, public blob access, and firewall default action. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 2: Assign a Blob data role to the workload identity
 
 ```bash
@@ -143,10 +145,6 @@ az role assignment create \
 | `--scope` | Resource scope of the assignment, here the storage account ID. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 3: Allow the expected subnet when public access remains enabled by policy
 
 ```bash
@@ -165,10 +163,6 @@ az storage account network-rule add \
 | `--subnet` | Resource ID of the subnet allowed to reach the account. |
 | `--output` | Output format for the result. |
 
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 ### Fix step 4: Generate a user delegation SAS for short-lived troubleshooting validation
 
 ```bash
@@ -194,11 +188,6 @@ az storage container generate-sas \
 | `--expiry` | UTC expiry time of the SAS token. |
 | `--https-only` | Restrict the SAS to HTTPS requests. |
 | `--output` | Output format for the result. |
-
-
-- Record the command output in the incident timeline.
-- Re-test from the same client identity and network path that originally failed.
-- If the change is temporary, document the rollback and a permanent follow-up action.
 
 ## Prevention Checklist
 
