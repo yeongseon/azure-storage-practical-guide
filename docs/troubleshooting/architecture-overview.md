@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage access behavior is shaped by network rules, private endpoints, authorization, and scalability limits.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+      verified: false
+    - claim: Private endpoints and DNS design change the path clients use to reach storage services.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+      verified: false
 ---
 
 # Troubleshooting Architecture Overview

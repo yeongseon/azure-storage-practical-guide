@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage offers LRS, ZRS, GRS, GZRS, and read-access variants for redundancy.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+      verified: false
+    - claim: Geo-redundant options replicate data to a secondary region for regional disaster scenarios.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+      verified: false
 ---
 
 # Redundancy and Durability

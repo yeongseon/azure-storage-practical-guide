@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Private endpoints connect storage subresources to private IPs inside virtual networks.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+      verified: false
+    - claim: Private endpoint deployments require correct DNS resolution to the private endpoint address.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints#dns-configuration
+      verified: false
 ---
 
 # Use Private Endpoints

@@ -4,7 +4,18 @@ content_sources:
     - id: troubleshooting-playbooks-access-private-endpoint-and-dns-issues
       type: flowchart
       source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity
+      mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/private-link/troubleshoot-private-endpoint-connectivity-problems
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Private endpoint incidents frequently trace back to DNS resolution and routing problems rather than storage service failure.
+      source: https://learn.microsoft.com/en-us/troubleshoot/azure/private-link/troubleshoot-private-endpoint-connectivity-problems
+      verified: false
+    - claim: Azure Storage private endpoints require service-specific DNS configuration for correct name resolution.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints#dns-configuration
+      verified: false
 ---
 
 # Private Endpoint and DNS Issues
@@ -97,5 +108,5 @@ flowchart TD
 
 ## Sources
 
-- [Troubleshoot Private Endpoint connectivity](https://learn.microsoft.com/en-us/azure/private-link/troubleshoot-private-endpoint-connectivity)
+- [Troubleshoot Azure Private Endpoint connectivity problems](https://learn.microsoft.com/en-us/troubleshoot/azure/private-link/troubleshoot-private-endpoint-connectivity-problems)
 - [DNS configuration for Azure Storage private endpoints](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints#dns-configuration)

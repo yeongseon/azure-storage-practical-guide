@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Monitor provides metrics and logs for Azure Storage and Blob workloads.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage
+      verified: false
+    - claim: Diagnostic data helps troubleshoot request behavior and storage service incidents.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-analytics-logging
+      verified: false
 ---
 
 # Monitoring and Alerting

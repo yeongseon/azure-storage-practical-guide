@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Files design should account for documented scale targets and performance tiers.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-scale-targets
+      verified: false
+    - claim: Azure Files supports directory and identity integration patterns that affect how shares are secured.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
+      verified: false
 ---
 
 # File Share Best Practices

@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Files provides fully managed file shares that can be accessed over SMB or NFS.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+      verified: false
+    - claim: Azure Files planning includes choosing the right performance tier for workload requirements.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning#performance-tiers
+      verified: false
 ---
 
 # File Storage Basics

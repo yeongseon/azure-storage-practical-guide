@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage supports Microsoft Entra authorization, Shared Key, and SAS-based access patterns.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+      verified: false
+    - claim: Azure RBAC data roles control data-plane access to storage resources.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access
+      verified: false
 ---
 
 # Configure Access and Identity

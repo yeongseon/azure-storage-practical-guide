@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Storage throttling must be evaluated against documented scalability targets for the account or service.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+      verified: false
+    - claim: Blob workloads can throttle when request patterns exceed documented Blob Storage scalability guidance.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/scalability-targets
+      verified: false
 ---
 
 # Throttling and Performance Issues

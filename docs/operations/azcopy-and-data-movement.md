@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: AzCopy v10 is the Microsoft command-line utility for moving data into and out of Azure Storage.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+      verified: false
+    - claim: AzCopy performance can be improved by tuning concurrency and transfer design for the workload.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-optimize
+      verified: false
 ---
 
 # AzCopy and Data Movement

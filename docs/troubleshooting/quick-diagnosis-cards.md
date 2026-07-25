@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/troubleshoot-storage-client-application-errors
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Blob performance triage should use the Azure Blob Storage performance checklist as a reference point.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+      verified: false
+    - claim: Recovering deleted blobs depends on soft delete retention and restore behavior.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs
+      verified: false
 ---
 
 # Quick Diagnosis Cards

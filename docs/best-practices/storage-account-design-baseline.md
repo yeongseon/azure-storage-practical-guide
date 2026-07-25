@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Storage account design starts with choosing the correct account kind, redundancy, networking, and access patterns.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+      verified: false
+    - claim: Redundancy choices affect durability, availability, and cost tradeoffs for Azure Storage.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+      verified: false
 ---
 
 # Storage Account Design Baseline

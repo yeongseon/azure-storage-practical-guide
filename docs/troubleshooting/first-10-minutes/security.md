@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage authorizes data access through Microsoft Entra ID, Shared Key, or SAS mechanisms.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+      verified: false
+    - claim: SAS failures commonly come from expiry, scope, permission, or policy mismatches.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview
+      verified: false
 ---
 
 # First 10 Minutes: Security

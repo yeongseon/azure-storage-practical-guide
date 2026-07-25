@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage is a durable and highly available cloud storage platform for multiple data services.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
+      verified: false
+    - claim: A storage account can expose Blob, File, Queue, and Table services under one account boundary.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+      verified: false
 ---
 
 # How Azure Storage Works

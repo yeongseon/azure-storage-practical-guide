@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage authorization failures can result from missing data-plane permissions or identity scope problems.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+      verified: false
+    - claim: Azure RBAC troubleshooting for Storage includes checking role assignments and propagation state.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth-aad-rbac-portal
+      verified: false
 ---
 
 # Authorization Failures

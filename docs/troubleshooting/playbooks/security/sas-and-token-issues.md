@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Shared access signatures grant delegated access by encoding scope, permissions, and time limits.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview
+      verified: false
+    - claim: SAS best practices include constraining permissions, expiry, and distribution of tokens.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#best-practices
+      verified: false
 ---
 
 # SAS and Token Issues

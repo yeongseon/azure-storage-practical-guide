@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Lifecycle management policies can transition or delete blob data based on age and filters.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+      verified: false
+    - claim: Lifecycle policies are configured as management policy rules on supported storage accounts.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure
+      verified: false
 ---
 
 # Manage Lifecycle Policies

@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Lifecycle management rules can automatically tier or delete blob data based on conditions.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts
+      verified: false
+    - claim: Soft delete complements lifecycle rules by enabling recovery of deleted blobs.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview
+      verified: false
 ---
 
 # Lifecycle Management Best Practices
