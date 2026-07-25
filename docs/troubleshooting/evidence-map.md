@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Storage incident evidence often comes from network rules, private endpoints, authorization paths, and performance telemetry.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+      verified: false
+    - claim: Blob recovery evidence depends on whether soft delete and related protection settings are enabled.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs
+      verified: false
 ---
 
 # Evidence Map for Storage Troubleshooting

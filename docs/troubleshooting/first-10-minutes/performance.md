@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Blob performance triage should compare workload behavior to documented scalability targets.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+      verified: false
+    - claim: AzCopy transfer performance depends on workload shape and transfer optimization settings.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-optimize
+      verified: false
 ---
 
 # First 10 Minutes: Performance

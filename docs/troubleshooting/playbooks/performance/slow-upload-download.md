@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Slow blob transfers should be compared against documented performance guidance and workload design patterns.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+      verified: false
+    - claim: AzCopy transfer speed can be affected by transfer configuration and environment limits.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-optimize
+      verified: false
 ---
 
 # Slow Upload / Download

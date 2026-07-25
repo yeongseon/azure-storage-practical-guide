@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Blob lifecycle rules evaluate data against rule scope, supported blob types, and age conditions.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+      verified: false
+    - claim: Lifecycle policies are configured and updated as management policy documents on the storage account.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure
+      verified: false
 ---
 
 # Lifecycle Policy Not Working

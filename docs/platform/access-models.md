@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage supports Microsoft Entra ID, shared key, and shared access signature authorization models.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-auth
+      verified: false
+    - claim: Shared access signatures delegate limited access by constraining permissions, scope, and time.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview
+      verified: false
 ---
 
 # Access Models

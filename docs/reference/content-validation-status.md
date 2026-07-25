@@ -1,124 +1,133 @@
 ---
-description: Diagram source metadata policy for the Azure Storage practical guide, and the CI tooling that keeps that metadata honest today.
+description: Content-validation dashboard for in-scope Azure Storage factual-claim pages and the metadata status recorded on each page.
 content_sources:
   diagrams:
     - id: reference-content-validation-status
       type: pie
       source: self-generated
-      justification: "Manually authored summary of repository diagram-source declarations. Not regenerated from live repo state."
-      based_on:
-        - https://learn.microsoft.com/en-us/azure/storage/
-    - id: reference-content-validation-status-2
-      type: flowchart
-      source: self-generated
-      justification: "Manually authored diagram illustrating the declared source-metadata flow. Not regenerated from live repo state."
+      justification: "Auto-generated dashboard summarizing content_validation metadata across in-scope documents."
       based_on:
         - https://learn.microsoft.com/en-us/azure/storage/
 ---
 
-# Content Source Validation Status
+# Content Validation Status
 
-This page describes how diagram and content sources are declared in this repository, and what tooling is available today to validate those declarations.
+This page tracks `content_validation` metadata for in-scope factual-claim documents under `docs/platform/`, `docs/best-practices/`, `docs/operations/`, and `docs/troubleshooting/`. Start-here pages, tutorials, reference pages, contributing docs, and navigation-only indexes are intentionally out of scope.
 
-!!! note "Current state"
-    Diagram-level source metadata (`content_sources.diagrams`) is used across the repository, and the tooling below runs in CI to keep that metadata honest. **Document-level `content_validation` metadata is not yet adopted in this repository** — the schema is documented in [AGENTS.md](https://github.com/yeongseon/azure-storage-practical-guide/blob/main/AGENTS.md) as an aspirational policy and is tracked as future work. Do not read the absence of `content_validation` blocks as a validation failure; read it as "not yet implemented."
+Navigation-only indexes excluded from this dashboard: `docs/best-practices/index.md`, `docs/operations/index.md`, `docs/platform/index.md`, `docs/troubleshooting/first-10-minutes/index.md`, `docs/troubleshooting/index.md`, `docs/troubleshooting/playbooks/index.md`.
 
-## Diagram Inventory Snapshot
+## Summary
 
-*Snapshot date: 2026-04-10. Manually authored — this table does not update automatically when diagrams are added or reclassified.*
+*Generated: 2026-07-25*
 
-| Content Type | Total | MSLearn Adapted | Self-Generated | No Source |
-|---|---:|---:|---:|---:|
-| Mermaid Diagrams | 91 | 88 | 3 | 0 |
+| Content Type | Total | Verified | Pending | Unverified | No Metadata |
+|---|---:|---:|---:|---:|---:|
+| Mermaid Diagrams | 95 | 95 | 0 | 0 | 0 |
+| In-Scope Factual-Claim Documents | 49 | 0 | 49 | 0 | 0 |
 
 <!-- diagram-id: reference-content-validation-status -->
 ```mermaid
-pie title Content Source Status
-    "MSLearn Adapted" : 88
-    "Self-Generated" : 3
+pie title In-Scope Document Validation Status
+    "Pending Review" : 49
 ```
 
-A text-sections row was previously shown on this page with placeholder dashes. It has been removed because no text-level `content_validation` metadata is currently enforced or inventoried.
+## By Section
 
-## Source Type Policy
+### Platform
 
-The `content_sources.diagrams[].source` field must be one of the three values below. These are the exact set accepted by `scripts/validate_content_sources.py` today; any other value causes CI to fail.
+| Document | Status | Claims | Last Reviewed |
+|---|---|---|---|
+| [Access Models](../platform/access-models.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Blob Storage Basics](../platform/blob-storage-basics.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [File Storage Basics](../platform/file-storage-basics.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [How Azure Storage Works](../platform/how-azure-storage-works.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Networking And Private Access](../platform/networking-and-private-access.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Performance And Scaling Basics](../platform/performance-and-scaling-basics.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Queue And Table Basics](../platform/queue-and-table-basics.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Redundancy And Durability](../platform/redundancy-and-durability.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Storage Account Basics](../platform/storage-account-basics.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
 
-| Type | Description | Additional requirement |
-|---|---|---|
-| `mslearn` | Content directly from Microsoft Learn | `mslearn_url` OR a non-empty `based_on` list |
-| `mslearn-adapted` | Content adapted or synthesized from Microsoft Learn | `mslearn_url` OR a non-empty `based_on` list |
-| `self-generated` | Original content created for this guide | `justification` field |
+### Best Practices
 
-!!! note "Broader source vocabulary in AGENTS.md"
-    [AGENTS.md](https://github.com/yeongseon/azure-storage-practical-guide/blob/main/AGENTS.md) also references `community` and `unknown` source categories as part of the aspirational content-validation policy. Those values are **not** currently accepted by the validator on any Mermaid page in this repository; they belong to the same "not yet implemented" bucket as document-level `content_validation` metadata.
+| Document | Status | Claims | Last Reviewed |
+|---|---|---|---|
+| [Blob Best Practices](../best-practices/blob-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Common Anti Patterns](../best-practices/common-anti-patterns.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Cost Optimization Best Practices](../best-practices/cost-optimization-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [File Share Best Practices](../best-practices/file-share-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Lifecycle Management Best Practices](../best-practices/lifecycle-management-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Networking Best Practices](../best-practices/networking-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Performance Best Practices](../best-practices/performance-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Redundancy And Dr Best Practices](../best-practices/redundancy-and-dr-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Security Best Practices](../best-practices/security-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Storage Account Design Baseline](../best-practices/storage-account-design-baseline.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
 
-## How Diagram Sources Are Declared
+### Operations
 
-### Step 1: Add `content_sources` to the document frontmatter
+| Document | Status | Claims | Last Reviewed |
+|---|---|---|---|
+| [Azcopy And Data Movement](../operations/azcopy-and-data-movement.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Backup And Data Protection](../operations/backup-and-data-protection.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Configure Access And Identity](../operations/configure-access-and-identity.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Configure Network Rules](../operations/configure-network-rules.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Create Storage Account](../operations/create-storage-account.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Manage Containers And Shares](../operations/manage-containers-and-shares.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Manage Lifecycle Policies](../operations/manage-lifecycle-policies.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Monitoring And Alerting](../operations/monitoring-and-alerting.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Use Private Endpoints](../operations/use-private-endpoints.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
 
-<!-- diagram-id: reference-content-validation-status-2 -->
-```mermaid
-flowchart TD
-    A[Add content_sources frontmatter] --> B[Mark each Mermaid block with diagram-id]
-    B --> C[Run validate_content_sources.py locally]
-    C --> D{CI: Validate Content Sources workflow}
-    D -->|pass| E[PR merges]
-    D -->|fail| F[Fix metadata, re-run]
-```
+### Troubleshooting
+
+| Document | Status | Claims | Last Reviewed |
+|---|---|---|---|
+| [Architecture Overview](../troubleshooting/architecture-overview.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Decision Tree](../troubleshooting/decision-tree.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Evidence Map](../troubleshooting/evidence-map.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Access](../troubleshooting/first-10-minutes/access.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Performance](../troubleshooting/first-10-minutes/performance.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Security](../troubleshooting/first-10-minutes/security.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Mental Model](../troubleshooting/mental-model.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Cannot Access Storage Account](../troubleshooting/playbooks/access/cannot-access-storage-account.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [File Share Mount Issues](../troubleshooting/playbooks/access/file-share-mount-issues.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Private Endpoint And Dns Issues](../troubleshooting/playbooks/access/private-endpoint-and-dns-issues.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Public Vs Private Access Confusion](../troubleshooting/playbooks/access/public-vs-private-access-confusion.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Blob Access Denied](../troubleshooting/playbooks/blob-access-denied.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Lifecycle Policy Not Working](../troubleshooting/playbooks/lifecycle-policy-not-working.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Data Protection And Recovery Issues](../troubleshooting/playbooks/performance/data-protection-and-recovery-issues.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Slow Upload Download](../troubleshooting/playbooks/performance/slow-upload-download.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Throttling And Performance Issues](../troubleshooting/playbooks/performance/throttling-and-performance-issues.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Replication Lag Issues](../troubleshooting/playbooks/replication-lag-issues.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Authorization Failures](../troubleshooting/playbooks/security/authorization-failures.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Sas And Token Issues](../troubleshooting/playbooks/security/sas-and-token-issues.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Storage Throttling](../troubleshooting/playbooks/storage-throttling.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Quick Diagnosis Cards](../troubleshooting/quick-diagnosis-cards.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+
+## Validation Status Values
+
+| Status | Description |
+|---|---|
+| `verified` | All core claims on the page were confirmed against Microsoft Learn sources. |
+| `pending_review` | The page has concrete core claims and source URLs, but one or more claims still need claim-level confirmation. |
+| `unverified` | The page carries metadata but no claim-level review has been completed yet. |
+
+## How to Update
+
+Add a `content_validation` block only to in-scope factual-claim pages:
 
 ```yaml
 ---
-content_sources:
-  diagrams:
-    - id: architecture
-      type: flowchart
-      source: mslearn-adapted
-      based_on:
-        - https://learn.microsoft.com/en-us/azure/storage/
+content_validation:
+  status: pending_review
+  last_reviewed: 2026-07-25
+  reviewer: agent
+  core_claims:
+    - claim: "Azure Storage supports locally redundant, zone-redundant, geo-redundant, and geo-zone-redundant replication options."
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+      verified: false
 ---
 ```
 
-### Step 2: Mark each Mermaid block with its `diagram-id`
-
-```markdown
-<!-- diagram-id: architecture -->
-​```mermaid
-flowchart TD
-    A --> B
-​```
-```
-
-### Step 3: Run the diagram source validator
-
-```bash
-python3 scripts/validate_content_sources.py
-```
-
-This is the same validator that runs in the `Validate Content Sources` CI workflow.
-
-## Tooling Available in This Repository
-
-The following scripts run against the repository today. There is no dashboard-generator script in this repository, so this page is maintained manually rather than being regenerated.
-
-| Script | Purpose | Where it runs |
-|---|---|---|
-| `scripts/validate_content_sources.py` | Enforces that every Mermaid block has a `diagram-id` HTML comment and a matching `content_sources.diagrams[]` entry with a valid `source` value. | **Blocking** PR check (`Validate Content Sources`) |
-| `scripts/validate_mermaid_format.py` | Enforces Mermaid orientation rules and formatting conventions. | **Blocking** PR check (same workflow) |
-| `scripts/validate_mermaid_syntax.py` | Parses each Mermaid block to catch syntax errors before build. | **Blocking** PR check (same workflow) |
-| `scripts/validate_mslearn_urls.py` | Checks that Microsoft Learn URLs cited in `content_sources` are reachable. | **Reporting only:** runs on push to `main` with `continue-on-error`, not a blocking PR gate |
-| `scripts/generate_validation_status.py` | Regenerates `docs/reference/validation-status.md` — the **tutorial** validation dashboard, not this page. | Manual invocation by contributors |
-
-There is intentionally no `scripts/generate_content_validation_status.py` in this repository. Earlier revisions of this page referenced one, which was misleading; this page is authored by hand.
-
-## Validation Rules Enforced Today
-
-!!! danger "Enforced in CI"
-    1. Every Mermaid block must have a `diagram-id` HTML comment.
-    2. Every declared `diagram-id` must have a matching `content_sources.diagrams[]` entry.
-    3. `mslearn-adapted` and `mslearn` diagrams must have either an `mslearn_url` field or a **non-empty** `based_on` list. The validator does **not** currently verify that every `based_on` URL points to `learn.microsoft.com`; that is a repository convention, not an enforced rule.
-    4. `self-generated` diagrams must include a `justification` field.
-    5. Mermaid syntax must parse successfully.
+The generator fails if a claim contains the placeholder marker `primary source basis`.
 
 ## See Also
 

@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: A storage account is the top-level namespace for Azure Storage services and data.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+      verified: false
+    - claim: General-purpose v2 accounts are the recommended default for most Azure Storage workloads.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview#types-of-storage-accounts
+      verified: false
 ---
 
 # Storage Account Basics

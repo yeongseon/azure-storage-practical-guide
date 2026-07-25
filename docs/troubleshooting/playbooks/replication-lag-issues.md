@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Geo-redundant storage replicates data asynchronously to the secondary region.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+      verified: false
+    - claim: Disaster recovery guidance for Azure Storage depends on the selected redundancy option and failover model.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance
+      verified: false
 ---
 
 # Replication Lag Issues

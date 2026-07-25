@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage authorization is evaluated separately from network path controls.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access
+      verified: false
+    - claim: Blob recovery behavior depends on soft delete and other enabled data protection features.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs
+      verified: false
 ---
 
 # Troubleshooting Mental Model

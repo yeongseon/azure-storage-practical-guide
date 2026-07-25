@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Queue Storage provides durable message queues for asynchronous application communication.
+      source: https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+      verified: false
+    - claim: Azure Table Storage is a NoSQL key-attribute store that uses partition and row keys.
+      source: https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview
+      verified: false
 ---
 
 # Queue and Table Basics

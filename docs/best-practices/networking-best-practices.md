@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Firewall rules and private endpoints reduce public exposure for storage accounts.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+      verified: false
+    - claim: Private endpoint deployments for storage require correct DNS design and validation.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+      verified: false
 ---
 
 # Networking Best Practices

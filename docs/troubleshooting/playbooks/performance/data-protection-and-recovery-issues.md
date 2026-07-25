@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Soft delete allows deleted blobs to be restored during the configured retention period.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview#restoring-soft-deleted-blobs
+      verified: false
+    - claim: Blob data protection behavior depends on which recovery features are enabled on the account.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview
+      verified: false
 ---
 
 # Data Protection and Recovery Issues

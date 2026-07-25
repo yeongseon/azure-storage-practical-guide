@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Firewall rules and private endpoints are common first checks for Azure Storage access failures.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+      verified: false
+    - claim: Private endpoint DNS resolution determines whether clients reach the intended private path.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+      verified: false
 ---
 
 # First 10 Minutes: Access

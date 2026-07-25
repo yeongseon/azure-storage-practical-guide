@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Blob containers organize object data within Azure Blob Storage.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+      verified: false
+    - claim: Azure Files shares provide managed file shares from Azure Storage accounts.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+      verified: false
 ---
 
 # Manage Containers and Shares

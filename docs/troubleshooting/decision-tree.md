@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Network rules and private endpoints can block storage access even when the storage account itself is healthy.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+      verified: false
+    - claim: Performance triage should compare symptoms against documented scalability targets and workload guidance.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+      verified: false
 ---
 
 # Troubleshooting Decision Tree

@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Shared Key and overly broad network exposure increase risk in Azure Storage deployments.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations
+      verified: false
+    - claim: Lifecycle automation and access-tier selection should match real access patterns to avoid waste.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+      verified: false
 ---
 
 # Common Anti-Patterns

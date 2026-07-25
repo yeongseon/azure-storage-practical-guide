@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Access tiers and lifecycle automation are major cost controls for blob data.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-plan-manage-costs
+      verified: false
+    - claim: Reserved capacity can reduce cost for predictable blob storage consumption.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-reserved-capacity
+      verified: false
 ---
 
 # Cost Optimization Best Practices

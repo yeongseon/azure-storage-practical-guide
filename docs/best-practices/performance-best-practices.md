@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Blob performance guidance recommends workload-aware partitioning and request shaping.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+      verified: false
+    - claim: Azure Files workloads should be planned against documented file share scale targets.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-scale-targets
+      verified: false
 ---
 
 # Performance Best Practices

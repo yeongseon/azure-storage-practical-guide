@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Redundancy selection determines the durability and disaster recovery characteristics of a storage account.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance
+      verified: false
+    - claim: RA-GRS and RA-GZRS can provide read access to the secondary region for suitable workloads.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-designing-ha-apps-with-ragrs
+      verified: false
 ---
 
 # Redundancy and DR Best Practices

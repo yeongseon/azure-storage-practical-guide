@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Blob data protection can combine soft delete, versioning, and restore features.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview
+      verified: false
+    - claim: Soft delete allows deleted blobs to be recovered within the configured retention window.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview
+      verified: false
 ---
 
 # Backup and Data Protection

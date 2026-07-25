@@ -9,6 +9,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Microsoft recommends preferring Microsoft Entra authorization for Azure Storage data access when possible.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-security-guide
+      verified: false
+    - claim: Blob security guidance includes least privilege, network restriction, and data protection controls.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations
+      verified: false
 ---
 
 # Security Best Practices

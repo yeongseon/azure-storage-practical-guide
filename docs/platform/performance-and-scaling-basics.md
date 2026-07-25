@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Standard storage accounts have documented scalability targets for capacity and throughput.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+      verified: false
+    - claim: Blob performance guidance emphasizes partition-aware naming and request distribution.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+      verified: false
 ---
 
 # Performance and Scaling Basics

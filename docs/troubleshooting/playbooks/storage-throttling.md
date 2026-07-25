@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Storage throttling analysis should compare workload behavior to documented performance checklists and scale targets.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
+      verified: false
+    - claim: Azure Files and standard storage accounts have published scale targets that influence throttling symptoms.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account
+      verified: false
 ---
 
 # Storage Throttling

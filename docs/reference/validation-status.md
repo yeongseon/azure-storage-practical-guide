@@ -1,10 +1,11 @@
 ---
+description: Tutorial-validation dashboard for Azure Storage lab guides, showing which labs have real execution metadata and which remain untested.
 content_sources:
   diagrams:
     - id: reference-validation-status
       type: pie
       source: self-generated
-      justification: "Repository validation summary generated from local tutorial validation metadata."
+      justification: "Auto-generated tutorial validation dashboard based on lab frontmatter metadata."
       based_on:
         - https://learn.microsoft.com/en-us/azure/storage/
 ---
@@ -15,7 +16,7 @@ This page tracks which lab guides have been validated against real Azure deploym
 
 ## Summary
 
-*Generated: 2026-04-09*
+*Generated: 2026-07-25*
 
 | Metric | Count |
 |---|---:|
@@ -35,11 +36,11 @@ pie title Tutorial Validation Status
 
 | Lab Guide | az-cli | Bicep | Last Tested | Status |
 |---|---|---|---|---|
-| [Lab 01 Blob Lifecycle Management](../tutorials/lab-guides/lab-01-blob-lifecycle-management.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 02 Private Endpoint Storage](../tutorials/lab-guides/lab-02-private-endpoint-storage.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 03 Azure File Share Ad Integration](../tutorials/lab-guides/lab-03-azure-file-share-ad-integration.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 04 Storage Replication Failover](../tutorials/lab-guides/lab-04-storage-replication-failover.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 05 Static Website Cdn](../tutorials/lab-guides/lab-05-static-website-cdn.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
+| [Lab 01 Blob Lifecycle Management](../tutorials/lab-guides/lab-01-blob-lifecycle-management.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 02 Private Endpoint Storage](../tutorials/lab-guides/lab-02-private-endpoint-storage.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 03 Azure File Share Ad Integration](../tutorials/lab-guides/lab-03-azure-file-share-ad-integration.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 04 Storage Replication Failover](../tutorials/lab-guides/lab-04-storage-replication-failover.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 05 Static Website Cdn](../tutorials/lab-guides/lab-05-static-website-cdn.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
 
 ## How to Update
 
@@ -47,6 +48,8 @@ To mark a lab guide as validated, add a `validation` block to its YAML frontmatt
 
 ```yaml
 ---
+hide:
+  - toc
 validation:
   az_cli:
     last_tested: 2026-04-09
@@ -75,4 +78,8 @@ python3 scripts/generate_validation_status.py
 - [Tutorials](../tutorials/index.md)
 - [Lab Guides](../tutorials/lab-guides/index.md)
 - [Storage Service Selection Guide](storage-service-selection-guide.md)
+
+## Sources
+
+- <https://learn.microsoft.com/en-us/azure/storage/>
 

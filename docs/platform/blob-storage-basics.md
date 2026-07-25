@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Blob Storage stores massive amounts of unstructured object data in containers.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+      verified: false
+    - claim: Blob data supports access tiers such as hot, cool, and archive for different access patterns.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+      verified: false
 ---
 
 # Blob Storage Basics

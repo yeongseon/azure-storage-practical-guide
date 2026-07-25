@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Files mount failures often come from protocol prerequisites, blocked ports, or authentication mismatches.
+      source: https://learn.microsoft.com/en-us/azure/storage/files/storage-troubleshoot-windows-file-connection-problems
+      verified: false
+    - claim: Azure Files connectivity troubleshooting includes validating SMB or NFS prerequisites from the client network.
+      source: https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/files/connectivity/files-troubleshoot
+      verified: false
 ---
 
 # File Share Mount Issues

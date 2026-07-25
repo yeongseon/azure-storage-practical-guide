@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Storage account names must be globally unique and follow documented naming constraints.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create
+      verified: false
+    - claim: General-purpose v2 storage accounts are the current general-purpose default for most workloads.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+      verified: false
 ---
 
 # Create Storage Account

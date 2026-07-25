@@ -127,6 +127,22 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     tutorials.sort(key=lambda tutorial: tutorial["filename"])
 
     lines: list[str] = []
+    lines.append("---")
+    lines.append(
+        "description: Tutorial-validation dashboard for Azure Storage lab guides, showing which labs have real execution metadata and which remain untested."
+    )
+    lines.append("content_sources:")
+    lines.append("  diagrams:")
+    lines.append("    - id: reference-validation-status")
+    lines.append("      type: pie")
+    lines.append("      source: self-generated")
+    lines.append(
+        '      justification: "Auto-generated tutorial validation dashboard based on lab frontmatter metadata."'
+    )
+    lines.append("      based_on:")
+    lines.append("        - https://learn.microsoft.com/en-us/azure/storage/")
+    lines.append("---")
+    lines.append("")
     lines.append("# Tutorial Validation Status")
     lines.append("")
     lines.append(
@@ -147,8 +163,9 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append(f"| ❌ Failed | {failed} |")
     lines.append(f"| ➖ Not tested | {not_tested} |")
     lines.append("")
+    lines.append("<!-- diagram-id: reference-validation-status -->")
     lines.append("```mermaid")
-    lines.append('pie title Tutorial Validation Status')
+    lines.append("pie title Tutorial Validation Status")
     if validated > 0:
         lines.append(f'    "Validated" : {validated}')
     if stale > 0:
@@ -219,7 +236,7 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append("python3 scripts/generate_validation_status.py")
     lines.append("```")
     lines.append("")
-    lines.append("!!! info \"Validation fields\"")
+    lines.append('!!! info "Validation fields"')
     lines.append("    - `result`: `pass`, `fail`, or `not_tested`")
     lines.append("    - `last_tested`: ISO date (YYYY-MM-DD) or `null`")
     lines.append("    - `cli_version`: Azure CLI version used")
@@ -231,7 +248,13 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append("")
     lines.append("- [Tutorials](../tutorials/index.md)")
     lines.append("- [Lab Guides](../tutorials/lab-guides/index.md)")
-    lines.append("- [Storage Service Selection Guide](storage-service-selection-guide.md)")
+    lines.append(
+        "- [Storage Service Selection Guide](storage-service-selection-guide.md)"
+    )
+    lines.append("")
+    lines.append("## Sources")
+    lines.append("")
+    lines.append("- <https://learn.microsoft.com/en-us/azure/storage/>")
     lines.append("")
 
     return "\n".join(lines) + "\n"

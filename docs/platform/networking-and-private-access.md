@@ -5,6 +5,17 @@ content_sources:
       type: flowchart
       source: mslearn-adapted
       mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+content_validation:
+  status: pending_review
+  last_reviewed: '2026-07-25'
+  reviewer: agent
+  core_claims:
+    - claim: Azure Storage firewalls and virtual network rules restrict which networks can reach a storage account.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
+      verified: false
+    - claim: A private endpoint assigns a private IP in a virtual network to a storage subresource connection.
+      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+      verified: false
 ---
 
 # Networking and Private Access
