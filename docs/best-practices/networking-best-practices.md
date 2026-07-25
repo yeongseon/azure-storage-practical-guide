@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Firewall rules and private endpoints reduce public exposure for storage accounts.
+    - claim: Azure Storage firewall rules restrict access to explicitly allowed sources on the public endpoint.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
       verified: true
-    - claim: Private endpoint deployments for storage require correct DNS design and validation.
+    - claim: Private endpoint guidance says clients should keep using the same connection string and rely on DNS to route traffic to the private endpoint.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
       verified: true
 ---

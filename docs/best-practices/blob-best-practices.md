@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Blob Storage performance depends on partitioning strategy, naming, and request distribution.
+    - claim: Blob performance guidance recommends using hash prefixes when small block sizes make partition naming important for load distribution.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
       verified: true
-    - claim: Blob workloads should use least-privilege security controls and avoid unnecessary public exposure.
+    - claim: Blob security guidance recommends Microsoft Entra ID authorization, least-privilege access, and avoiding unnecessary anonymous exposure.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations
       verified: true
 ---

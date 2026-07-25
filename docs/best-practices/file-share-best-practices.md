@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Azure Files design should account for documented scale targets and performance tiers.
+    - claim: Azure Files documentation says you should test your usage pattern against documented scale and performance targets.
       source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-scale-targets
       verified: true
-    - claim: Azure Files supports directory and identity integration patterns that affect how shares are secured.
+    - claim: Azure Files supports identity-based authentication over SMB by using AD DS, Microsoft Entra Domain Services, or Microsoft Entra Kerberos.
       source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview
       verified: true
 ---

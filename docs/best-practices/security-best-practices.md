@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Microsoft recommends preferring Microsoft Entra authorization for Azure Storage data access when possible.
-      source: https://learn.microsoft.com/en-us/azure/storage/common/storage-security-guide
+    - claim: Blob security guidance says Microsoft Entra ID provides superior security and ease of use over Shared Key for authorizing blob access.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations
       verified: true
-    - claim: Blob security guidance includes least privilege, network restriction, and data protection controls.
+    - claim: Blob security guidance includes least-privilege authorization, firewall and private endpoint controls, and data protection recommendations.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations
       verified: true
 ---

@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Storage account design starts with choosing the correct account kind, redundancy, networking, and access patterns.
+    - claim: Azure Storage offers several storage account types, and Microsoft recommends standard general-purpose v2 accounts for most scenarios.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
       verified: true
-    - claim: Redundancy choices affect durability, availability, and cost tradeoffs for Azure Storage.
+    - claim: Azure Storage redundancy guidance says you should choose a redundancy option by weighing lower cost against higher availability.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
       verified: true
 ---
