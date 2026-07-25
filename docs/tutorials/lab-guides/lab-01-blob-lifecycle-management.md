@@ -89,6 +89,14 @@ az storage container create \
     --auth-mode login \
     --output json
 
+mkdir -p lab-data/lifecycle/logs lab-data/lifecycle/archive
+cat > lab-data/lifecycle/logs/example-001.json <<'EOF'
+{"dataset":"logs","retention":"hot","message":"blob used for lifecycle validation"}
+EOF
+cat > lab-data/lifecycle/archive/example-365.json <<'EOF'
+{"dataset":"archive","retention":"long-term","message":"blob used for archive-tier policy review"}
+EOF
+
 az storage blob upload-batch \
     --account-name $STORAGE_NAME \
     --destination $CONTAINER_NAME \
@@ -118,6 +126,31 @@ az storage blob upload-batch \
 ### Step 3: Apply a lifecycle policy
 
 ```bash
+cat > lifecycle-policy.json <<'EOF'
+{
+  "rules": [
+    {
+      "enabled": true,
+      "name": "move-logs-through-tiers",
+      "type": "Lifecycle",
+      "definition": {
+        "filters": {
+          "blobTypes": ["blockBlob"],
+          "prefixMatch": ["logs/"]
+        },
+        "actions": {
+          "baseBlob": {
+            "tierToCool": { "daysAfterModificationGreaterThan": 30 },
+            "tierToArchive": { "daysAfterModificationGreaterThan": 180 },
+            "delete": { "daysAfterModificationGreaterThan": 365 }
+          }
+        }
+      }
+    }
+  ]
+}
+EOF
+
 az storage account management-policy create \
     --resource-group $RG \
     --account-name $STORAGE_NAME \
