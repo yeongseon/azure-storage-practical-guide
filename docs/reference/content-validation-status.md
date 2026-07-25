@@ -14,15 +14,11 @@ content_sources:
 
 This page tracks `content_validation` metadata for in-scope factual-claim documents under `docs/platform/`, `docs/best-practices/`, `docs/operations/`, and `docs/troubleshooting/`. Start-here pages, tutorials, reference pages, contributing docs, and navigation-only indexes are intentionally out of scope.
 
-This dashboard is generated from the committed repository state of the full `docs/` tree, not only from files touched in the current branch or pull request.
-
 Navigation-only indexes excluded from this dashboard: `docs/best-practices/index.md`, `docs/operations/index.md`, `docs/platform/index.md`, `docs/troubleshooting/first-10-minutes/index.md`, `docs/troubleshooting/index.md`, `docs/troubleshooting/playbooks/index.md`.
 
 ## Summary
 
 *Generated: 2026-07-25*
-
-Mermaid totals are a live count of fenced `mermaid` code blocks under `docs/**/*.md`.
 
 | Content Type | Total | Verified | Pending | Unverified | No Metadata |
 |---|---:|---:|---:|---:|---:|
