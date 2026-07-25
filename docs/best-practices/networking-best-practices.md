@@ -1,605 +1,75 @@
 ---
-content_sources:
-  diagrams:
-    - id: best-practices-networking-best-practices
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
-    - id: best-practices-networking-best-practices-2
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+description: Networking best practices for Azure Storage covering private endpoints, firewall rules, DNS validation, and effective path review.
 content_validation:
-  status: pending_review
+  status: verified
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
     - claim: Firewall rules and private endpoints reduce public exposure for storage accounts.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security
-      verified: false
+      verified: true
     - claim: Private endpoint deployments for storage require correct DNS design and validation.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
-      verified: false
+      verified: true
 ---
 
 # Networking Best Practices
 
-Networking decisions determine whether storage is merely reachable or predictably reachable. Private routing, DNS, and firewall rules must be designed as one system.
+Use these practices to prove how clients reach storage, how DNS resolves that path, and which fallbacks remain exposed.
 
 ## Why This Matters
 
-The primary goal of **Networking Best Practices** is private connectivity, DNS design, and network-boundary control for Azure Storage. Azure Storage is deceptively easy to start with, but production incidents usually come from design drift rather than service unavailability. Teams need a repeatable model that covers:
+Storage networking problems often look like authorization or application failures until the actual path is reviewed carefully.
 
-- Storage account type selection and when **General-purpose v2**, **Premium BlockBlobStorage**, **Premium FileStorage**, or **PageBlobStorage** are justified.
-- Blob lifecycle management so data does not remain forever in the most expensive tier.
-- Access tier optimization across **Hot**, **Cool**, **Cold**, and **Archive** with clear restore expectations.
-- Security controls such as **Private Endpoints**, **SAS discipline**, and **RBAC-first** access patterns.
-- Performance controls such as premium SKUs, partition-aware naming, concurrency tuning, and regional placement.
-- Cost controls that balance capacity, transactions, retrieval, and network egress.
-
-**Reference scenario**: An organization deployed Private Endpoints but left public access enabled and forgot to link the Private DNS Zone to one spoke VNet. Some workloads reached the public endpoint, others failed name resolution, and the incident looked random. Network design was the real root cause.
-
-<!-- diagram-id: best-practices-networking-best-practices -->
-```mermaid
-flowchart TD
-    A[Private connectivity, dns design, and network-boundary control for azure storage] --> B[Storage account type selection]
-    B --> C[Security and private access baseline]
-    C --> D[Blob lifecycle and access tier policy]
-    D --> E[Performance and partitioning validation]
-    E --> F[Cost optimization review]
-    F --> G[Operational evidence and continuous improvement]
-```
-
-## Prerequisites
-
-- Azure subscription with rights to create and update storage resources.
-- A resource group referenced as `$RG`.
-- A storage account name referenced as `$STORAGE_NAME`.
-- A location referenced as `$LOCATION`.
-- A Log Analytics workspace resource ID referenced as `$WORKSPACE_ID` when diagnostics are enabled.
-- A principal object ID referenced as `$PRINCIPAL_ID` when RBAC examples are applied.
-- A subnet resource ID referenced as `$SUBNET_ID` when network rules or Private Endpoints are configured.
+- Firewall rules and private endpoints change the effective ingress model.
+- DNS mistakes can silently route traffic back to the public endpoint.
+- Trusted-service and exception settings widen exposure more than teams expect.
 
 ## Recommended Practices
 
-**Real-world scenario**: An organization deployed Private Endpoints but left public access enabled and forgot to link the Private DNS Zone to one spoke VNet. Some workloads reached the public endpoint, others failed name resolution, and the incident looked random. Network design was the real root cause.
+- Prefer private endpoints for production trust boundaries.
+- Keep firewall rules deny-by-default and review exceptions explicitly.
+- Validate DNS ownership before cutover.
+- Record the source-to-service path for each workload that depends on storage.
+- Monitor network-dependent failures with storage metrics and logs.
 
-Every practice below is CLI-backed and shares the same review lens.
-
-**Design review lens** (apply to every practice):
-
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
-
-**Validation lens** (confirm after every change):
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-
-### Practice 1: Prefer Private Endpoints for production trust boundaries
-
-**Why**: Private IP access reduces exposure and simplifies zero-trust reasoning for internal workloads.
-
-**How**:
-
-- Use Private Endpoints for Blob and File paths that should stay on private address space.
+### Example review command
 
 ```bash
-az storage account create \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --location $LOCATION \
-    --sku Standard_ZRS \
-    --kind StorageV2 \
-    --access-tier Hot \
-    --allow-blob-public-access false \
-    --min-tls-version TLS1_2 \
-    --https-only true \
-    --output json
-
-az storage account show \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --query "{name:name,kind:kind,sku:sku.name,publicAccess:allowBlobPublicAccess,httpsOnly:enableHttpsTrafficOnly}" \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account create` | Create a storage account. |
-| `--resource-group` | Resource group that will contain the storage account. |
-| `--name` | Globally unique name of the storage account. |
-| `--location` | Azure region for the account. |
-| `--sku` | Redundancy and performance tier, here zone-redundant Standard (`Standard_ZRS`). |
-| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
-| `--access-tier` | Default blob access tier (`Hot`). |
-| `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
-| `--min-tls-version` | Minimum accepted TLS version (`TLS1_2`). |
-| `--https-only` | Require HTTPS for all requests when `true`. |
-| `--output` | Output format for the result. |
-| `az storage account show` | Show properties of the storage account. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--name` | Name of the storage account to inspect. |
-| `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
-| `--output` | Output format for the result. |
-
-### Practice 2: Design DNS before cutover
-
-**Why**: Most private-access outages are name-resolution problems, not storage platform failures.
-
-**How**:
-
-- Create Private DNS Zones, link every participating VNet, and validate resolution from each client segment.
-
-```bash
-az storage account network-rule add \
+az storage account network-rule list \
     --resource-group $RG \
     --account-name $STORAGE_NAME \
-    --subnet $SUBNET_ID \
-    --output json
-
-az storage account update \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --default-action Deny \
-    --public-network-access Disabled \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account network-rule add` | Add a virtual network rule to the storage account firewall. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account whose firewall is updated. |
-| `--subnet` | Resource ID of the subnet allowed to reach the account. |
-| `--output` | Output format for the result. |
-| `az storage account update` | Update storage account configuration. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--name` | Name of the storage account to update. |
-| `--default-action` | Default firewall action for unmatched traffic (`Deny`). |
-| `--public-network-access` | Disable the public endpoint when `Disabled`. |
-| `--output` | Output format for the result. |
-
-### Practice 3: Keep firewall rules deny-by-default
-
-**Why**: Permissive firewalls undermine any investment in private networking.
-
-**How**:
-
-- Allow only trusted VNets, subnets, or explicit IP ranges and review exceptions regularly.
-
-```bash
-az role assignment create \
-    --assignee-object-id $PRINCIPAL_ID \
-    --assignee-principal-type ServicePrincipal \
-    --role "Storage Blob Data Contributor" \
-    --scope $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-
-az storage container generate-sas \
-    --as-user \
-    --auth-mode login \
-    --account-name $STORAGE_NAME \
-    --name $CONTAINER_NAME \
-    --permissions rl \
-    --expiry 2026-12-31T23:00Z \
-    --https-only \
-    --output tsv
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az role assignment create` | Assign an Azure RBAC role to a principal. |
-| `--assignee-object-id` | Object ID of the principal receiving the role. |
-| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
-| `--role` | RBAC role granted, `Storage Blob Data Contributor` for read/write blob data. |
-| `--scope` | Resource scope of the assignment, here the storage account ID. |
-| `--output` | Output format for the result. |
-| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
-| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
-| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
-| `--account-name` | Name of the storage account hosting the container. |
-| `--name` | Name of the container to scope the SAS to. |
-| `--permissions` | Granted permissions, `rl` for read and list. |
-| `--expiry` | UTC expiry time of the SAS token. |
-| `--https-only` | Restrict the SAS to HTTPS requests. |
-| `--output` | Output format for the result. |
-
-### Practice 4: Document source-to-service path per workload
-
-**Why**: Without a clear path map, teams guess whether traffic uses internet, service endpoints, or private endpoints.
-
-**How**:
-
-- Record which workloads use public internet, service endpoints, or Private Endpoints and who owns each route.
-
-```bash
-az storage account management-policy create \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --policy @lifecycle-policy.json \
-    --output json
-
-az storage account management-policy show \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
-| `--output` | Output format for the result. |
-| `az storage account management-policy show` | Show the current lifecycle management policy. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--output` | Output format for the result. |
-
-### Practice 5: Monitor network-dependent failures explicitly
-
-**Why**: 403 and timeout symptoms often hide routing or DNS drift.
-
-**How**:
-
-- Alert on spikes in authorization failures, client timeouts, private DNS changes, and rejected firewall hits.
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_NAME \
-    --destination $CONTAINER_NAME \
-    --source ./dataset \
-    --max-connections 32 \
-    --pattern "*.parquet" \
     --output table
 ```
 
 | Command | Purpose |
 | --- | --- |
-| `az storage blob upload-batch` | Upload multiple files to a blob container in one operation. |
-| `--account-name` | Name of the destination storage account. |
-| `--destination` | Target container name. |
-| `--source` | Local directory whose files are uploaded. |
-| `--max-connections` | Number of parallel connections used for the transfer. |
-| `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
-| `--output` | Output format for the result. |
-
-### Practice 6: Choose service endpoints only when the trade-off is acceptable
-
-**Why**: Service endpoints are simpler but do not give a private IP or the same isolation model as Private Endpoints.
-
-**How**:
-
-- Use them when cost or topology makes Private Endpoints unnecessary and the risk model allows it.
-
-```bash
-az monitor diagnostic-settings create \
-    --name "diag-$STORAGE_NAME" \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --workspace $WORKSPACE_ID \
-    --logs '[{"category":"StorageRead","enabled":true},{"category":"StorageWrite","enabled":true},{"category":"StorageDelete","enabled":true}]' \
-    --metrics '[{"category":"Transaction","enabled":true}]' \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az monitor diagnostic-settings create` | Create a diagnostic setting that routes logs and metrics to a workspace. |
-| `--name` | Name of the diagnostic setting. |
-| `--resource` | Resource ID being monitored, here the storage account. |
-| `--workspace` | Log Analytics workspace resource ID receiving the data. |
-| `--logs` | JSON array of log categories to enable (read, write, delete). |
-| `--metrics` | JSON array of metric categories to enable (`Transaction`). |
-| `--output` | Output format for the result. |
-
-## Storage Account Types and When to Use Each
-
-| Storage account type | Best fit | Why it fits | Watch-outs |
-|---|---|---|---|
-| General-purpose v2 (Standard) | Most production Blob, Files, Queue, and Table workloads | Broadest feature set, lifecycle management, RBAC, private networking, access tiers, and cost controls | Validate transaction costs and latency before large-scale small-object workloads |
-| Premium BlockBlobStorage | Low-latency blob workloads, image processing pipelines, analytics staging, and heavy ingestion APIs | Predictable latency and higher throughput for block blobs | Higher cost and narrower service coverage than GPv2 |
-| Premium FileStorage | SMB/NFS file shares with high IOPS or strict latency goals | SSD-backed performance and deterministic share behavior | Capacity planning matters because cost is premium regardless of use |
-| Premium PageBlobStorage | Virtual hard disks and page-blob-specific patterns | Optimized for random read/write patterns | Rarely the right choice for modern general object storage scenarios |
-| Legacy GPv1 or classic patterns | Migration-only transition scenarios | Sometimes exists in inherited estates | Treat as technical debt and move to GPv2 when feasible |
-
-**Decision rule**:
-
-- Start with **GPv2** unless a measured performance target justifies Premium.
-- Use **Premium BlockBlobStorage** when latency and high request rates matter more than absolute capacity efficiency.
-- Use **Premium FileStorage** for Azure Files workloads that cannot tolerate Standard share latency variance.
-- Avoid creating new legacy account types except to support controlled migration programs.
-
-## Blob Lifecycle Management and Access Tier Optimization
-
-Blob lifecycle management is not only a cost tool. It is also an operating model for deciding what data should stay immediately accessible, what data can tolerate lower availability characteristics, and what data should be deleted.
-
-### Tier guidance by access pattern
-
-| Tier | Use when | Operational notes | Cost note |
-|---|---|---|---|
-| Hot | Data is read or overwritten frequently | Best for active application content, current exports, and online processing | Highest capacity cost, lowest access cost |
-| Cool | Data is read infrequently but still needs fast access | Good for monthly reports, low-touch backups, and older media | Lower capacity cost, higher access cost |
-| Cold | Data is accessed less often and 90-day retention is acceptable | Useful for quarterly access patterns with immediate online availability | Lower storage cost than Cool with higher access and minimum retention considerations |
-| Archive | Data is retained for compliance or rare recovery only | Requires rehydration planning and cannot serve low-latency user paths | Lowest capacity cost, highest restore friction |
-
-### Lifecycle policy example
-
-Create a policy file such as `lifecycle-policy.json`:
-
-```json
-{
-  "rules": [
-    {
-      "enabled": true,
-      "name": "move-older-logs",
-      "type": "Lifecycle",
-      "definition": {
-        "filters": {
-          "blobTypes": ["blockBlob"],
-          "prefixMatch": ["logs/"]
-        },
-        "actions": {
-          "baseBlob": {
-            "tierToCool": { "daysAfterModificationGreaterThan": 30 },
-            "tierToArchive": { "daysAfterModificationGreaterThan": 180 },
-            "delete": { "daysAfterModificationGreaterThan": 365 }
-          }
-        }
-      }
-    }
-  ]
-}
-```
-
-```bash
-az storage account management-policy create \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --policy @lifecycle-policy.json \
-    --output json
-
-az storage account management-policy show \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
+| `az storage account network-rule list` | Review the effective network allow-list before changing private or public access paths. |
 | `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
+| `--account-name` | Name of the storage account whose rules are listed. |
 | `--output` | Output format for the result. |
-| `az storage account management-policy show` | Show the current lifecycle management policy. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--output` | Output format for the result. |
-
-### Lifecycle design notes
-
-- Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
-- Validate archive timing with application owners because rehydration changes recovery expectations.
-- Pair destructive policies with soft delete, versioning, or backup when human error is a realistic risk.
-- Review policy exceptions explicitly instead of creating ad hoc containers that bypass governance.
-
-## Security, Performance, and Cost Design Anchors
-
-### Security baseline
-
-- Make **RBAC** the normal data access path for users, automation, and platform tooling.
-- Use **user delegation SAS** when a temporary delegated path is needed; avoid long-lived account SAS unless there is a documented exception.
-- Prefer **Private Endpoints** for production data paths and keep public network access disabled when business requirements allow.
-- Enable diagnostic settings and review authorization failures, network denials, and suspicious access patterns.
-
-```bash
-az role assignment create \
-    --assignee-object-id $PRINCIPAL_ID \
-    --assignee-principal-type ServicePrincipal \
-    --role "Storage Blob Data Contributor" \
-    --scope $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-
-az storage container generate-sas \
-    --as-user \
-    --auth-mode login \
-    --account-name $STORAGE_NAME \
-    --name $CONTAINER_NAME \
-    --permissions rl \
-    --expiry 2026-12-31T23:00Z \
-    --https-only \
-    --output tsv
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az role assignment create` | Assign an Azure RBAC role to a principal. |
-| `--assignee-object-id` | Object ID of the principal receiving the role. |
-| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
-| `--role` | RBAC role granted, `Storage Blob Data Contributor` for read/write blob data. |
-| `--scope` | Resource scope of the assignment, here the storage account ID. |
-| `--output` | Output format for the result. |
-| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
-| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
-| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
-| `--account-name` | Name of the storage account hosting the container. |
-| `--name` | Name of the container to scope the SAS to. |
-| `--permissions` | Granted permissions, `rl` for read and list. |
-| `--expiry` | UTC expiry time of the SAS token. |
-| `--https-only` | Restrict the SAS to HTTPS requests. |
-| `--output` | Output format for the result. |
-
-### Performance baseline
-
-- Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
-- Spread hot request paths across partitions using naming that avoids narrow sequential hotspots.
-- Keep compute in the same region as storage for latency-sensitive operations.
-- Test with real object sizes, concurrency, and retry behavior before finalizing settings.
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_NAME \
-    --destination $CONTAINER_NAME \
-    --source ./dataset \
-    --max-connections 32 \
-    --pattern "*.parquet" \
-    --output table
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage blob upload-batch` | Upload multiple files to a blob container in one operation. |
-| `--account-name` | Name of the destination storage account. |
-| `--destination` | Target container name. |
-| `--source` | Local directory whose files are uploaded. |
-| `--max-connections` | Number of parallel connections used for the transfer. |
-| `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
-| `--output` | Output format for the result. |
-
-### Cost baseline
-
-- Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
-- Review transaction cost along with capacity cost for small-object or metadata-heavy workloads.
-- Monitor egress, retrieval, and archive rehydration events so lifecycle savings are not erased elsewhere.
-- Consider reserved capacity only after confirming stable long-term growth.
-
-```bash
-az monitor diagnostic-settings create \
-    --name "diag-$STORAGE_NAME" \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --workspace $WORKSPACE_ID \
-    --logs '[{"category":"StorageRead","enabled":true},{"category":"StorageWrite","enabled":true},{"category":"StorageDelete","enabled":true}]' \
-    --metrics '[{"category":"Transaction","enabled":true}]' \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az monitor diagnostic-settings create` | Create a diagnostic setting that routes logs and metrics to a workspace. |
-| `--name` | Name of the diagnostic setting. |
-| `--resource` | Resource ID being monitored, here the storage account. |
-| `--workspace` | Log Analytics workspace resource ID receiving the data. |
-| `--logs` | JSON array of log categories to enable (read, write, delete). |
-| `--metrics` | JSON array of metric categories to enable (`Transaction`). |
-| `--output` | Output format for the result. |
-
-<!-- diagram-id: best-practices-networking-best-practices-2 -->
-```mermaid
-flowchart TD
-    A[Application or user] --> B[Identity and RBAC]
-    A --> C[Network path]
-    B --> D[Storage account]
-    C --> D
-    D --> E[Hot tier data]
-    D --> F[Cool or Cold tier data]
-    D --> G[Archive or retained backup set]
-    D --> H[Metrics, logs, and alerts]
-```
 
 ## Common Mistakes / Anti-Patterns
 
-### Anti-pattern 1: Treating the storage account as a generic bucket for every use case
-
-**What happens**: Logging, customer files, analytics staging, and backup artifacts all land in one account.
-
-**Why it is wrong**:
-
-- Blast radius grows.
-- Cost signals blur.
-- RBAC and firewall exceptions multiply.
-- Lifecycle rules become overly broad or dangerously complex.
-
-**Correct approach**: Split accounts or containers by security boundary, access pattern, and lifecycle ownership.
-
-### Anti-pattern 2: Leaving everything in the Hot tier forever
-
-**What happens**: Old data continues consuming premium-priced capacity without delivering business value.
-
-**Why it is wrong**:
-
-- Storage cost rises silently over time.
-- Retrieval expectations stay undefined.
-- Teams cannot distinguish active data from retained data.
-
-**Correct approach**: Implement lifecycle movement to Cool, Cold, or Archive and delete truly expired data.
-
-### Anti-pattern 3: Using Shared Key or broad SAS for convenience
-
-**What happens**: Scripts, apps, and partners all receive wide permissions that are difficult to audit.
-
-**Why it is wrong**:
-
-- Rotation becomes risky.
-- Least privilege is lost.
-- Incident investigation becomes slower.
-
-**Correct approach**: Use Microsoft Entra ID, RBAC, and short-lived user delegation SAS.
-
-### Anti-pattern 4: Turning on Private Endpoints without validating DNS and route ownership
-
-**What happens**: Some clients succeed while others fail or unexpectedly use public endpoints.
-
-**Why it is wrong**:
-
-- Troubleshooting becomes inconsistent and time-consuming.
-- Security intent is not enforced uniformly.
-- Failures appear random across environments.
-
-**Correct approach**: Validate private DNS links, VNet reachability, and firewall posture from every client network.
-
-### Anti-pattern 5: Assuming capacity cost tells the whole story
-
-**What happens**: A “cheaper” tier is chosen that later produces retrieval bills, slower restores, or user-facing delays.
-
-**Why it is wrong**:
-
-- Optimization shifts cost into other services or operations.
-- Teams lose trust in storage governance.
-- Recovery steps become slower and more expensive.
-
-**Correct approach**: Evaluate total cost of ownership across storage, transactions, retrieval, egress, and operational effort.
+- **Private endpoint without DNS validation**: The endpoint exists, but clients still resolve the public name.
+- **Firewall sprawl**: Large allow-lists with unclear ownership become de facto public access.
+- **Undocumented trusted-service bypasses**: Exceptions accumulate until nobody can explain the effective boundary.
 
 ## Validation Checklist
 
-- [ ] The storage account type is explicitly justified and documented.
-- [ ] Replication choice maps to business continuity needs.
-- [ ] Public access is disabled unless a documented exception exists.
-- [ ] Private networking and DNS design are validated from every client segment.
-- [ ] RBAC is the preferred access model for humans and applications.
-- [ ] SAS usage is short-lived, least-privilege, and tracked.
-- [ ] Blob lifecycle management rules exist for non-permanent data.
-- [ ] Hot, Cool, Cold, and Archive tier decisions are based on real access expectations.
-- [ ] Diagnostic settings are enabled for logs and metrics.
-- [ ] Alerting exists for failures, latency, and suspicious access.
-- [ ] Premium storage is used only where measured performance requires it.
-- [ ] Naming or partition strategy was reviewed for high-traffic workloads.
-- [ ] Backup, soft delete, versioning, or snapshot protections align to recovery goals.
-- [ ] Capacity, transaction, retrieval, and egress costs are reviewed together.
-- [ ] Ownership for lifecycle policy changes is defined.
-- [ ] Documentation includes rollback and investigation steps.
+- [ ] Private endpoint, service endpoint, or public-path decision is documented.
+- [ ] DNS resolution is tested from each client segment.
+- [ ] Firewall rules and exceptions are reviewed.
+- [ ] Public endpoint posture is justified.
+- [ ] Network-dependent failure signals are monitored.
 
 ## See Also
 
-- [Networking and Private Access](../platform/networking-and-private-access.md)
-- [Configure Network Rules](../operations/configure-network-rules.md)
-- [Use Private Endpoints](../operations/use-private-endpoints.md)
-- [Private Endpoint and DNS Issues](../troubleshooting/playbooks/access/private-endpoint-and-dns-issues.md)
+- [Security Best Practices](security-best-practices.md)
+- [Redundancy and DR Best Practices](redundancy-and-dr-best-practices.md)
+- [Common Anti-Patterns](common-anti-patterns.md)
 
 ## Sources
 
-- [azure/storage/common/storage-account-overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
-- [azure/storage/blobs/access-tiers-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)
-- [azure/storage/blobs/lifecycle-management-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)
-- [azure/storage/common/storage-network-security](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
-- [azure/storage/common/storage-private-endpoints](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
-- [azure/storage/common/storage-use-azcopy-v10](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)
-- [azure/virtual-network/virtual-network-service-endpoints-overview](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
-- [azure/storage/common/storage-private-endpoints](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
+- [Azure Storage firewall rules and network access](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
+- [Use private endpoints - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)

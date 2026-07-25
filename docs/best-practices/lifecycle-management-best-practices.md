@@ -1,345 +1,47 @@
 ---
-content_sources:
-  diagrams:
-    - id: best-practices-lifecycle-management-best-practices
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
-    - id: best-practices-lifecycle-management-best-practices-2
-      type: flowchart
-      source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+description: Lifecycle management best practices for Azure Storage covering rule design, policy execution timing, and safe deletion boundaries.
 content_validation:
-  status: pending_review
+  status: verified
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
     - claim: Lifecycle management rules can automatically tier or delete blob data based on conditions.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts
-      verified: false
+      verified: true
     - claim: Soft delete complements lifecycle rules by enabling recovery of deleted blobs.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview
-      verified: false
+      verified: true
 ---
 
 # Lifecycle Management Best Practices
 
-Lifecycle management is the control plane for keeping Blob storage aligned to access, retention, and deletion rules. Without it, storage estates become expensive, risky, and difficult to audit.
+Use these practices to keep lifecycle rules explainable, testable, and safe to operate.
 
 ## Why This Matters
 
-The primary goal of **Lifecycle Management Best Practices** is automating data movement, retention, and deletion decisions for Blob data. Azure Storage is deceptively easy to start with, but production incidents usually come from design drift rather than service unavailability. Teams need a repeatable model that covers:
+Lifecycle automation is powerful, but broad rules can delete or archive data faster than teams realize.
 
-- Storage account type selection and when **General-purpose v2**, **Premium BlockBlobStorage**, **Premium FileStorage**, or **PageBlobStorage** are justified.
-- Blob lifecycle management so data does not remain forever in the most expensive tier.
-- Access tier optimization across **Hot**, **Cool**, **Cold**, and **Archive** with clear restore expectations.
-- Security controls such as **Private Endpoints**, **SAS discipline**, and **RBAC-first** access patterns.
-- Performance controls such as premium SKUs, partition-aware naming, concurrency tuning, and regional placement.
-- Cost controls that balance capacity, transactions, retrieval, and network egress.
-
-**Reference scenario**: A team promised to delete exports after 30 days but relied on engineers to run manual cleanup scripts. Some exports lived for years, some were deleted too soon, and nobody could prove policy compliance. Lifecycle management provides an auditable system of record.
-
-<!-- diagram-id: best-practices-lifecycle-management-best-practices -->
-```mermaid
-flowchart TD
-    A[Automating data movement, retention, and deletion decisions for blob data] --> B[Storage account type selection]
-    B --> C[Security and private access baseline]
-    C --> D[Blob lifecycle and access tier policy]
-    D --> E[Performance and partitioning validation]
-    E --> F[Cost optimization review]
-    F --> G[Operational evidence and continuous improvement]
-```
-
-## Prerequisites
-
-- Azure subscription with rights to create and update storage resources.
-- A resource group referenced as `$RG`.
-- A storage account name referenced as `$STORAGE_NAME`.
-- A location referenced as `$LOCATION`.
-- A Log Analytics workspace resource ID referenced as `$WORKSPACE_ID` when diagnostics are enabled.
-- A principal object ID referenced as `$PRINCIPAL_ID` when RBAC examples are applied.
-- A subnet resource ID referenced as `$SUBNET_ID` when network rules or Private Endpoints are configured.
+- Prefix and tag design determine whether policy scope is understandable.
+- Policy execution is not immediate, so verification matters.
+- Destructive lifecycle actions should be paired with recovery controls where needed.
 
 ## Recommended Practices
 
-**Real-world scenario**: A team promised to delete exports after 30 days but relied on engineers to run manual cleanup scripts. Some exports lived for years, some were deleted too soon, and nobody could prove policy compliance. Lifecycle management provides an auditable system of record.
+- Translate policy intent into clear prefixes and tags.
+- Move data through tiers with timing that reflects business usage, not guesswork.
+- Pair delete actions with soft delete, versioning, or backup when recovery still matters.
+- Review rule interactions whenever new datasets or prefixes are added.
+- Validate policy outcomes with representative blobs after changes.
 
-Every practice below is CLI-backed and shares the same review lens.
-
-**Design review lens** (apply to every practice):
-
-- Review which storage account type supports the workload most directly instead of defaulting blindly.
-- Confirm whether Blob lifecycle management is needed immediately or should be staged with a short validation period first.
-- Document how Hot, Cool, Cold, and Archive tiers affect user expectations, restore time, and downstream analytics.
-- Make Private Endpoints, SAS scope, and RBAC part of the same design conversation rather than separate afterthoughts.
-- Measure performance using representative concurrency, partition distribution, and object size before declaring the design complete.
-- Capture cost impact by tracking capacity, transactions, retrieval, and egress together.
-
-**Validation lens** (confirm after every change):
-
-- Confirm the command output matches the intended SKU, networking posture, and access model.
-- Verify Microsoft Entra ID and RBAC are preferred over account keys for ongoing automation.
-- Verify metrics and diagnostic settings are reaching the Log Analytics workspace.
-- Verify the selected tier and lifecycle actions match the real access pattern rather than assumption.
-
-### Practice 1: Translate policy intent into clear prefixes and tags
-
-**Why**: Lifecycle rules are easier to audit when targeting is explicit.
-
-**How**:
-
-- Group data by container, prefix, and blob index tags that represent retention or business class.
+### Example policy command
 
 ```bash
-az storage account create \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --location $LOCATION \
-    --sku Standard_ZRS \
-    --kind StorageV2 \
-    --access-tier Hot \
-    --allow-blob-public-access false \
-    --min-tls-version TLS1_2 \
-    --https-only true \
-    --output json
-
-az storage account show \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --query "{name:name,kind:kind,sku:sku.name,publicAccess:allowBlobPublicAccess,httpsOnly:enableHttpsTrafficOnly}" \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account create` | Create a storage account. |
-| `--resource-group` | Resource group that will contain the storage account. |
-| `--name` | Globally unique name of the storage account. |
-| `--location` | Azure region for the account. |
-| `--sku` | Redundancy and performance tier, here zone-redundant Standard (`Standard_ZRS`). |
-| `--kind` | Account kind, `StorageV2` for general-purpose v2. |
-| `--access-tier` | Default blob access tier (`Hot`). |
-| `--allow-blob-public-access` | Disable anonymous public blob access when `false`. |
-| `--min-tls-version` | Minimum accepted TLS version (`TLS1_2`). |
-| `--https-only` | Require HTTPS for all requests when `true`. |
-| `--output` | Output format for the result. |
-| `az storage account show` | Show properties of the storage account. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--name` | Name of the storage account to inspect. |
-| `--query` | JMESPath expression selecting name, kind, SKU, public access, and HTTPS-only state. |
-| `--output` | Output format for the result. |
-
-### Practice 2: Move data through tiers with business-aware timing
-
-**Why**: Moving too early causes retrieval friction; moving too late wastes money.
-
-**How**:
-
-- Define Hot, Cool, Cold, and Archive timings from real access history and restoration promises.
-
-```bash
-az storage account network-rule add \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --subnet $SUBNET_ID \
-    --output json
-
-az storage account update \
-    --resource-group $RG \
-    --name $STORAGE_NAME \
-    --default-action Deny \
-    --public-network-access Disabled \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account network-rule add` | Add a virtual network rule to the storage account firewall. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account whose firewall is updated. |
-| `--subnet` | Resource ID of the subnet allowed to reach the account. |
-| `--output` | Output format for the result. |
-| `az storage account update` | Update storage account configuration. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--name` | Name of the storage account to update. |
-| `--default-action` | Default firewall action for unmatched traffic (`Deny`). |
-| `--public-network-access` | Disable the public endpoint when `Disabled`. |
-| `--output` | Output format for the result. |
-
-### Practice 3: Protect recoverability before aggressive deletion
-
-**Why**: Deletion rules without soft delete or versioning can cause irreversible loss.
-
-**How**:
-
-- Enable the right recovery features before enabling destructive lifecycle actions.
-
-```bash
-az role assignment create \
-    --assignee-object-id $PRINCIPAL_ID \
-    --assignee-principal-type ServicePrincipal \
-    --role "Storage Blob Data Contributor" \
-    --scope $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-
-az storage container generate-sas \
-    --as-user \
-    --auth-mode login \
-    --account-name $STORAGE_NAME \
-    --name $CONTAINER_NAME \
-    --permissions rl \
-    --expiry 2026-12-31T23:00Z \
-    --https-only \
-    --output tsv
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az role assignment create` | Assign an Azure RBAC role to a principal. |
-| `--assignee-object-id` | Object ID of the principal receiving the role. |
-| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
-| `--role` | RBAC role granted, `Storage Blob Data Contributor` for read/write blob data. |
-| `--scope` | Resource scope of the assignment, here the storage account ID. |
-| `--output` | Output format for the result. |
-| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
-| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
-| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
-| `--account-name` | Name of the storage account hosting the container. |
-| `--name` | Name of the container to scope the SAS to. |
-| `--permissions` | Granted permissions, `rl` for read and list. |
-| `--expiry` | UTC expiry time of the SAS token. |
-| `--https-only` | Restrict the SAS to HTTPS requests. |
-| `--output` | Output format for the result. |
-
-### Practice 4: Review rule interactions regularly
-
-**Why**: Overlapping rules create confusion about which action actually happened.
-
-**How**:
-
-- Keep rule count understandable and document precedence assumptions with examples.
-
-```bash
-az storage account management-policy create \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --policy @lifecycle-policy.json \
-    --output json
-
-az storage account management-policy show \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
-| `--output` | Output format for the result. |
-| `az storage account management-policy show` | Show the current lifecycle management policy. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--output` | Output format for the result. |
-
-### Practice 5: Validate lifecycle outcomes with sample objects
-
-**Why**: Policy syntax can be valid while target scope is wrong.
-
-**How**:
-
-- Test with tagged sample blobs and inspect last-access, tier, and deletion timing behavior.
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_NAME \
-    --destination $CONTAINER_NAME \
-    --source ./dataset \
-    --max-connections 32 \
-    --pattern "*.parquet" \
-    --output table
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage blob upload-batch` | Upload multiple files to a blob container in one operation. |
-| `--account-name` | Name of the destination storage account. |
-| `--destination` | Target container name. |
-| `--source` | Local directory whose files are uploaded. |
-| `--max-connections` | Number of parallel connections used for the transfer. |
-| `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
-| `--output` | Output format for the result. |
-
-### Practice 6: Integrate lifecycle with governance processes
-
-**Why**: Retention is rarely only an engineering decision.
-
-**How**:
-
-- Work with security, legal, and finance so policies stay aligned to compliance and cost goals.
-
-```bash
-az monitor diagnostic-settings create \
-    --name "diag-$STORAGE_NAME" \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --workspace $WORKSPACE_ID \
-    --logs '[{"category":"StorageRead","enabled":true},{"category":"StorageWrite","enabled":true},{"category":"StorageDelete","enabled":true}]' \
-    --metrics '[{"category":"Transaction","enabled":true}]' \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az monitor diagnostic-settings create` | Create a diagnostic setting that routes logs and metrics to a workspace. |
-| `--name` | Name of the diagnostic setting. |
-| `--resource` | Resource ID being monitored, here the storage account. |
-| `--workspace` | Log Analytics workspace resource ID receiving the data. |
-| `--logs` | JSON array of log categories to enable (read, write, delete). |
-| `--metrics` | JSON array of metric categories to enable (`Transaction`). |
-| `--output` | Output format for the result. |
-
-## Storage Account Types and When to Use Each
-
-| Storage account type | Best fit | Why it fits | Watch-outs |
-|---|---|---|---|
-| General-purpose v2 (Standard) | Most production Blob, Files, Queue, and Table workloads | Broadest feature set, lifecycle management, RBAC, private networking, access tiers, and cost controls | Validate transaction costs and latency before large-scale small-object workloads |
-| Premium BlockBlobStorage | Low-latency blob workloads, image processing pipelines, analytics staging, and heavy ingestion APIs | Predictable latency and higher throughput for block blobs | Higher cost and narrower service coverage than GPv2 |
-| Premium FileStorage | SMB/NFS file shares with high IOPS or strict latency goals | SSD-backed performance and deterministic share behavior | Capacity planning matters because cost is premium regardless of use |
-| Premium PageBlobStorage | Virtual hard disks and page-blob-specific patterns | Optimized for random read/write patterns | Rarely the right choice for modern general object storage scenarios |
-| Legacy GPv1 or classic patterns | Migration-only transition scenarios | Sometimes exists in inherited estates | Treat as technical debt and move to GPv2 when feasible |
-
-**Decision rule**:
-
-- Start with **GPv2** unless a measured performance target justifies Premium.
-- Use **Premium BlockBlobStorage** when latency and high request rates matter more than absolute capacity efficiency.
-- Use **Premium FileStorage** for Azure Files workloads that cannot tolerate Standard share latency variance.
-- Avoid creating new legacy account types except to support controlled migration programs.
-
-## Blob Lifecycle Management and Access Tier Optimization
-
-Blob lifecycle management is not only a cost tool. It is also an operating model for deciding what data should stay immediately accessible, what data can tolerate lower availability characteristics, and what data should be deleted.
-
-### Tier guidance by access pattern
-
-| Tier | Use when | Operational notes | Cost note |
-|---|---|---|---|
-| Hot | Data is read or overwritten frequently | Best for active application content, current exports, and online processing | Highest capacity cost, lowest access cost |
-| Cool | Data is read infrequently but still needs fast access | Good for monthly reports, low-touch backups, and older media | Lower capacity cost, higher access cost |
-| Cold | Data is accessed less often and 90-day retention is acceptable | Useful for quarterly access patterns with immediate online availability | Lower storage cost than Cool with higher access and minimum retention considerations |
-| Archive | Data is retained for compliance or rare recovery only | Requires rehydration planning and cannot serve low-latency user paths | Lowest capacity cost, highest restore friction |
-
-### Lifecycle policy example
-
-Create a policy file such as `lifecycle-policy.json`:
-
-```json
+cat > lifecycle-policy.json <<'EOF'
 {
   "rules": [
     {
       "enabled": true,
-      "name": "move-older-logs",
+      "name": "archive-old-logs",
       "type": "Lifecycle",
       "definition": {
         "filters": {
@@ -357,249 +59,44 @@ Create a policy file such as `lifecycle-policy.json`:
     }
   ]
 }
-```
+EOF
 
-```bash
 az storage account management-policy create \
     --resource-group $RG \
     --account-name $STORAGE_NAME \
     --policy @lifecycle-policy.json \
     --output json
-
-az storage account management-policy show \
-    --resource-group $RG \
-    --account-name $STORAGE_NAME \
-    --output json
 ```
 
 | Command | Purpose |
 | --- | --- |
-| `az storage account management-policy create` | Create or replace the blob lifecycle management policy. |
+| `az storage account management-policy create` | Apply a lifecycle policy after generating the JSON inline in the runbook. |
 | `--resource-group` | Resource group that contains the storage account. |
 | `--account-name` | Name of the storage account the policy applies to. |
-| `--policy` | Path to the JSON policy document (`@lifecycle-policy.json`). |
+| `--policy` | Path to the JSON policy document created in the previous lines. |
 | `--output` | Output format for the result. |
-| `az storage account management-policy show` | Show the current lifecycle management policy. |
-| `--resource-group` | Resource group that contains the storage account. |
-| `--account-name` | Name of the storage account the policy applies to. |
-| `--output` | Output format for the result. |
-
-### Lifecycle design notes
-
-- Use prefixes and blob index tags so policy targets are explainable to operators and auditors.
-- Validate archive timing with application owners because rehydration changes recovery expectations.
-- Pair destructive policies with soft delete, versioning, or backup when human error is a realistic risk.
-- Review policy exceptions explicitly instead of creating ad hoc containers that bypass governance.
-
-## Security, Performance, and Cost Design Anchors
-
-### Security baseline
-
-- Make **RBAC** the normal data access path for users, automation, and platform tooling.
-- Use **user delegation SAS** when a temporary delegated path is needed; avoid long-lived account SAS unless there is a documented exception.
-- Prefer **Private Endpoints** for production data paths and keep public network access disabled when business requirements allow.
-- Enable diagnostic settings and review authorization failures, network denials, and suspicious access patterns.
-
-```bash
-az role assignment create \
-    --assignee-object-id $PRINCIPAL_ID \
-    --assignee-principal-type ServicePrincipal \
-    --role "Storage Blob Data Contributor" \
-    --scope $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --output json
-
-az storage container generate-sas \
-    --as-user \
-    --auth-mode login \
-    --account-name $STORAGE_NAME \
-    --name $CONTAINER_NAME \
-    --permissions rl \
-    --expiry 2026-12-31T23:00Z \
-    --https-only \
-    --output tsv
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az role assignment create` | Assign an Azure RBAC role to a principal. |
-| `--assignee-object-id` | Object ID of the principal receiving the role. |
-| `--assignee-principal-type` | Principal type of the assignee (`ServicePrincipal`). |
-| `--role` | RBAC role granted, `Storage Blob Data Contributor` for read/write blob data. |
-| `--scope` | Resource scope of the assignment, here the storage account ID. |
-| `--output` | Output format for the result. |
-| `az storage container generate-sas` | Generate a shared access signature for a blob container. |
-| `--as-user` | Produce a user delegation SAS tied to the signed-in identity. |
-| `--auth-mode` | Authorization mode, `login` to use Microsoft Entra credentials. |
-| `--account-name` | Name of the storage account hosting the container. |
-| `--name` | Name of the container to scope the SAS to. |
-| `--permissions` | Granted permissions, `rl` for read and list. |
-| `--expiry` | UTC expiry time of the SAS token. |
-| `--https-only` | Restrict the SAS to HTTPS requests. |
-| `--output` | Output format for the result. |
-
-### Performance baseline
-
-- Choose **Premium storage** only after latency, IOPS, or throughput requirements are measured.
-- Spread hot request paths across partitions using naming that avoids narrow sequential hotspots.
-- Keep compute in the same region as storage for latency-sensitive operations.
-- Test with real object sizes, concurrency, and retry behavior before finalizing settings.
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_NAME \
-    --destination $CONTAINER_NAME \
-    --source ./dataset \
-    --max-connections 32 \
-    --pattern "*.parquet" \
-    --output table
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az storage blob upload-batch` | Upload multiple files to a blob container in one operation. |
-| `--account-name` | Name of the destination storage account. |
-| `--destination` | Target container name. |
-| `--source` | Local directory whose files are uploaded. |
-| `--max-connections` | Number of parallel connections used for the transfer. |
-| `--pattern` | Glob pattern selecting files to upload (`*.parquet`). |
-| `--output` | Output format for the result. |
-
-### Cost baseline
-
-- Separate high-transaction active data from low-touch retention datasets when that improves tiering clarity.
-- Review transaction cost along with capacity cost for small-object or metadata-heavy workloads.
-- Monitor egress, retrieval, and archive rehydration events so lifecycle savings are not erased elsewhere.
-- Consider reserved capacity only after confirming stable long-term growth.
-
-```bash
-az monitor diagnostic-settings create \
-    --name "diag-$STORAGE_NAME" \
-    --resource $(az storage account show --resource-group $RG --name $STORAGE_NAME --query id --output tsv) \
-    --workspace $WORKSPACE_ID \
-    --logs '[{"category":"StorageRead","enabled":true},{"category":"StorageWrite","enabled":true},{"category":"StorageDelete","enabled":true}]' \
-    --metrics '[{"category":"Transaction","enabled":true}]' \
-    --output json
-```
-
-| Command | Purpose |
-| --- | --- |
-| `az monitor diagnostic-settings create` | Create a diagnostic setting that routes logs and metrics to a workspace. |
-| `--name` | Name of the diagnostic setting. |
-| `--resource` | Resource ID being monitored, here the storage account. |
-| `--workspace` | Log Analytics workspace resource ID receiving the data. |
-| `--logs` | JSON array of log categories to enable (read, write, delete). |
-| `--metrics` | JSON array of metric categories to enable (`Transaction`). |
-| `--output` | Output format for the result. |
-
-<!-- diagram-id: best-practices-lifecycle-management-best-practices-2 -->
-```mermaid
-flowchart TD
-    A[Application or user] --> B[Identity and RBAC]
-    A --> C[Network path]
-    B --> D[Storage account]
-    C --> D
-    D --> E[Hot tier data]
-    D --> F[Cool or Cold tier data]
-    D --> G[Archive or retained backup set]
-    D --> H[Metrics, logs, and alerts]
-```
 
 ## Common Mistakes / Anti-Patterns
 
-### Anti-pattern 1: Treating the storage account as a generic bucket for every use case
-
-**What happens**: Logging, customer files, analytics staging, and backup artifacts all land in one account.
-
-**Why it is wrong**:
-
-- Blast radius grows.
-- Cost signals blur.
-- RBAC and firewall exceptions multiply.
-- Lifecycle rules become overly broad or dangerously complex.
-
-**Correct approach**: Split accounts or containers by security boundary, access pattern, and lifecycle ownership.
-
-### Anti-pattern 2: Leaving everything in the Hot tier forever
-
-**What happens**: Old data continues consuming premium-priced capacity without delivering business value.
-
-**Why it is wrong**:
-
-- Storage cost rises silently over time.
-- Retrieval expectations stay undefined.
-- Teams cannot distinguish active data from retained data.
-
-**Correct approach**: Implement lifecycle movement to Cool, Cold, or Archive and delete truly expired data.
-
-### Anti-pattern 3: Using Shared Key or broad SAS for convenience
-
-**What happens**: Scripts, apps, and partners all receive wide permissions that are difficult to audit.
-
-**Why it is wrong**:
-
-- Rotation becomes risky.
-- Least privilege is lost.
-- Incident investigation becomes slower.
-
-**Correct approach**: Use Microsoft Entra ID, RBAC, and short-lived user delegation SAS.
-
-### Anti-pattern 4: Turning on Private Endpoints without validating DNS and route ownership
-
-**What happens**: Some clients succeed while others fail or unexpectedly use public endpoints.
-
-**Why it is wrong**:
-
-- Troubleshooting becomes inconsistent and time-consuming.
-- Security intent is not enforced uniformly.
-- Failures appear random across environments.
-
-**Correct approach**: Validate private DNS links, VNet reachability, and firewall posture from every client network.
-
-### Anti-pattern 5: Assuming capacity cost tells the whole story
-
-**What happens**: A “cheaper” tier is chosen that later produces retrieval bills, slower restores, or user-facing delays.
-
-**Why it is wrong**:
-
-- Optimization shifts cost into other services or operations.
-- Teams lose trust in storage governance.
-- Recovery steps become slower and more expensive.
-
-**Correct approach**: Evaluate total cost of ownership across storage, transactions, retrieval, egress, and operational effort.
+- **Rules nobody can explain**: If operators cannot say which prefixes a rule affects, it is too broad.
+- **Delete first, recover later**: Recovery controls should be agreed before destructive automation is enabled.
+- **Control-plane success only**: A policy that saves successfully still needs blob-level validation later.
 
 ## Validation Checklist
 
-- [ ] The storage account type is explicitly justified and documented.
-- [ ] Replication choice maps to business continuity needs.
-- [ ] Public access is disabled unless a documented exception exists.
-- [ ] Private networking and DNS design are validated from every client segment.
-- [ ] RBAC is the preferred access model for humans and applications.
-- [ ] SAS usage is short-lived, least-privilege, and tracked.
-- [ ] Blob lifecycle management rules exist for non-permanent data.
-- [ ] Hot, Cool, Cold, and Archive tier decisions are based on real access expectations.
-- [ ] Diagnostic settings are enabled for logs and metrics.
-- [ ] Alerting exists for failures, latency, and suspicious access.
-- [ ] Premium storage is used only where measured performance requires it.
-- [ ] Naming or partition strategy was reviewed for high-traffic workloads.
-- [ ] Backup, soft delete, versioning, or snapshot protections align to recovery goals.
-- [ ] Capacity, transaction, retrieval, and egress costs are reviewed together.
-- [ ] Ownership for lifecycle policy changes is defined.
-- [ ] Documentation includes rollback and investigation steps.
+- [ ] Prefixes or tags clearly define policy scope.
+- [ ] Tier timing reflects real business access patterns.
+- [ ] Delete rules are paired with recovery controls where appropriate.
+- [ ] Policy changes are reviewed for interaction with existing rules.
+- [ ] Sample blobs are validated after policy updates.
 
 ## See Also
 
-- [Manage Lifecycle Policies](../operations/manage-lifecycle-policies.md)
-- [Blob Best Practices](blob-best-practices.md)
 - [Cost Optimization Best Practices](cost-optimization-best-practices.md)
-- [Lifecycle Policy Not Working](../troubleshooting/playbooks/lifecycle-policy-not-working.md)
+- [Blob Best Practices](blob-best-practices.md)
+- [Common Anti-Patterns](common-anti-patterns.md)
 
 ## Sources
 
-- [azure/storage/common/storage-account-overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
-- [azure/storage/blobs/access-tiers-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)
-- [azure/storage/blobs/lifecycle-management-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)
-- [azure/storage/common/storage-network-security](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)
-- [azure/storage/common/storage-private-endpoints](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
-- [azure/storage/common/storage-use-azcopy-v10](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)
-- [azure/storage/blobs/storage-lifecycle-management-concepts](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts)
-- [azure/storage/blobs/soft-delete-blob-overview](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
+- [Azure Blob Storage lifecycle management overview](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview)
+- [Soft delete for blobs](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
