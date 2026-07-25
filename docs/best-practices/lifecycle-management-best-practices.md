@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Lifecycle management rules can automatically tier or delete blob data based on conditions.
-      source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts
+    - claim: Lifecycle management policies can transition blobs to cooler tiers or delete them based on configured conditions.
+      source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
       verified: true
-    - claim: Soft delete complements lifecycle rules by enabling recovery of deleted blobs.
+    - claim: Blob soft delete keeps deleted or overwritten blobs recoverable during the retention period.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview
       verified: true
 ---

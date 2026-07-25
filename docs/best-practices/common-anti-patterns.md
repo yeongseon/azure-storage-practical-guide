@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Shared Key and overly broad network exposure increase risk in Azure Storage deployments.
+    - claim: Blob security guidance says Microsoft Entra ID is more secure than Shared Key and recommends firewall or private endpoint controls.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations
       verified: true
-    - claim: Lifecycle automation and access-tier selection should match real access patterns to avoid waste.
+    - claim: Lifecycle management guidance says policies can move blobs to cooler tiers or delete them, so those rules should match real data access patterns.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
       verified: true
 ---

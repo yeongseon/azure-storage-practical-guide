@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Access tiers and lifecycle automation are major cost controls for blob data.
+    - claim: Blob cost guidance recommends reducing cost by using access tiers and lifecycle management policies to move data between tiers.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-plan-manage-costs
       verified: true
-    - claim: Reserved capacity can reduce cost for predictable blob storage consumption.
+    - claim: Azure Storage reserved capacity can reduce capacity costs for block blobs and Data Lake Storage data when usage is predictable enough to reserve.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-reserved-capacity
       verified: true
 ---

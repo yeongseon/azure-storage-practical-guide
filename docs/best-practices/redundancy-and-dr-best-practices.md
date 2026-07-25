@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Redundancy selection determines the durability and disaster recovery characteristics of a storage account.
+    - claim: Azure Storage disaster recovery guidance says the replication option you choose determines the level of resiliency your application gets.
       source: https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance
       verified: true
-    - claim: RA-GRS and RA-GZRS can provide read access to the secondary region for suitable workloads.
+    - claim: Geo-redundancy design guidance says RA-GRS and RA-GZRS provide read access to the secondary region.
       source: https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design
       verified: true
 ---

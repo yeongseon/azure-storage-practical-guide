@@ -5,10 +5,10 @@ content_validation:
   last_reviewed: '2026-07-25'
   reviewer: agent
   core_claims:
-    - claim: Blob performance guidance recommends workload-aware partitioning and request shaping.
+    - claim: Blob performance guidance recommends placing data near clients and using hash prefixes when small block sizes make partition naming important.
       source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-performance-checklist
       verified: true
-    - claim: Azure Files workloads should be planned against documented file share scale targets.
+    - claim: Azure Files documentation says you should test your usage pattern against documented scale and performance targets.
       source: https://learn.microsoft.com/en-us/azure/storage/files/storage-files-scale-targets
       verified: true
 ---
