@@ -100,6 +100,11 @@ az storage container create \
     --auth-mode login \
     --output json
 
+mkdir -p lab-data/dr
+cat > lab-data/dr/dr-test.txt <<'EOF'
+Replication failover drill artifact created from the lab guide.
+EOF
+
 az storage blob upload \
     --account-name $STORAGE_NAME \
     --container-name $CONTAINER_NAME \

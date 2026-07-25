@@ -85,6 +85,22 @@ az storage blob service-properties update \
 ### Step 2: Upload the website files
 
 ```bash
+mkdir -p lab-data/static-site
+cat > lab-data/static-site/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Storage Lab</title></head>
+<body><h1>Azure Storage static website lab</h1><p>Origin content served from Blob Storage.</p></body>
+</html>
+EOF
+cat > lab-data/static-site/error.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Not Found</title></head>
+<body><h1>404</h1><p>The requested path is not present in the sample site.</p></body>
+</html>
+EOF
+
 az storage blob upload-batch \
     --account-name $STORAGE_NAME \
     --destination \$web \
