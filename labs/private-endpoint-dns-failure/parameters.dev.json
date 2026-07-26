@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "koreacentral"
+    },
+    "baseName": {
+      "value": "pednslab"
+    },
+    "storageAccountName": {
+      "value": "stpednslab001"
+    },
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "adminPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcExampleReplaceWithRealKeyForLiveRunOnly lab@example"
+    },
+    "vmSize": {
+      "value": "Standard_B1s"
+    },
+    "vnetAddressPrefix": {
+      "value": "10.42.0.0/16"
+    },
+    "clientSubnetPrefix": {
+      "value": "10.42.1.0/24"
+    },
+    "privateEndpointSubnetPrefix": {
+      "value": "10.42.2.0/24"
+    }
+  }
+}
