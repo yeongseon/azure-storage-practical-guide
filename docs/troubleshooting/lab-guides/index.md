@@ -16,11 +16,11 @@ Troubleshooting labs are reproducible experiments that turn a storage symptom in
 
 | Planned lab | Scenario focus | Current state | Related playbook |
 |---|---|---|---|
-| Private-endpoint DNS failure | Validate how DNS resolution mistakes break access to a storage account behind a private endpoint | Scaffold only for ZLR-storage-01; full lab content follows in later issues | [Private Endpoint and DNS Issues](../playbooks/access/private-endpoint-and-dns-issues.md) |
+| [Private-endpoint DNS failure](private-endpoint-dns-failure.md) | Validate how DNS resolution mistakes break access to a storage account behind a private endpoint | First full lab guide published for ZLR-storage-03; live Azure evidence still deferred | [Private Endpoint and DNS Issues](../playbooks/access/private-endpoint-and-dns-issues.md) |
 
 ## Starter Shape for the First Lab
 
-The first lab candidate will use the canonical troubleshooting-lab structure rather than a prose-only placeholder. When authored, it will include:
+The first lab guide now documents the canonical troubleshooting-lab structure for the private-endpoint DNS substrate. Use it as the reference shape for future storage troubleshooting labs:
 
 1. Lab metadata for difficulty, duration, and scope.
 2. `1) Background`, `2) Hypothesis`, `3) Runbook`, and `4) Experiment Log` sections.

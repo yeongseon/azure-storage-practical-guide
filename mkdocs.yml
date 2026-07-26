@@ -177,6 +177,7 @@ nav:
         - SAS and Token Issues: troubleshooting/playbooks/security/sas-and-token-issues.md
     - Lab Guides:
       - troubleshooting/lab-guides/index.md
+      - Private-endpoint DNS failure: troubleshooting/lab-guides/private-endpoint-dns-failure.md
   - Reference:
     - reference/index.md
     - Content Validation: reference/content-validation-status.md
