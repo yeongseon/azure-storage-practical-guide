@@ -175,6 +175,8 @@ nav:
       - Security:
         - Authorization Failures: troubleshooting/playbooks/security/authorization-failures.md
         - SAS and Token Issues: troubleshooting/playbooks/security/sas-and-token-issues.md
+    - Lab Guides:
+      - troubleshooting/lab-guides/index.md
   - Reference:
     - reference/index.md
     - Content Validation: reference/content-validation-status.md
