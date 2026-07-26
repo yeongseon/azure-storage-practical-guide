@@ -1,10 +1,10 @@
 ---
-description: Troubleshooting lab guides for Azure Storage — reproducible incident labs, expected methodology, and the planned private-endpoint DNS failure starter lab.
+description: Troubleshooting lab guides for Azure Storage — reproducible incident labs, methodology expectations, and the current published and scoped scenarios.
 ---
 
 # Lab Guides
 
-Troubleshooting labs are reproducible experiments that turn a storage symptom into a testable hypothesis, a controlled reproduction, and a falsifiable fix. This hub reserves the Troubleshooting > Lab Guides surface before the first full Azure Storage lab is authored.
+Troubleshooting labs are reproducible experiments that turn a storage symptom into a testable hypothesis, a controlled reproduction, and a falsifiable fix. This hub introduces the Troubleshooting > Lab Guides surface and tracks both published labs and scoped follow-on scenarios.
 
 ## How to Use This Hub
 
@@ -17,6 +17,7 @@ Troubleshooting labs are reproducible experiments that turn a storage symptom in
 | Planned lab | Scenario focus | Current state | Related playbook |
 |---|---|---|---|
 | [Private-endpoint DNS failure](private-endpoint-dns-failure.md) | Validate how DNS resolution mistakes break access to a storage account behind a private endpoint | First full lab guide published for ZLR-storage-03; live Azure evidence still deferred | [Private Endpoint and DNS Issues](../playbooks/access/private-endpoint-and-dns-issues.md) |
+| [Authorization-failure scope](authorization-failure-scope.md) | Plan the second lab that will isolate a Blob data-plane 403 caused by a missing Azure RBAC role such as `Storage Blob Data Reader` | Scoping document published for ZLR-storage-04; full substrate and live evidence still deferred | [Authorization Failures](../playbooks/security/authorization-failures.md) |
 
 ## Starter Shape for the First Lab
 
