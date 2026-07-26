@@ -22,13 +22,14 @@ Navigation-only indexes excluded from this dashboard: `docs/best-practices/index
 
 | Content Type | Total | Verified | Pending | Unverified | No Metadata |
 |---|---:|---:|---:|---:|---:|
-| Mermaid Diagrams | 95 | 95 | 0 | 0 | 0 |
-| In-Scope Factual-Claim Documents | 49 | 0 | 49 | 0 | 0 |
+| Mermaid Diagrams | 75 | 75 | 0 | 0 | 0 |
+| In-Scope Factual-Claim Documents | 49 | 19 | 30 | 0 | 0 |
 
 <!-- diagram-id: reference-content-validation-status -->
 ```mermaid
 pie title In-Scope Document Validation Status
-    "Pending Review" : 49
+    "Verified" : 19
+    "Pending Review" : 30
 ```
 
 ## By Section
@@ -51,30 +52,30 @@ pie title In-Scope Document Validation Status
 
 | Document | Status | Claims | Last Reviewed |
 |---|---|---|---|
-| [Blob Best Practices](../best-practices/blob-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Common Anti Patterns](../best-practices/common-anti-patterns.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Cost Optimization Best Practices](../best-practices/cost-optimization-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [File Share Best Practices](../best-practices/file-share-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Lifecycle Management Best Practices](../best-practices/lifecycle-management-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Networking Best Practices](../best-practices/networking-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Performance Best Practices](../best-practices/performance-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Redundancy And Dr Best Practices](../best-practices/redundancy-and-dr-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Security Best Practices](../best-practices/security-best-practices.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Storage Account Design Baseline](../best-practices/storage-account-design-baseline.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Blob Best Practices](../best-practices/blob-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Common Anti Patterns](../best-practices/common-anti-patterns.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Cost Optimization Best Practices](../best-practices/cost-optimization-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [File Share Best Practices](../best-practices/file-share-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Lifecycle Management Best Practices](../best-practices/lifecycle-management-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Networking Best Practices](../best-practices/networking-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Performance Best Practices](../best-practices/performance-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Redundancy And Dr Best Practices](../best-practices/redundancy-and-dr-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Security Best Practices](../best-practices/security-best-practices.md) | ✅ Verified | 2/2 | 2026-07-25 |
+| [Storage Account Design Baseline](../best-practices/storage-account-design-baseline.md) | ✅ Verified | 2/2 | 2026-07-25 |
 
 ### Operations
 
 | Document | Status | Claims | Last Reviewed |
 |---|---|---|---|
-| [Azcopy And Data Movement](../operations/azcopy-and-data-movement.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Backup And Data Protection](../operations/backup-and-data-protection.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Configure Access And Identity](../operations/configure-access-and-identity.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Configure Network Rules](../operations/configure-network-rules.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Create Storage Account](../operations/create-storage-account.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Manage Containers And Shares](../operations/manage-containers-and-shares.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Manage Lifecycle Policies](../operations/manage-lifecycle-policies.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Monitoring And Alerting](../operations/monitoring-and-alerting.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
-| [Use Private Endpoints](../operations/use-private-endpoints.md) | ⚠️ Pending Review | 0/2 | 2026-07-25 |
+| [Azcopy And Data Movement](../operations/azcopy-and-data-movement.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Backup And Data Protection](../operations/backup-and-data-protection.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Configure Access And Identity](../operations/configure-access-and-identity.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Configure Network Rules](../operations/configure-network-rules.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Create Storage Account](../operations/create-storage-account.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Manage Containers And Shares](../operations/manage-containers-and-shares.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Manage Lifecycle Policies](../operations/manage-lifecycle-policies.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Monitoring And Alerting](../operations/monitoring-and-alerting.md) | ✅ Verified | 3/3 | 2026-07-25 |
+| [Use Private Endpoints](../operations/use-private-endpoints.md) | ✅ Verified | 3/3 | 2026-07-25 |
 
 ### Troubleshooting
 
