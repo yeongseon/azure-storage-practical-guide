@@ -77,9 +77,8 @@ az storage account create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the returned `allowBlobPublicAccess` is `false` and record the storage account `id` — later steps reference this account by name.
+
 ### Step 2: Create the container and upload sample data
 
 ```bash
@@ -120,9 +119,8 @@ az storage blob upload-batch \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, verify both sample blobs (`logs/example-001.json` and `archive/example-365.json`) appear in the upload-batch output before you attach any lifecycle policy.
+
 ### Step 3: Apply a lifecycle policy
 
 ```bash
@@ -167,9 +165,8 @@ az storage account management-policy create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the returned policy contains the `move-logs-through-tiers` rule with the 30-day cool, 180-day archive, and 365-day delete transitions you defined.
+
 ### Step 4: Inspect sample blobs
 
 ```bash
@@ -191,9 +188,7 @@ az storage blob show \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+Note the blob's current `accessTier`: freshly uploaded blobs start in `Hot`, so the lifecycle transitions above will not yet be reflected here — that is expected on day zero.
 
 ## Validation Steps
 

@@ -81,9 +81,8 @@ az storage share-rm create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the account `kind` is `FileStorage` on the Premium SKU and record the share name — the RBAC assignment in Step 3 targets this share.
+
 ### Step 2: Configure Azure Files identity settings with placeholder domain values
 
 ```bash
@@ -117,9 +116,8 @@ az storage account update \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, verify the directory-service identity settings were accepted; the placeholder domain values are intentional for this lab and are not expected to resolve.
+
 ### Step 3: Assign share-level RBAC
 
 ```bash
@@ -141,9 +139,8 @@ az role assignment create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the role assignment returns a valid `principalId` and `roleDefinitionId` scoped to the file share.
+
 ### Step 4: Inspect share properties
 
 ```bash
@@ -163,9 +160,7 @@ az storage share-rm show \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, note the share quota and provisioned tier so later capacity checks have a baseline to compare against.
 
 ## Validation Steps
 

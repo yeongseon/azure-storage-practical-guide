@@ -66,9 +66,8 @@ az storage account create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the account `sku.name` is a geo-redundant tier such as `Standard_GRS` — replication status is only meaningful on GRS or GZRS accounts.
+
 ### Step 2: Inspect replication status
 
 ```bash
@@ -88,9 +87,8 @@ az storage account show \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, record the `geoReplicationStats` last-sync timestamp; a recent value indicates the secondary region is current.
+
 ### Step 3: Upload sample content and validate the primary path
 
 ```bash
@@ -130,9 +128,8 @@ az storage blob upload \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the uploaded blob is readable from the primary endpoint before you consider any failover.
+
 ### Step 4: Review the failover command without executing it until approved
 
 ```bash
@@ -148,9 +145,7 @@ az storage account failover \
 | `--name` | Name of the storage account to fail over. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+Do not execute the failover command in this lab — read the command plan and note that account failover is region-wide and permanently changes the primary region until failback.
 
 ## Validation Steps
 
