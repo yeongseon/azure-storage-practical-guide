@@ -49,12 +49,12 @@ PRIVATE_IP_PATTERN = re.compile(
 )
 EMAIL_PATTERN = re.compile(r"\b[A-Za-z0-9._%+-]+@([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b")
 
-# Domains/TLDs that are reserved for documentation or are obvious placeholders.
+# Placeholder/reserved domains only. Real personal/corporate domains
+# (microsoft.com, outlook.com, ...) are deliberately excluded so a real address
+# still trips the gate; route a genuinely-safe sample through pii-allowlist.txt.
 SAFE_EMAIL_DOMAINS = {
     "example.com",
     "contoso.com",
-    "microsoft.com",
-    "outlook.com",
     "yourdomain.com",
 }
 # RFC 2606 / 6761 reserved TLDs plus placeholder patterns used across the series.
@@ -173,6 +173,10 @@ def is_safe_email(domain: str) -> bool:
     >>> is_safe_email("contoso.example")
     True
     >>> is_safe_email("acme.io")
+    False
+    >>> is_safe_email("microsoft.com")
+    False
+    >>> is_safe_email("outlook.com")
     False
     """
     domain = domain.lower()

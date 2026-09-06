@@ -159,6 +159,9 @@ jobs:
         run: |
           if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
             BASE="${{ github.event.pull_request.base.sha }}"
+          elif [ -n "${{ github.event.before }}" ] && \
+               git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
+            BASE="${{ github.event.before }}"
           else
             BASE="HEAD~1"
           fi
@@ -169,6 +172,17 @@ jobs:
           fi
           echo "Scanning changed Markdown files:"
           echo "$CHANGED"
+          MISSING=""
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            if [ ! -f "$f" ]; then
+              MISSING="$MISSING $f"
+            fi
+          done <<< "$CHANGED"
+          if [ -n "$MISSING" ]; then
+            echo "::error::Expected changed Markdown file(s) missing from checkout:$MISSING"
+            exit 1
+          fi
           if ! python scripts/validate_pii.py --files $CHANGED; then
             echo "::error::PII validation failed on changed files. Remove real subscription/tenant/object IDs or real email addresses, or allowlist confirmed-safe example values in scripts/pii-allowlist.txt."
             exit 1
