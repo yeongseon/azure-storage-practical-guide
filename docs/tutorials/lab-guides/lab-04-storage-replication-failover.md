@@ -74,7 +74,7 @@ After this step, confirm the account `sku.name` is a geo-redundant tier such as 
 az storage account show \
     --resource-group $RG \
     --name $STORAGE_NAME \
-    --query "{sku:sku.name,primaryLocation:primaryLocation,secondaryLocation:secondaryLocation,statusOfPrimary:statusOfPrimary,statusOfSecondary:statusOfSecondary}" \
+    --query "{sku:sku.name,primaryLocation:primaryLocation,secondaryLocation:secondaryLocation,statusOfPrimary:statusOfPrimary,statusOfSecondary:statusOfSecondary,lastSyncTime:geoReplicationStats.lastSyncTime}" \
     --output json
 ```
 
@@ -83,7 +83,7 @@ az storage account show \
 | `az storage account show` | Show replication status of the storage account. |
 | `--resource-group` | Resource group that contains the account. |
 | `--name` | Name of the storage account to inspect. |
-| `--query` | JMESPath expression selecting SKU, locations, and primary/secondary status. |
+| `--query` | JMESPath expression selecting SKU, locations, primary/secondary status, and the read-access last-sync time. |
 | `--output` | Output format for the result. |
 
 
