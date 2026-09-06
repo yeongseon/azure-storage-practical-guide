@@ -118,3 +118,9 @@ Some situations straddle two phases — the design choice you make while plannin
 - [Storage Services at a Glance](storage-services-at-a-glance.md) — service selection cheat sheet
 - [Decision Tree](../troubleshooting/decision-tree.md) — symptom-first troubleshooting router
 - [Evidence Map](../troubleshooting/evidence-map.md) — evidence-collection index
+
+## Sources
+
+- [Azure Storage documentation](https://learn.microsoft.com/en-us/azure/storage/)
+- [Storage account overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+- [Troubleshoot Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/troubleshoot-storage-availability)

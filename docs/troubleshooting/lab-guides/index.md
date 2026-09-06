@@ -34,3 +34,8 @@ The first lab guide now documents the canonical troubleshooting-lab structure fo
 - [Playbooks](../playbooks/index.md)
 - [Private Endpoint and DNS Issues](../playbooks/access/private-endpoint-and-dns-issues.md)
 - [First 10 Minutes: Access](../first-10-minutes/access.md)
+
+## Sources
+
+- [Troubleshoot Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/troubleshoot-storage-availability)
+- [Storage account overview](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
