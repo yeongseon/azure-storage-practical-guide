@@ -81,9 +81,8 @@ az network vnet create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, record the VNet and subnet names — the private endpoint in Step 3 attaches to this subnet — and confirm the storage account was created before public access is restricted.
+
 ### Step 2: Create the Private DNS Zone and link the VNet
 
 ```bash
@@ -116,9 +115,8 @@ az network private-dns link vnet create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the `privatelink.blob.core.windows.net` zone is linked to the VNet; without the link, the account FQDN keeps resolving to the public endpoint instead of the private IP (and connections fail outright when public network access is disabled).
+
 ### Step 3: Create the Private Endpoint
 
 ```bash
@@ -146,9 +144,8 @@ az network private-endpoint create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, note the private endpoint's allocated private IP address — you will verify that the account FQDN resolves to this address.
+
 ### Step 4: Create the DNS zone group
 
 ```bash
@@ -172,9 +169,7 @@ az network private-endpoint dns-zone-group create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the zone group registered an A record for `<account>.privatelink.blob.core.windows.net` pointing at the private IP from Step 3; the public account FQDN reaches it through a CNAME into the privatelink zone.
 
 ## Validation Steps
 

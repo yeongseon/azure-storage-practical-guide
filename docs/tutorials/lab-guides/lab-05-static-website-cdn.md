@@ -79,9 +79,8 @@ az storage blob service-properties update \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, record the primary static-website endpoint URL (`primaryEndpoints.web` on the storage account) — Step 3 fronts this origin with the CDN.
+
 ### Step 2: Upload the website files
 
 ```bash
@@ -119,9 +118,8 @@ az storage blob upload-batch \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm `index.html` (and any error document) uploaded to the `$web` container and loads over the static-website endpoint.
+
 ### Step 3: Create a CDN profile and endpoint
 
 ```bash
@@ -158,9 +156,8 @@ az cdn endpoint create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, note the CDN endpoint hostname; allow time for propagation before expecting it to serve content from the origin.
+
 ### Step 4: Purge CDN cache after content changes
 
 ```bash
@@ -180,9 +177,7 @@ az cdn endpoint purge \
 | `--content-paths` | Paths to purge (`/*` for everything). |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the purge operation completed; cached paths may take a few minutes to reflect the refreshed origin content.
 
 ## Validation Steps
 

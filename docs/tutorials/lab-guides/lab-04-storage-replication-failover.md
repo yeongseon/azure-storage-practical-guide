@@ -66,16 +66,15 @@ az storage account create \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the account `sku.name` is a geo-redundant tier such as `Standard_GRS` — replication status is only meaningful on geo-redundant accounts (`Standard_GRS`, `Standard_GZRS`, `Standard_RAGRS`, or `Standard_RAGZRS`).
+
 ### Step 2: Inspect replication status
 
 ```bash
 az storage account show \
     --resource-group $RG \
     --name $STORAGE_NAME \
-    --query "{sku:sku.name,primaryLocation:primaryLocation,secondaryLocation:secondaryLocation,statusOfPrimary:statusOfPrimary,statusOfSecondary:statusOfSecondary}" \
+    --query "{sku:sku.name,primaryLocation:primaryLocation,secondaryLocation:secondaryLocation,statusOfPrimary:statusOfPrimary,statusOfSecondary:statusOfSecondary,lastSyncTime:geoReplicationStats.lastSyncTime}" \
     --output json
 ```
 
@@ -84,13 +83,12 @@ az storage account show \
 | `az storage account show` | Show replication status of the storage account. |
 | `--resource-group` | Resource group that contains the account. |
 | `--name` | Name of the storage account to inspect. |
-| `--query` | JMESPath expression selecting SKU, locations, and primary/secondary status. |
+| `--query` | JMESPath expression selecting SKU, locations, primary/secondary status, and the read-access last-sync time. |
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm `statusOfPrimary` (and `statusOfSecondary` on geo-redundant accounts) reports `available`; on read-access accounts the secondary's `lastSyncTime` means writes made before that timestamp have replicated — not that every latest write is present.
+
 ### Step 3: Upload sample content and validate the primary path
 
 ```bash
@@ -130,9 +128,8 @@ az storage blob upload \
 | `--output` | Output format for the result. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+After this step, confirm the uploaded blob is readable from the primary endpoint before you consider any failover.
+
 ### Step 4: Review the failover command without executing it until approved
 
 ```bash
@@ -148,9 +145,7 @@ az storage account failover \
 | `--name` | Name of the storage account to fail over. |
 
 
-- Record the output and any IDs you will reuse in later steps.
-- If the command creates security-sensitive settings, confirm they match policy before moving on.
-- Capture screenshots or JSON output for your lab notes if you are building internal training material.
+Do not execute the failover command in this lab — read the command plan and note that account failover is region-wide and permanently changes the primary region until failback.
 
 ## Validation Steps
 
