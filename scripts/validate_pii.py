@@ -61,6 +61,29 @@ SAFE_EMAIL_DOMAINS = {
 SAFE_EMAIL_TLDS = {"example", "invalid", "test", "localhost"}
 SAFE_EMAIL_DOMAIN_SUFFIXES = (".azurecomm.net",)  # ACS system sender addresses
 
+# Documented, public Azure built-in role definition IDs. These UUIDs are global
+# constants (identical in every tenant), so citing one leaks no account data.
+# Source: learn.microsoft.com/azure/role-based-access-control/built-in-roles
+PUBLIC_AZURE_ROLE_IDS = frozenset(
+    {
+        "7f951dda-4ed3-4680-a7ca-43fe172d538d",
+        "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+        "b24988ac-6180-42a0-ab88-20f7382dd24c",
+        "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+        "8311e382-0749-4cb8-b61a-304f252e45ec",
+        "ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+        "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1",
+        "4633458b-17de-40c3-b3c0-e79bb2e4a2fe",
+        "de139f84-1756-47ae-9be6-808fbbe84772",
+        "73c42c96-874c-492b-b04d-ab87d138a893",
+        "b7e6dc6d-f1e8-4753-8033-0f276bb0955b",
+        "17d1049b-9a84-46fb-8f53-869881c3d3ab",
+        "3913510d-42f4-4e42-8a64-420c390055eb",
+        "749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+        "43d0d8ad-25c7-4714-9337-8ba259a9fe05",
+    }
+)
+
 TENANT_KEYWORDS = ("tenant", "tenantid", "tenant-id", "--tenant")
 OBJECT_KEYWORDS = ("object id", "objectid", "object-id", "principal id", "principalid")
 FENCED_CODE_PATTERN = re.compile(r"^```([A-Za-z0-9_-]+)?\s*$")
@@ -109,10 +132,14 @@ def is_safe_uuid(value: str) -> bool:
     True
     >>> is_safe_uuid("0a3728f5-aee8-4ea1-9b84-4dc6e1aef664")
     False
+    >>> is_safe_uuid("7f951dda-4ed3-4680-a7ca-43fe172d538d")
+    True
     """
     normalized = value.lower()
     compact = normalized.replace("-", "")
 
+    if normalized in PUBLIC_AZURE_ROLE_IDS:
+        return True
     if len(set(compact)) == 1:
         return True
     if _uniform_groups(normalized):
