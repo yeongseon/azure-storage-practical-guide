@@ -66,7 +66,7 @@ az storage account create \
 | `--output` | Output format for the result. |
 
 
-After this step, confirm the account `sku.name` is a geo-redundant tier such as `Standard_GRS` — replication status is only meaningful on GRS or GZRS accounts.
+After this step, confirm the account `sku.name` is a geo-redundant tier such as `Standard_GRS` — replication status is only meaningful on geo-redundant accounts (`Standard_GRS`, `Standard_GZRS`, `Standard_RAGRS`, or `Standard_RAGZRS`).
 
 ### Step 2: Inspect replication status
 
@@ -87,7 +87,7 @@ az storage account show \
 | `--output` | Output format for the result. |
 
 
-After this step, record the `geoReplicationStats` last-sync timestamp; a recent value indicates the secondary region is current.
+After this step, confirm `statusOfPrimary` (and `statusOfSecondary` on geo-redundant accounts) reports `available`; on read-access accounts the secondary's `lastSyncTime` means writes made before that timestamp have replicated — not that every latest write is present.
 
 ### Step 3: Upload sample content and validate the primary path
 

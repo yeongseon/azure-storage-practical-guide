@@ -79,7 +79,7 @@ az storage blob service-properties update \
 | `--output` | Output format for the result. |
 
 
-After this step, record the primary static-website endpoint URL returned for the `$web` configuration — Step 3 fronts this origin with the CDN.
+After this step, record the primary static-website endpoint URL (`primaryEndpoints.web` on the storage account) — Step 3 fronts this origin with the CDN.
 
 ### Step 2: Upload the website files
 

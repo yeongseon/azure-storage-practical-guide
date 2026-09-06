@@ -116,7 +116,7 @@ az storage account update \
 | `--output` | Output format for the result. |
 
 
-After this step, verify the directory-service identity settings were accepted; the placeholder domain values are intentional for this lab and are not expected to resolve.
+After this step, verify the directory-service identity settings were accepted at the API level; the placeholder domain values are intentional for this lab and do not establish real AD connectivity.
 
 ### Step 3: Assign share-level RBAC
 

@@ -115,7 +115,7 @@ az network private-dns link vnet create \
 | `--output` | Output format for the result. |
 
 
-After this step, confirm the `privatelink.blob.core.windows.net` zone is linked to the VNet; without the link, name resolution to the private IP will silently fall back to the public endpoint.
+After this step, confirm the `privatelink.blob.core.windows.net` zone is linked to the VNet; without the link, the account FQDN keeps resolving to the public endpoint instead of the private IP (and connections fail outright when public network access is disabled).
 
 ### Step 3: Create the Private Endpoint
 
@@ -169,7 +169,7 @@ az network private-endpoint dns-zone-group create \
 | `--output` | Output format for the result. |
 
 
-After this step, confirm the zone group registered an A record mapping the account FQDN to the private IP allocated in Step 3.
+After this step, confirm the zone group registered an A record for `<account>.privatelink.blob.core.windows.net` pointing at the private IP from Step 3; the public account FQDN reaches it through a CNAME into the privatelink zone.
 
 ## Validation Steps
 
