@@ -103,38 +103,49 @@ nav:
     - Storage Services at a Glance: start-here/storage-services-at-a-glance.md
   - Platform:
     - platform/index.md
-    - How Azure Storage Works: platform/how-azure-storage-works.md
-    - Storage Account Basics: platform/storage-account-basics.md
-    - Blob Storage Basics: platform/blob-storage-basics.md
-    - File Storage Basics: platform/file-storage-basics.md
-    - Queue and Table Basics: platform/queue-and-table-basics.md
-    - Redundancy and Durability: platform/redundancy-and-durability.md
-    - Access Models: platform/access-models.md
-    - Networking and Private Access: platform/networking-and-private-access.md
+    - Fundamentals:
+      - How Azure Storage Works: platform/how-azure-storage-works.md
+      - Storage Account Basics: platform/storage-account-basics.md
+      - Redundancy and Durability: platform/redundancy-and-durability.md
+    - Services:
+      - Blob Storage Basics: platform/blob-storage-basics.md
+      - File Storage Basics: platform/file-storage-basics.md
+      - Queue and Table Basics: platform/queue-and-table-basics.md
+    - Access and Networking:
+      - Access Models: platform/access-models.md
+      - Networking and Private Access: platform/networking-and-private-access.md
     - Performance and Scaling Basics: platform/performance-and-scaling-basics.md
   - Best Practices:
     - best-practices/index.md
-    - Storage Account Design Baseline: best-practices/storage-account-design-baseline.md
-    - Blob: best-practices/blob-best-practices.md
-    - File Share: best-practices/file-share-best-practices.md
-    - Security: best-practices/security-best-practices.md
-    - Networking: best-practices/networking-best-practices.md
-    - Redundancy and DR: best-practices/redundancy-and-dr-best-practices.md
-    - Performance: best-practices/performance-best-practices.md
+    - Design:
+      - Storage Account Design Baseline: best-practices/storage-account-design-baseline.md
+      - Lifecycle Management: best-practices/lifecycle-management-best-practices.md
+    - Service Practices:
+      - Blob: best-practices/blob-best-practices.md
+      - File Share: best-practices/file-share-best-practices.md
+    - Security and Networking:
+      - Security: best-practices/security-best-practices.md
+      - Networking: best-practices/networking-best-practices.md
+    - Reliability and Performance:
+      - Redundancy and DR: best-practices/redundancy-and-dr-best-practices.md
+      - Performance: best-practices/performance-best-practices.md
     - Cost Optimization: best-practices/cost-optimization-best-practices.md
-    - Lifecycle Management: best-practices/lifecycle-management-best-practices.md
     - Common Anti-Patterns: best-practices/common-anti-patterns.md
   - Operations:
     - operations/index.md
-    - Create Storage Account: operations/create-storage-account.md
-    - Manage Containers and Shares: operations/manage-containers-and-shares.md
-    - Configure Access and Identity: operations/configure-access-and-identity.md
-    - Configure Network Rules: operations/configure-network-rules.md
-    - Use Private Endpoints: operations/use-private-endpoints.md
-    - Manage Lifecycle Policies: operations/manage-lifecycle-policies.md
-    - Backup and Data Protection: operations/backup-and-data-protection.md
-    - Monitoring and Alerting: operations/monitoring-and-alerting.md
-    - AzCopy and Data Movement: operations/azcopy-and-data-movement.md
+    - Provision:
+      - Create Storage Account: operations/create-storage-account.md
+      - Manage Containers and Shares: operations/manage-containers-and-shares.md
+    - Access and Network:
+      - Configure Access and Identity: operations/configure-access-and-identity.md
+      - Configure Network Rules: operations/configure-network-rules.md
+      - Use Private Endpoints: operations/use-private-endpoints.md
+    - Data Protection:
+      - Manage Lifecycle Policies: operations/manage-lifecycle-policies.md
+      - Backup and Data Protection: operations/backup-and-data-protection.md
+    - Operate:
+      - Monitoring and Alerting: operations/monitoring-and-alerting.md
+      - AzCopy and Data Movement: operations/azcopy-and-data-movement.md
   - Tutorials:
     - tutorials/index.md
     - Lab Guides:
@@ -146,11 +157,13 @@ nav:
       - "Lab 05: Static Website with CDN": tutorials/lab-guides/lab-05-static-website-cdn.md
   - Troubleshooting:
     - troubleshooting/index.md
-    - troubleshooting/quick-diagnosis-cards.md
-    - troubleshooting/architecture-overview.md
-    - troubleshooting/decision-tree.md
-    - troubleshooting/mental-model.md
-    - troubleshooting/evidence-map.md
+    - Orientation:
+      - Architecture Overview: troubleshooting/architecture-overview.md
+      - Mental Model: troubleshooting/mental-model.md
+    - Diagnosis:
+      - Quick Diagnosis Cards: troubleshooting/quick-diagnosis-cards.md
+      - Decision Tree: troubleshooting/decision-tree.md
+      - Evidence Map: troubleshooting/evidence-map.md
     - First 10 Minutes:
       - troubleshooting/first-10-minutes/index.md
       - Access: troubleshooting/first-10-minutes/access.md
@@ -181,17 +194,19 @@ nav:
       - Authorization-failure scope: troubleshooting/lab-guides/authorization-failure-scope.md
   - Reference:
     - reference/index.md
-    - Content Validation: reference/content-validation-status.md
-    - Validation Status: reference/validation-status.md
-    - Storage Service Selection Guide: reference/storage-service-selection-guide.md
-    - Redundancy Options: reference/redundancy-options.md
-    - Access Methods Cheatsheet: reference/access-methods-cheatsheet.md
-    - Storage Networking Cheatsheet: reference/storage-networking-cheatsheet.md
-    - Performance Terms: reference/performance-terms.md
+    - Validation Dashboards:
+      - Content Validation: reference/content-validation-status.md
+      - Validation Status: reference/validation-status.md
+    - Decision Guides:
+      - Storage Service Selection Guide: reference/storage-service-selection-guide.md
+      - Redundancy Options: reference/redundancy-options.md
+    - Cheatsheets:
+      - Access Methods Cheatsheet: reference/access-methods-cheatsheet.md
+      - Storage Networking Cheatsheet: reference/storage-networking-cheatsheet.md
+      - Performance Terms: reference/performance-terms.md
     - Glossary: reference/glossary.md
   - Contributing:
     - contributing/index.md
-
 extra:
   social:
     - icon: fontawesome/brands/github
