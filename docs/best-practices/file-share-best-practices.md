@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-file-share-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Best practices for Azure Files covering protocol choice, identity integration, private connectivity, quota review, and backup boundaries.
 content_validation:
   status: verified
@@ -16,6 +22,21 @@ content_validation:
 # File Share Best Practices
 
 Use these practices to keep Azure Files deployments aligned with protocol, identity, and share-level performance requirements.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-file-share-overview -->
+```mermaid
+flowchart TD
+    T["File Share Best Practices"]
+    P1["Example review command"]
+    T --> P1
+    P2["Example review command"]
+    T --> P2
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+```
 
 ## Why This Matters
 

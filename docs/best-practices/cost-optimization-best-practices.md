@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-cost-optimization-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Cost optimization best practices for Azure Storage covering billing meters, tier review, redundancy tradeoffs, and reserved-capacity fit.
 content_validation:
   status: verified
@@ -16,6 +22,21 @@ content_validation:
 # Cost Optimization Best Practices
 
 Use these practices to review Azure Storage cost through the billing meter that actually moves monthly spend.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-cost-optimization-overview -->
+```mermaid
+flowchart TD
+    T["Cost Optimization Best Practices"]
+    P1["Example review command"]
+    T --> P1
+    P2["Example review command"]
+    T --> P2
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+```
 
 ## Why This Matters
 

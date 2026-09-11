@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-networking-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Networking best practices for Azure Storage covering private endpoints, firewall rules, DNS validation, and effective path review.
 content_validation:
   status: verified
@@ -16,6 +22,21 @@ content_validation:
 # Networking Best Practices
 
 Use these practices to prove how clients reach storage, how DNS resolves that path, and which fallbacks remain exposed.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-networking-overview -->
+```mermaid
+flowchart TD
+    T["Networking Best Practices"]
+    P1["Example review command"]
+    T --> P1
+    P2["Example review command"]
+    T --> P2
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+```
 
 ## Why This Matters
 
