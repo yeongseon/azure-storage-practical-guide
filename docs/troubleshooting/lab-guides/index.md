@@ -1,10 +1,28 @@
 ---
+content_sources:
+  diagrams:
+    - id: lab-hub-lifecycle
+      type: flowchart
+      source: self-generated
+      justification: Lifecycle overview of the starter lab shape documented on this hub page.
 description: Troubleshooting lab guides for Azure Storage — reproducible incident labs, methodology expectations, and the current published and scoped scenarios.
 ---
 
 # Lab Guides
 
 Troubleshooting labs are reproducible experiments that turn a storage symptom into a testable hypothesis, a controlled reproduction, and a falsifiable fix. This hub introduces the Troubleshooting > Lab Guides surface and tracks both published labs and scoped follow-on scenarios.
+
+The lab lifecycle every guide in this hub follows:
+
+<!-- diagram-id: lab-hub-lifecycle -->
+```mermaid
+flowchart LR
+    A["Pick a storage failure to reproduce"] --> B["Trigger the fault in a lab subscription"]
+    B --> C["Capture evidence: metrics, diagnostics, portal state"]
+    C --> D["Diagnose against the matching playbook"]
+    D --> E["Fix and verify recovery"]
+    E --> F["Record the evidence chain in the lab guide"]
+```
 
 ## How to Use This Hub
 
