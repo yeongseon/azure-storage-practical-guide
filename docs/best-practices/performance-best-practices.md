@@ -29,19 +29,22 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Performance Best Practices"]
-    P1["Measure object size"]
+    P1["Place compute near storage whenever the architecture allows"]
     T --> P1
-    P2["Review naming and prefix patterns for partition balance"]
+    P2["Measure object size"]
     T --> P2
-    P3["Tune transfer tools only after sampling representative blobs"]
+    P3["Review naming and prefix patterns for partition balance"]
     T --> P3
-    P4["Monitor latency and throttling together"]
+    P4["Tune transfer tools only after sampling representative blobs"]
     T --> P4
+    P5["Monitor latency and throttling together"]
+    T --> P5
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
     P3 --> V
     P4 --> V
+    P5 --> V
 ```
 
 ## Why This Matters

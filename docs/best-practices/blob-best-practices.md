@@ -29,13 +29,19 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Blob Best Practices"]
-    P1["Example review command"]
+    P1["Match blob type to the real workload instead"]
     T --> P1
-    P2["Example review command"]
+    P2["Use predictable prefixes so operators can explain policy"]
     T --> P2
+    P3["Prefer RBAC and narrow SAS over broad account-level"]
+    T --> P3
+    P4["Tune upload and download tooling only after sampling"]
+    T --> P4
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
+    P4 --> V
 ```
 
 ## Why This Matters

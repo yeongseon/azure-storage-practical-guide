@@ -33,12 +33,18 @@ flowchart TD
     T --> P1
     P2["Decide redundancy from business recovery requirements"]
     T --> P2
-    P3["Require named owners for security"]
+    P3["Disable unnecessary public exposure and record any approved"]
     T --> P3
+    P4["Require named owners for security"]
+    T --> P4
+    P5["Turn on diagnostics before application cutover so the"]
+    T --> P5
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
     P3 --> V
+    P4 --> V
+    P5 --> V
 ```
 
 ## Why This Matters

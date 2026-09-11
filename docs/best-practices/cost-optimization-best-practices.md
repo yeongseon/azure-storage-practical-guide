@@ -29,13 +29,16 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Cost Optimization Best Practices"]
-    P1["Example review command"]
+    P1["Classify data by access pattern before setting tiers"]
     T --> P1
-    P2["Example review command"]
+    P2["Use lifecycle automation only when the business value"]
     T --> P2
+    P3["Evaluate reserved capacity only for stable"]
+    T --> P3
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
 ```
 
 ## Why This Matters

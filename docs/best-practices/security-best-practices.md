@@ -29,13 +29,22 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Security Best Practices"]
-    P1["Example review commands"]
+    P1["Make Microsoft Entra ID and RBAC the default"]
     T --> P1
-    P2["Example review commands"]
+    P2["Treat SAS as a short-lived exception with narrow"]
     T --> P2
+    P3["Disable unnecessary public access paths and validate private"]
+    T --> P3
+    P4["Turn on diagnostics before data is onboarded"]
+    T --> P4
+    P5["Review encryption posture together with network and identity"]
+    T --> P5
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
+    P4 --> V
+    P5 --> V
 ```
 
 ## Why This Matters

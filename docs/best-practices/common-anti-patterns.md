@@ -29,13 +29,19 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Common Anti-Patterns"]
-    P1["Example review command"]
+    P1["Split workloads by security boundary"]
     T --> P1
-    P2["Example review command"]
+    P2["Treat Shared Key and broad SAS usage as"]
     T --> P2
+    P3["Validate tiering choices with actual access patterns and"]
+    T --> P3
+    P4["Keep operational ownership explicit for backup"]
+    T --> P4
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
+    P4 --> V
 ```
 
 ## Why This Matters

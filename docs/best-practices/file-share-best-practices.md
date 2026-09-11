@@ -29,13 +29,16 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["File Share Best Practices"]
-    P1["Example review command"]
+    P1["Choose SMB or NFS from client and identity"]
     T --> P1
-    P2["Example review command"]
+    P2["Review quota"]
     T --> P2
+    P3["Keep share ownership and backup responsibilities explicit"]
+    T --> P3
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
 ```
 
 ## Why This Matters

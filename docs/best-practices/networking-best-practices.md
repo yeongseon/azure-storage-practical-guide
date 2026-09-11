@@ -29,13 +29,16 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Networking Best Practices"]
-    P1["Example review command"]
+    P1["Prefer private endpoints for production trust boundaries"]
     T --> P1
-    P2["Example review command"]
+    P2["Validate DNS ownership before cutover"]
     T --> P2
+    P3["Record the source-to-service path for each workload that"]
+    T --> P3
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
 ```
 
 ## Why This Matters

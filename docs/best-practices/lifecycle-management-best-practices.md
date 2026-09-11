@@ -29,13 +29,19 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Lifecycle Management Best Practices"]
-    P1["Example policy command"]
+    P1["Translate policy intent into clear prefixes and tags"]
     T --> P1
-    P2["Example policy command"]
+    P2["Move data through tiers with timing that reflects"]
     T --> P2
+    P3["Pair delete actions with soft delete"]
+    T --> P3
+    P4["Review rule interactions whenever new datasets or prefixes"]
+    T --> P4
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
+    P4 --> V
 ```
 
 ## Why This Matters

@@ -31,14 +31,20 @@ flowchart TD
     T["Redundancy and DR Best Practices"]
     P1["Choose redundancy from business RPO and RTO"]
     T --> P1
-    P2["Keep backup and replication decisions separate in runbooks"]
+    P2["Test application behavior for secondary reads and manual"]
     T --> P2
-    P3["Review last sync time before any manual failover decision"]
+    P3["Keep backup and replication decisions separate in runbooks"]
     T --> P3
+    P4["Record who can authorize failover and how stakeholders"]
+    T --> P4
+    P5["Review last sync time before any manual failover decision"]
+    T --> P5
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
     P3 --> V
+    P4 --> V
+    P5 --> V
 ```
 
 ## Why This Matters
