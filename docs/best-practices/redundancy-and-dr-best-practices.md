@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-redundancy-and-dr-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Best practices for Azure Storage redundancy and disaster recovery covering replication choice, failover review, and secondary-region readiness.
 content_validation:
   status: verified
@@ -16,6 +22,30 @@ content_validation:
 # Redundancy and DR Best Practices
 
 Use these practices to tie redundancy cost to a clear failover decision model and documented recovery expectations.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-redundancy-and-dr-overview -->
+```mermaid
+flowchart TD
+    T["Redundancy and DR Best Practices"]
+    P1["Choose redundancy from business RPO and RTO"]
+    T --> P1
+    P2["Test application behavior for secondary reads and manual"]
+    T --> P2
+    P3["Keep backup and replication decisions separate in runbooks"]
+    T --> P3
+    P4["Record who can authorize failover and how stakeholders"]
+    T --> P4
+    P5["Review last sync time before any manual failover decision"]
+    T --> P5
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+    P5 --> V
+```
 
 ## Why This Matters
 

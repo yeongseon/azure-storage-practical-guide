@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-common-anti-patterns-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Common Azure Storage anti-patterns to detect early, including mixed-purpose accounts, broad access paths, weak tiering logic, and unclear ownership.
 content_validation:
   status: verified
@@ -16,6 +22,27 @@ content_validation:
 # Common Anti-Patterns
 
 Use this page to catch recurring Azure Storage design mistakes before they turn into incidents, audit gaps, or runaway cost.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-common-anti-patterns-overview -->
+```mermaid
+flowchart TD
+    T["Common Anti-Patterns"]
+    P1["Split workloads by security boundary"]
+    T --> P1
+    P2["Treat Shared Key and broad SAS usage as"]
+    T --> P2
+    P3["Validate tiering choices with actual access patterns and"]
+    T --> P3
+    P4["Keep operational ownership explicit for backup"]
+    T --> P4
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+```
 
 ## Why This Matters
 

@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-storage-account-design-baseline-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Production baseline for Azure Storage account design covering account type, redundancy, network exposure, diagnostics, and ownership defaults.
 content_validation:
   status: verified
@@ -16,6 +22,30 @@ content_validation:
 # Storage Account Design Baseline
 
 Use this baseline to standardize how new Azure Storage accounts are created before workload-specific tuning begins.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-storage-account-design-baseline-overview -->
+```mermaid
+flowchart TD
+    T["Storage Account Design Baseline"]
+    P1["general-purpose v2"]
+    T --> P1
+    P2["Decide redundancy from business recovery requirements"]
+    T --> P2
+    P3["Disable unnecessary public exposure and record any approved"]
+    T --> P3
+    P4["Require named owners for security"]
+    T --> P4
+    P5["Turn on diagnostics before application cutover so the"]
+    T --> P5
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+    P5 --> V
+```
 
 ## Why This Matters
 

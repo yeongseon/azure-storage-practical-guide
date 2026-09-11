@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-performance-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Performance best practices for Azure Storage covering client placement, partitioning, transfer tuning, and latency review.
 content_validation:
   status: verified
@@ -16,6 +22,30 @@ content_validation:
 # Performance Best Practices
 
 Use these practices to review Azure Storage performance from latency, concurrency, partition design, and client placement together.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-performance-overview -->
+```mermaid
+flowchart TD
+    T["Performance Best Practices"]
+    P1["Place compute near storage whenever the architecture allows"]
+    T --> P1
+    P2["Measure object size"]
+    T --> P2
+    P3["Review naming and prefix patterns for partition balance"]
+    T --> P3
+    P4["Tune transfer tools only after sampling representative blobs"]
+    T --> P4
+    P5["Monitor latency and throttling together"]
+    T --> P5
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+    P5 --> V
+```
 
 ## Why This Matters
 

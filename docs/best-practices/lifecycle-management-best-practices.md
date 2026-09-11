@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-lifecycle-management-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Lifecycle management best practices for Azure Storage covering rule design, policy execution timing, and safe deletion boundaries.
 content_validation:
   status: verified
@@ -16,6 +22,27 @@ content_validation:
 # Lifecycle Management Best Practices
 
 Use these practices to keep lifecycle rules explainable, testable, and safe to operate.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-lifecycle-management-overview -->
+```mermaid
+flowchart TD
+    T["Lifecycle Management Best Practices"]
+    P1["Translate policy intent into clear prefixes and tags"]
+    T --> P1
+    P2["Move data through tiers with timing that reflects"]
+    T --> P2
+    P3["Pair delete actions with soft delete"]
+    T --> P3
+    P4["Review rule interactions whenever new datasets or prefixes"]
+    T --> P4
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+```
 
 ## Why This Matters
 

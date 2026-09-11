@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-blob-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Best practices for Azure Blob Storage covering blob type selection, prefix design, lifecycle boundaries, transfer tuning, and tiering review.
 content_validation:
   status: verified
@@ -16,6 +22,27 @@ content_validation:
 # Blob Best Practices
 
 Use these practices to keep Blob Storage designs aligned with object layout, transfer behavior, and recovery needs.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-blob-overview -->
+```mermaid
+flowchart TD
+    T["Blob Best Practices"]
+    P1["Match blob type to the real workload instead"]
+    T --> P1
+    P2["Use predictable prefixes so operators can explain policy"]
+    T --> P2
+    P3["Prefer RBAC and narrow SAS over broad account-level"]
+    T --> P3
+    P4["Tune upload and download tooling only after sampling"]
+    T --> P4
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+```
 
 ## Why This Matters
 

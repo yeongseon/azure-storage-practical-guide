@@ -1,4 +1,10 @@
 ---
+content_sources:
+  diagrams:
+    - id: bp-security-overview
+      type: flowchart
+      source: self-generated
+      justification: Overview map of this page's own recommended practices and validation checklist.
 description: Security best practices for Azure Storage covering Entra authorization, Shared Key reduction, telemetry, encryption review, and private access posture.
 content_validation:
   status: verified
@@ -16,6 +22,30 @@ content_validation:
 # Security Best Practices
 
 Use these practices to reduce unnecessary exposure in Azure Storage and keep access decisions auditable.
+
+This page's baseline at a glance — the recommended practices and the validation gate:
+
+<!-- diagram-id: bp-security-overview -->
+```mermaid
+flowchart TD
+    T["Security Best Practices"]
+    P1["Make Microsoft Entra ID and RBAC the default"]
+    T --> P1
+    P2["Treat SAS as a short-lived exception with narrow"]
+    T --> P2
+    P3["Disable unnecessary public access paths and validate private"]
+    T --> P3
+    P4["Turn on diagnostics before data is onboarded"]
+    T --> P4
+    P5["Review encryption posture together with network and identity"]
+    T --> P5
+    V["Validation Checklist"]
+    P1 --> V
+    P2 --> V
+    P3 --> V
+    P4 --> V
+    P5 --> V
+```
 
 ## Why This Matters
 
