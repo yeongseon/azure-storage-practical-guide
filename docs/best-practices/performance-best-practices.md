@@ -29,13 +29,19 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Performance Best Practices"]
-    P1["Example review command"]
+    P1["Measure object size"]
     T --> P1
-    P2["Example review command"]
+    P2["Review naming and prefix patterns for partition balance"]
     T --> P2
+    P3["Tune transfer tools only after sampling representative blobs"]
+    T --> P3
+    P4["Monitor latency and throttling together"]
+    T --> P4
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
+    P4 --> V
 ```
 
 ## Why This Matters

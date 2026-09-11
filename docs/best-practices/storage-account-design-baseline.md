@@ -29,13 +29,16 @@ This page's baseline at a glance — the recommended practices and the validatio
 ```mermaid
 flowchart TD
     T["Storage Account Design Baseline"]
-    P1["Example review command"]
+    P1["general-purpose v2"]
     T --> P1
-    P2["Example review command"]
+    P2["Decide redundancy from business recovery requirements"]
     T --> P2
+    P3["Require named owners for security"]
+    T --> P3
     V["Validation Checklist"]
     P1 --> V
     P2 --> V
+    P3 --> V
 ```
 
 ## Why This Matters
